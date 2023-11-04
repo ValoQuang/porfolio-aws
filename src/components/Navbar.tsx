@@ -18,9 +18,9 @@ const Navbar = () => {
         </button>
         <div className="flex pt-2">
           <Buttons to="about" text="Bio" />
-          <Buttons to="/knowledge" text="Work experience" />
-          <Buttons to="/aboutsdasdas" text="Blogspot" />
-          <Buttons to="/about" text="LinkedIn" />
+          <Buttons to="knowledge" text="Work experience" />
+          <Buttons to="about" text="Blogspot" />
+          <Buttons to="about" text="LinkedIn" />
         </div>
       </div>
       <div className="p-link">

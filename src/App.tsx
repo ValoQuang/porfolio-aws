@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import Introduction from "./components/Introduction";
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <div className="App">
       <Navbar />
