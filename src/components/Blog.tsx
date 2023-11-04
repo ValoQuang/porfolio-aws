@@ -1,11 +1,11 @@
 import Body from "./Skeleton/Body";
 
-const About = (): JSX.Element => {
+const Blog = (): JSX.Element => {
   return <><Body children={
     <>
-    Here is my brief background
+    Here is Blog
     </>
   }/></>;
 };
 
-export default About;
+export default Blog;

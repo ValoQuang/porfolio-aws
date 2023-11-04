@@ -1,13 +1,13 @@
 import Navbar from "./components/Navbar";
-import Introduction from "./components/Introduction";
+import { Outlet } from "react-router-dom";
 
 const App = (): JSX.Element => {
   return (
     <div className="App">
       <Navbar />
-      <Introduction />
+      <Outlet />
     </div>
   );
-}
+};
 
 export default App;

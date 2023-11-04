@@ -1,15 +1,14 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       backgroundColor: {
-        "custom-1": "#33332d",
-        "custom-2": "#ff5733",
-        "custom-3": "#12a4d9",
+        display: "white",
       },
       textColor: {
-        "custom-2": "#ff5733",
+        display: "white",
       },
       spacing: {
         1: "2rem",

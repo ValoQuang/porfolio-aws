@@ -1,5 +1,11 @@
+import Body from "./Skeleton/Body";
+
 const Knowledge = (): JSX.Element => {
-  return <div className="text-9xl">Knowledge</div>;
+  return <><Body children={
+    <>
+    Here is Knowledge
+    </>
+  }/></>;
 };
 
 export default Knowledge;

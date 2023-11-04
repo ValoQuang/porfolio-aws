@@ -4,7 +4,7 @@ interface button {
   to: string;
 }
 
-const Buttons = ({ text, to }: button): any => {
+const Buttons = ({ text, to }: button) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(to);
@@ -12,7 +12,7 @@ const Buttons = ({ text, to }: button): any => {
   return (
     <div className="pl-10">
       <button
-        className="p-link text-link hover:pointer hover:bg-black hover:text-white"
+        className="p-link text-link hover:pointer hover:bg-black hover:text-display"
         onClick={handleClick}
       >
         {text}
