@@ -18,16 +18,15 @@ module.exports = {
         "ibm-plex-mono": ['"IBM Plex Mono"', "monospace"],
       },
       fontSize: {
-        "link": "20px",
-        'headline': "54px",
-        'name': "29px",
+        link: "20px",
+        headline: "54px",
+        name: "29px",
       },
       padding: {
-        'navbar': '25.98px 72px 18px 72px;',
-        'link': '4.59px 3.204px 5.58px 3.6px',
-      },
-      height: {
-        'navbar': '86.34px;',
+        navbar: "20px 72px 20px 72px;",
+        main: "150px 72px 50px 72px;",
+        link: "4.59px 3.204px 5.58px 3.6px",
+        footer: "90px 72px 90px 72px;",
       },
     },
   },

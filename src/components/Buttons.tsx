@@ -1,13 +1,22 @@
-import React from "react";
-
+import { useNavigate } from "react-router-dom";
 interface button {
   text: string;
+  to: string;
 }
 
-const Buttons = (props: button): JSX.Element => {
+const Buttons = ({ text, to }: button): any => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(to);
+  };
   return (
     <div className="pl-10">
-      <button className="p-link text-link hover:pointer hover:bg-black hover:text-white">{props.text}</button>
+      <button
+        className="p-link text-link hover:pointer hover:bg-black hover:text-white"
+        onClick={handleClick}
+      >
+        {text}
+      </button>
     </div>
   );
 };
