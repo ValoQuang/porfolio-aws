@@ -5,7 +5,7 @@ const Introduction = () => {
     <div className="flex p-navbar font-ibm-plex-mono">
       <div className="flex font-ibm-plex-mono">
         <div className="flex flex-wrap flex-auto w-70">
-          <header className="text-headline  font-bold leading-110">
+          <header className="text-headline  font-semibold leading-110">
             My understanding of Web Development
           </header>
           <p className="text-name">Quang Truong</p>
@@ -18,7 +18,7 @@ const Introduction = () => {
         </div>
        
       </div>
-      <div className="pr-10">
+      <div className="p-10">
       <Cubes />
       </div>
     </div>

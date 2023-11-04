@@ -24,7 +24,6 @@ module.exports = {
       },
       padding: {
         'navbar': '25.98px 72px 18px 72px;',
-        'container': '0px 0px 0px 0px',
         'link': '4.59px 3.204px 5.58px 3.6px',
       },
       height: {
