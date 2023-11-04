@@ -1,20 +1,17 @@
 import { ReactComponent as Search } from "../assets/Search.svg";
 import { ReactComponent as Moon } from "../assets/Moon.svg";
 import { ReactComponent as Sun } from "../assets/Sun.svg";
-import { initialState, useDisplayStore } from "../store/displayStore";
+import { useDisplayStore } from "../store/displayStore";
 import { useNavigate } from "react-router-dom";
 import Buttons from "./Buttons";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const setDarkMode = useDisplayStore((state) => state.set);
+  const toggleDarkMode = useDisplayStore(state=> state.setDarkMode);
 
   const handleDisplayMode = () => {
-    setDarkMode({
-        lightMode: !initialState.lightMode
-    });
-    console.log(initialState.lightMode);
-  }
+    toggleDarkMode();
+  };
 
   return (
     <div className=" fixed text-display bg-display flex justify-between w-full p-navbar font-ibm-plex-mono">
@@ -34,11 +31,11 @@ const Navbar = () => {
       <div className="p-link">
         <div className="flex pl-10 p-link">
           <Search />
-          
+          <button onClick={handleDisplayMode}>Mode</button>
           <Moon />
           <Sun />
         </div>
-        <button onClick={handleDisplayMode}>Mode</button>
+       
       </div>
     </div>
   );

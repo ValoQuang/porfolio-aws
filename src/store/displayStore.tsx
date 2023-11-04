@@ -19,11 +19,9 @@ export const initialState: displayState = {
   lightMode: true,
 };
 
-const store = immer<StoreType<displayState>>((set) => ({
+const store = (set: (arg0: (state: any) => { lightMode: boolean }) => any) => ({
   ...initialState,
-  set: (updatedState) => {
-    set((state) => ({ ...state, ...updatedState }));
-  },
-}));
+  setDarkMode: () => set((state) => ({ lightMode: !state.lightMode })),
+});
 
 export const useDisplayStore = create(store);
