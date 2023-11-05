@@ -3,7 +3,6 @@
 Spaghetti codes  - a fun term to describe a messy repository, codes.  
 Yes that is correct, and no this is not an organised repository, or at least that is what I am trying to avoid.
 <br />
-Hi potential employers, my name is Quang.  
 By the time this repository is made on October, I am proudly, serving in Finnish Defense Force. The service marks my 9-year of living in Finland, 2014 - 2023.  
 It was a great journey, that day when I went out to the world and learnt, many failures, but so much valuable and unique experience.  
 <br />
