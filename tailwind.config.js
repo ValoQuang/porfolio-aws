@@ -3,9 +3,6 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      backgroundColor: {
-        display: "white",
-      },
       spacing: {
         1: "2rem",
       },
@@ -23,7 +20,7 @@ module.exports = {
         link: "4.59px 3.204px 5.58px 3.6px",
         footer: "90px 72px 90px 72px;",
       },
-      darkMode: 'class',
+      darkMode: "class",
     },
   },
   plugins: [],

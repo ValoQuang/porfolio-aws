@@ -2,58 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .typewriter {
-    --bgColor: rgb(255, 255, 255);
-    --lines: 500;
-    --lineHeight: 24px;
-    --timePerLine: 1s;
-    --widthCh: 80;
-    --width: calc(var(--widthCh) * 1ch);
-    /* do not touch the time property!!! */
-    --time: calc(var(--lines) * var(--timePerLine));
-    animation: grow var(--time) steps(var(--lines));
-    animation-fill-mode: forwards;
-    background: var(--bgColor);  
-    line-height: var(--lineHeight);
+  --bgColor: rgb(255, 255, 255);
+  --lines: 500;
+  --lineHeight: 24px;
+  --timePerLine: 1s;
+  --widthCh: 80;
+  --width: calc(var(--widthCh) * 1ch);
+  /* do not touch the time property!!! */
+  --time: calc(var(--lines) * var(--timePerLine));
+  animation: grow var(--time) steps(var(--lines));
+  animation-fill-mode: forwards;
+  background: var(--bgColor);
+  line-height: var(--lineHeight);
+  max-height: var(--lineHeight);
+  overflow: hidden;
+  position: relative;
+  width: var(--width);
+  /* word-break: break-all; */
+}
+
+.typewriter::before {
+  content: "";
+  animation: type var(--timePerLine) linear infinite,
+    carriageReturn var(--time) steps(var(--lines)) var(--lines),
+    caret 0.5s steps(2) infinite;
+  background: var(--bgColor);
+  border-left: 2px solid;
+  bottom: 0;
+  height: 32px;
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+@keyframes grow {
+  0% {
     max-height: var(--lineHeight);
-    overflow: hidden;
-    position: relative;
-    width: var(--width);
-    /* word-break: break-all; */
   }
-  
-  .typewriter::before {
-    content: "";
-    animation: 
-      type var(--timePerLine) linear infinite, 
-      carriageReturn var(--time) steps(var(--lines)) var(--lines),
-      caret 0.5s steps(2) infinite;
-    background: var(--bgColor);
-    border-left: 2px solid;
-    bottom: 0;
-    height: 32px;
-    position: absolute;
-    right: 0;
+  100% {
+    max-height: calc(var(--lineHeight) * var(--lines));
+  }
+}
+
+@keyframes carriageReturn {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: calc(var(--lineHeight) * var(--lines));
+  }
+}
+
+@keyframes type {
+  0% {
     width: 100%;
   }
+  100% {
+    width: 0%;
+  }
+}
 
-  @keyframes grow {
-    0% { max-height: var(--lineHeight); }
-    100% { max-height: calc(var(--lineHeight) * var(--lines)); }
+@keyframes caret {
+  0% {
+    color: var(--bgColor);
   }
-  
-  @keyframes carriageReturn {
-    0% { top: 0; }
-    100% { top: calc(var(--lineHeight) * var(--lines)); }
+  100% {
+    color: black;
   }
-  
-  @keyframes type {
-    0% { width: 100%; }
-    100% { width: 0%; }
-  }
-  
-  @keyframes caret {
-    0% { color: var(--bgColor); }
-    100% { color: black; }
-  }
+}
+
+/* DarkMode stars!!! */

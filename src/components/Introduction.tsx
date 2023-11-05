@@ -1,18 +1,12 @@
-import React from "react";
 import { ReactComponent as Cubes } from "../assets/Cubes.svg";
-import Body from "./Skeleton/Body";
 import { useDisplayStore } from "../store/displayStore";
+import { getBackgroundClass } from "../utils/getBackgroundClass";
+import Body from "./Skeleton/Body";
 
 const Introduction = () => {
   const isDarkMode = useDisplayStore((state) => state.lightMode);
   return (
-    <div
-      className={
-        isDarkMode
-          ? "dark:bg-black text-white flex font-ibm-plex-mono w-70"
-          : "bg-white flex font-ibm-plex-mono w-70"
-      }
-    >
+    <div className={`${getBackgroundClass(isDarkMode)}`}>
       <Body
         children={
           <>
