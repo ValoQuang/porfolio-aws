@@ -1,7 +1,7 @@
 type LOCAL_STORAGE_KEYS =
-  | 'customerId'
-  | 'userId'
-  | 'isFirstTimeUser'
+  | 'lat'
+  | 'long'
+  | 'isDarkMode'
 
 export const getFromLocalStorage = (key: LOCAL_STORAGE_KEYS) => {
   return localStorage.getItem(key)!;

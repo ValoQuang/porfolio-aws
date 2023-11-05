@@ -1,13 +1,14 @@
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
+import { Snow, Rain } from "./components/Weather";
 
 const App = (): JSX.Element => {
+  // just for testing Snow effect
   return (
-    <div className="App">
+    <div className="body">
+      <Snow />
       <Navbar />
       <Outlet />
-      <Footer />
     </div>
   );
 };

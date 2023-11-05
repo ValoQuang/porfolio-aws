@@ -44,6 +44,9 @@ const Paragraph = () => {
         <br />
         <p>------------------------</p>
         <br/>
+        <p>
+          Now let's move to Knowledge tab, I explain what I have been learning.
+        </p>
       </div>
     </>
   );

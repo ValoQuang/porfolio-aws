@@ -1,5 +1,6 @@
 import Body from "./Skeleton/Body";
 import Paragraph from "./Skeleton/Paragraph";
+import { getCoordinate } from "../utils/getCoordinate";
 
 const About = (): JSX.Element => {
   return (
@@ -7,8 +8,9 @@ const About = (): JSX.Element => {
       <Body
         children={
           <>
-            <div className="w-7/12"><Paragraph /></div>
-           
+            <div className="w-7/12">
+              <Paragraph />
+            </div>
           </>
         }
       />

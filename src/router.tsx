@@ -4,6 +4,7 @@ import About from "./components/About";
 import Knowledge from "./components/Knowledge";
 import Introduction from "./components/Introduction";
 import Blog from "./components/Blog";
+import Footer from "./components/Footer";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +12,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Introduction />,
+        element: (
+          <>
+            <Introduction />
+            <Footer />
+          </>
+        ),
       },
       {
         path: "about",
