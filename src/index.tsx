@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 
@@ -13,5 +12,3 @@ root.render(
     <RouterProvider router={router} future={{ v7_startTransition: true }} />
   </React.StrictMode>
 );
-
-reportWebVitals();
