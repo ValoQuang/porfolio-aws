@@ -12,29 +12,34 @@ I have so many stories to share, but not here.
 Long story short, during my service, I decide to make this reposity from my free time in order to refresh my coding skill. 
 
 ## The purpose
-
-Yes, this project does not have any specific goal, nor serve anyone. 
+This project does not have any specific goal, nor serve anyone. 
 <br />
-This is to be made for fun, also the blog / showcase where I deliver all of the knowledge I have gathered during my software development. 
+This is to be made for fun, also can be seen as a blog / showcase where I deliver all of the knowledge I have gathered during my software development. 
 <br />
-Hence there are plenty of things I implements while I coded with my own memories and not rely on google, chatgpt, stackoverflow.  
-In this project you can check my code and logics.  I am learning and learning.  
+Hence there are plenty of things I implements while I coded with my own thoughts and not rely on google, chatgpt, stackoverflow.   
 <br />
 On the other words, in this project, I focus solely on:  
-<li>Crucial importance of clean code, even this README will try to be clean and professional</li>
+<li>Crucial importance of clean code, provided it is made to give clear instruction of how to start the project for new users</li>
 <li>Reusable components, helper functions</li>
 <li>Maintenance NPM</li>
-<li>CI/CD</li>
 <li>Version control</li>
+<li>Type control</li>
+<li>Performance, Accessibility and Responsiveness</li>
 <br/>
 Technologies implemented in this project:
 <li>Typescript</li>
 <li>ReactJS</li>
 <li>GraphQL</li>
 <li>AWS S3, AWS AppSync</li>
-<li>Libraries: zustand, Tailwindcss, React router v6.18.0</li>
+<li>Libraries: zustand, Tailwindcss, React router v6.18.0, pure CSS</li>
+
+## How to start the project  
+Clone the project from github.  
+Run terminal, run ```npm install```
+Create env file in root folder, put your github token and github graphQL API URL.
+Run ```npm start```
 
 ## Sum up
-This project, represent me.
+This project represents me.
 <br />
 Best regards,

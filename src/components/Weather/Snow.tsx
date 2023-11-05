@@ -1,6 +1,7 @@
 const Snow = () => {
     const snowflakes = ['❅', '❅', '❆', '❄', '❅', '❆', '❄', '❅', '❅', '❅'];
-  
+    //unicode chars, add variety
+    
     return (
       <div className="snowflakes">
         {snowflakes.map((snowflake, index) => (
