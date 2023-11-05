@@ -10,15 +10,15 @@ module.exports = {
         "ibm-plex-mono": ['"IBM Plex Mono"', "monospace"],
       },
       fontSize: {
-        link: "20px",
+        20: "20px",
         headline: "54px",
         name: "29px",
       },
       padding: {
         navbar: "20px 72px 20px 72px;",
-        main: "150px 72px 50px 72px;",
+        main: "150px 72px 150px 72px;",
         link: "4.59px 3.204px 5.58px 3.6px",
-        footer: "90px 72px 90px 72px;",
+        footer: "10px 72px 10px 72px;",
       },
       darkMode: "class",
     },

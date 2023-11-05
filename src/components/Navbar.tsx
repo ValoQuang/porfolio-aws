@@ -20,7 +20,7 @@ const Navbar = () => {
       )} flex justify-between w-full p-navbar font-ibm-plex-mono`}
     >
       <div className="flex">
-        <button className="rounded-md border-2 border-solid border-gray-800 text-link hover:pointer hover:text-white hover:bg-black">
+        <button className="rounded-md border-2 border-solid border-gray-800 text-20 hover:pointer hover:text-white hover:bg-black">
           <p onClick={() => navigate("/")} className="p-2 font-semibold">
             {"{() => fn}"}
           </p>
