@@ -1,4 +1,4 @@
-# The Spaghetti - ON-GOING PROJECT
+# The Spaghetti
 
 Spaghetti codes  - a fun term to describe a messy repository, codes.  
 Yes that is correct, and no this is not an organised repository, or at least that is what I am trying to avoid.
@@ -9,13 +9,15 @@ It was a great journey, that day when I went out to the world and learnt, many f
 <br />
 I have so many stories to share, but not here.  
 <br />
-Long story short, during my service, I decide to make this reposity from my free time. 
+Long story short, during my service, I decide to make this reposity from my free time in order to refresh my coding skill. 
 
 ## The purpose
 
 Yes, this project does not have any specific goal, nor serve anyone. 
 <br />
-This is to be made for fun, also the blog / showcase where I deliver all of the knowledge I have gathered during my software development. So there are plenty of things I implements while I coded with my own memories and not rely on google, chatgpt, stackoverflow.  
+This is to be made for fun, also the blog / showcase where I deliver all of the knowledge I have gathered during my software development. 
+<br />
+Hence there are plenty of things I implements while I coded with my own memories and not rely on google, chatgpt, stackoverflow.  
 In this project you can check my code and logics.  I am learning and learning.  
 <br />
 On the other words, in this project, I focus solely on:  
