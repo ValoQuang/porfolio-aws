@@ -12,7 +12,7 @@ const Buttons = ({ text, to }: button) => {
   return (
     <div className="pl-10">
       <button
-        className="p-link text-link hover:pointer hover:bg-black hover:text-display"
+        className="p-link text-link hover:pointer hover:bg-black hover:text-white"
         onClick={handleClick}
       >
         {text}

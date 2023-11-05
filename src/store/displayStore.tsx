@@ -1,4 +1,3 @@
-import { immer } from "zustand/middleware/immer";
 import { create } from "zustand";
 
 /* eslint-disable @typescript-eslint/ban-types */
@@ -20,8 +19,9 @@ export const initialState: displayState = {
 };
 
 const store = (set: (arg0: (state: any) => { lightMode: boolean }) => any) => ({
-  ...initialState,
-  setDarkMode: () => set((state) => ({ lightMode: !state.lightMode })),
+  setDarkMode: () => {
+    set((state) => ({ lightMode: !state.lightMode }));
+  },
 });
 
 export const useDisplayStore = create(store);

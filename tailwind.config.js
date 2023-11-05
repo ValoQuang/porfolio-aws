@@ -23,6 +23,7 @@ module.exports = {
         link: "4.59px 3.204px 5.58px 3.6px",
         footer: "90px 72px 90px 72px;",
       },
+      darkMode: 'class',
     },
   },
   plugins: [],

@@ -1,23 +1,31 @@
 import React from "react";
 import { ReactComponent as Cubes } from "../assets/Cubes.svg";
 import Body from "./Skeleton/Body";
+import { useDisplayStore } from "../store/displayStore";
 
 const Introduction = () => {
+  const isDarkMode = useDisplayStore((state) => state.lightMode);
   return (
-    <>
+    <div
+      className={
+        isDarkMode
+          ? "dark:bg-black text-white flex font-ibm-plex-mono w-70"
+          : "bg-white flex font-ibm-plex-mono w-70"
+      }
+    >
       <Body
         children={
           <>
-            <div className="flex font-ibm-plex-mono w-70">
+            <div>
               <div className="w-70">
                 <header className="text-headline font-semibold leading-110">
-                  My software development Playground
+                  My Spaghetti Playground
                 </header>
 
                 <p className="text-name pt-10 pb-10">Quang Truong</p>
 
                 <div className="font-ibm-plex-mono mr-10">
-                  <div className="typewriter">
+                  <div>
                     <p>Greeting folks,</p>
                     <br />
                     <p>
@@ -44,7 +52,7 @@ const Introduction = () => {
           </>
         }
       />
-    </>
+    </div>
   );
 };
 
