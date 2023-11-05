@@ -1,4 +1,5 @@
 import { getCountDays } from "../../utils/getCountDays";
+import Buttons from "../Buttons";
 
 const Paragraph = () => {
   return (
@@ -23,7 +24,7 @@ const Paragraph = () => {
 
         <br />
         <p>------------------------</p>
-        <br/>
+        <br />
         <header className="text-name pb-10">SWE background</header>
         <p>
           From the trainee to Frontend engineer, I have worked with wide range
@@ -31,9 +32,9 @@ const Paragraph = () => {
         </p>
         <br />
         <p>
-          After {getCountDays()} days, the most common language, framework, tools I
-          have worked came down to: Typescript, ReactJS, GraphQL, SCSS, Material UI,
-          TailwindCSS
+          After {getCountDays()} days, the most common language, framework,
+          tools I have worked came down to: Typescript, ReactJS, GraphQL, SCSS,
+          Material UI, TailwindCSS
         </p>
         <br />
         <p>
@@ -43,9 +44,11 @@ const Paragraph = () => {
         </p>
         <br />
         <p>------------------------</p>
-        <br/>
-        <p>
-          Now let's move to Knowledge tab, I explain what I have been learning.
+        <br />
+        <p className="flex">
+          Now let's move to &nbsp;
+          <Buttons to="/knowledge" text="Knowledge" />
+          &nbsp; tab, I showcase what I stuffed here.
         </p>
       </div>
     </>

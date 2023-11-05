@@ -1,4 +1,4 @@
-import { ReactComponent as Cubes } from "../assets/Cubes.svg";
+import Buttons from "./Buttons";
 import Body from "./Skeleton/Body";
 
 const Introduction = () => {
@@ -27,17 +27,17 @@ const Introduction = () => {
                   <br />
                   <p>
                     This project has no name, this is simply showcase place
-                    where it has somethings I have learnt from the beginning of
-                    my software development.
+                    where it have things I have learnt from the beginning of my
+                    software development.
                   </p>
                   <br />
-                  <p>Let's explore.</p>
+                  <div className="flex">
+                    Let's go to&nbsp;<Buttons to="about" text="About." />
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="w-3/12">
-              <Cubes />
-            </div>
+            <div className="w-3/12"></div>
           </div>
         }
       />

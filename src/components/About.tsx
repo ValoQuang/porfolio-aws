@@ -11,6 +11,7 @@ const About = (): JSX.Element => {
             <div className="w-7/12">
               <Paragraph />
             </div>
+           
           </>
         }
       />

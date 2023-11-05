@@ -10,9 +10,9 @@ const Buttons = ({ text, to }: button) => {
     navigate(to);
   };
   return (
-    <div className="pl-10">
+    <div>
       <button
-        className="p-link text-20 hover:pointer hover:bg-black hover:text-white"
+        className="hover:pointer hover:bg-black hover:text-white"
         onClick={handleClick}
       >
         {text}
