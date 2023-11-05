@@ -1,7 +1,7 @@
 # The Spaghetti - ON-GOING PROJECT
 
 Spaghetti codes  - a fun term to describe a messy repository, codes.  
-Yes that is correct, and no this is not an organised repository, or at least that is what I am trying to do, the repository as clean as possible .
+Yes that is correct, and no this is not an organised repository, or at least that is what I am trying to avoid.
 <br />
 Hi potential employers, my name is Quang, by the way.  
 By the time this repository is made on October, I am proudly, serving in Finnish Defense Force. The service marks my 9-year of living in Finland, 2014 - 2023.  
@@ -15,7 +15,8 @@ Long story short, during my service, I decide to make this reposity from my free
 
 Yes, this project does not have any specific goal, nor serve anyone. 
 <br />
-This is to be made for fun, also the blog / showcase where I deliver all of the knowledge I have gathered during my software development. So there are plenty of things I implements while I coded with my own memories and not rely on google, chatgpt, stackoverflow.
+This is to be made for fun, also the blog / showcase where I deliver all of the knowledge I have gathered during my software development. So there are plenty of things I implements while I coded with my own memories and not rely on google, chatgpt, stackoverflow.  
+In this project you can check my code and logics.  I am learning and learning.  
 <br />
 On the other words, in this project, I focus solely on:  
 <li>Crucial importance of clean code, even this README will try to be clean and professional</li>
