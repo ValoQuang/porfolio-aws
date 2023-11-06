@@ -1,20 +1,22 @@
 import Buttons from "./Buttons";
 import Body from "./Skeleton/Body";
-import { GET_USER_INFO } from "../graphQL/query";
+import { GET_USER_INFO, GetUserInfo } from "../graphQL/query";
 import { useEffect } from "react";
-import { TypedDocumentNode, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 const Introduction = () => {
-  const { data, loading } =
-    useQuery<TypedDocumentNode<typeof GET_USER_INFO>>(GET_USER_INFO, {
-      fetchPolicy: "cache-first",
-    });
+  const { data, loading, error } = useQuery<GetUserInfo>(GET_USER_INFO, {
+    fetchPolicy: "cache-first",
+  });
 
   useEffect(() => {
     if (!loading) {
       console.log(data);
     }
-  }, [data, loading]);
+    if (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <div>
@@ -28,26 +30,23 @@ const Introduction = () => {
             <p className="text-name pt-10 pb-10">Quang Truong</p>
 
             <div className="font-ibm-plex-mono mr-10">
-              <div>
-                <p>Greeting folks,</p>
-                <br />
-                <p>
-                  Hello I am Quang, a Frontend Engineer. I am working with
-                  mainly Typescript, ReactJS, GraphQL. My goal at the moment is
-                  to look for opportunities where I can put my hands-on
-                  experience on AWS.
-                </p>
-                <br />
-                <p>
-                  This project has no name, this is simply showcase place where
-                  it have things I have learnt from the beginning of my software
-                  development.
-                </p>
-                <br />
-                <div className="flex">
-                  Let's go to&nbsp;
-                  <Buttons to="about" text="About." />
-                </div>
+              <p>Greeting folks,</p>
+              <br />
+              <p>
+                Hello I am Quang, a Frontend Engineer. I am working with mainly
+                Typescript, ReactJS, GraphQL. My goal at the moment is to look
+                for opportunities where I can put my hands-on experience on AWS.
+              </p>
+              <br />
+              <p>
+                This project has no name, this is simply showcase place where it
+                have things I have learnt from the beginning of my software
+                development.
+              </p>
+              <br />
+              <div className="flex">
+                Let's go to&nbsp;
+                <Buttons to="about" text="About." />
               </div>
             </div>
           </>

@@ -12,3 +12,14 @@ export const GET_USER_INFO = gql`
     }
   }
 `;
+
+export interface GetUserInfo {
+  viewer: {
+    name: string;
+    bio: string;
+    avatarUrl: string;
+    company: string;
+    location: string;
+    email: string;
+  };
+}
