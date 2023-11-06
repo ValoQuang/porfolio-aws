@@ -5,7 +5,6 @@ query GetContact {
     user(login: "ValoQuang") {
       repositories(first: 5) {
         nodes {
-          
           description
         }
       }
