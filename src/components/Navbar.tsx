@@ -6,8 +6,10 @@ import { getBackgroundClass } from "../utils/getBackgroundClass";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const toggleDarkMode = useDisplayStore((state) => state.setDarkMode);
-  const isDarkMode = useDisplayStore((state) => state.lightMode);
+  const [toggleDarkMode, isDarkMode] = useDisplayStore((state) => [
+    state.setDarkMode,
+    state.lightMode,
+  ]);
 
   const handleDisplayMode = () => {
     toggleDarkMode();
