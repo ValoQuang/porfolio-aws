@@ -1,11 +1,11 @@
 import Body from "./Skeleton/Body";
 
 const Knowledge = (): JSX.Element => {
-  return <><Body children={
+  return (
     <>
-    Here is Knowledge
+      <Body childrenLeft={<>Here is Knowledge</>} childrenRight={<>Some Card</>} />
     </>
-  }/></>;
+  );
 };
 
 export default Knowledge;

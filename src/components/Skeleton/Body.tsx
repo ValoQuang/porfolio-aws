@@ -1,7 +1,13 @@
 import React, { ReactNode } from "react";
 import { getBackgroundClass } from "../../utils/getBackgroundClass";
 import { useDisplayStore } from "../../store/displayStore";
-const Body = ({ children }: { children: ReactNode }) => {
+const Body = ({
+  childrenLeft,
+  childrenRight,
+}: {
+  childrenLeft: ReactNode;
+  childrenRight: ReactNode;
+}) => {
   const isDarkMode = useDisplayStore((state) => state.lightMode);
 
   return (
@@ -10,7 +16,8 @@ const Body = ({ children }: { children: ReactNode }) => {
         isDarkMode
       )} flex p-main w-full font-ibm-plex-mono`}
     >
-      {children}
+      <div className="w-7/12">{childrenLeft}</div>
+      <div className="w-3/12">{childrenRight}</div>
     </div>
   );
 };
