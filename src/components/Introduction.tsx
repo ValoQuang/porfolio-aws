@@ -1,7 +1,21 @@
 import Buttons from "./Buttons";
 import Body from "./Skeleton/Body";
+import { GET_USER_INFO } from "../graphQL/query";
+import { useEffect } from "react";
+import { TypedDocumentNode, useQuery } from "@apollo/client";
 
 const Introduction = () => {
+  const { data, loading } =
+    useQuery<TypedDocumentNode<typeof GET_USER_INFO>>(GET_USER_INFO, {
+      fetchPolicy: "cache-first",
+    });
+
+  useEffect(() => {
+    if (!loading) {
+      console.log(data);
+    }
+  }, [data, loading]);
+
   return (
     <div>
       <Body
