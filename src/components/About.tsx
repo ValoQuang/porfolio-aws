@@ -66,7 +66,6 @@ const About = (): JSX.Element => {
         }
         childrenRight={
           <>
-            {" "}
             <div className="w-3/12 bg-lime-600">
               Card for personal Info here fetched from github API
             </div>

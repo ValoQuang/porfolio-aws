@@ -5,16 +5,16 @@ import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 const Introduction = () => {
-  const { data, loading, error } = useQuery<GetUserInfo>(GET_USER_INFO, {
-    fetchPolicy: "cache-first",
+  const { loading, data } = useQuery<any>(GET_USER_INFO, {
+    variables: {
+      id: `${process.env.REACT_APP_GITHUB_USER}`,
+    },
+    fetchPolicy: 'no-cache'
   });
 
   useEffect(() => {
     if (!loading) {
-      console.log(data);
-    }
-    if (error) {
-      console.log(error);
+      console.log(data?.data.user.bio);
     }
   }, []);
 

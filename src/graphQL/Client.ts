@@ -5,6 +5,10 @@ import { setContext } from "@apollo/client/link/context";
 
 const httpLink = new BatchHttpLink({
   uri: `${process.env.REACT_APP_GITHUB_API}`,
+  fetchOptions: {
+    mode: "no-cors",
+  },
+  credentials: 'same-origin',
 });
 
 // Define a middleware to add the authorization token to the headers
@@ -30,12 +34,13 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const cache = new InMemoryCache();
+const link = ApolloLink.from([
+  authMiddleware as unknown as ApolloLink,
+  httpLink,
+  errorLink as unknown as ApolloLink,
+]);
 
 export const Client = new ApolloClient({
-  link: ApolloLink.from([
-    authMiddleware as unknown as ApolloLink,
-    httpLink,
-    errorLink as unknown as ApolloLink,
-  ]),
+  link,
   cache,
 } as any);

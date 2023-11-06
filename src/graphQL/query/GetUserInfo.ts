@@ -1,14 +1,19 @@
 import { gql } from "@apollo/client";
 
 export const GET_USER_INFO = gql`
-  query GetUserInfo {
-    viewer {
-      name
+  query GetUserInfo($id: ID!) {
+    user(login: $id){
       bio
       avatarUrl
+      name
       company
+      createdAt
       location
-      email
+      repositories(first: 2) {
+        nodes {
+          description
+        }
+      }
     }
   }
 `;
