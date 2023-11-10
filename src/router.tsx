@@ -4,7 +4,7 @@ import About from "./components/About";
 import Knowledge from "./components/Knowledge";
 import Introduction from "./components/Introduction";
 import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
-import WeatherInfo from "./components/Projects/WeatherInfo/WeatherInfo";
+import PersonalInfo from "./components/Projects/PersonalInfo/PersonalInfo";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "graphql",
-            element: <WeatherInfo />,
+            element: <PersonalInfo />,
           },
         ],
       },
