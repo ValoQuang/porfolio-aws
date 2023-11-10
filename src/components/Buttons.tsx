@@ -9,6 +9,7 @@ const Buttons = ({ text, to }: button) => {
   const handleClick = () => {
     navigate(to);
   };
+
   return (
     <div>
       <button

@@ -35,7 +35,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="p-link">
-        <div className="flex pl-10">
+        <div className="flex">
           <button className="flex" onClick={handleDisplayMode}>
             <ToggleSVG isDarkMode={isDarkMode} />
           </button>
