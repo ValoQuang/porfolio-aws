@@ -1,7 +1,5 @@
-import Body from "./Skeleton/Body";
-//import { getCoordinate } from "../utils/getCoordinate";
+import {Paragraph, Body } from "./Skeleton";
 import { getCountDays } from "../utils/getCountDays";
-import Paragraph from "./Skeleton/Paragraph";
 
 const About = (): JSX.Element => {
   return (

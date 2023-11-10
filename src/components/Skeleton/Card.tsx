@@ -6,7 +6,9 @@ interface CardProp {
 
 const Card = ({ children }: CardProp) => {
   return (
-    <div className="border-solid bg-lime-600 rounded-lg w-full h-full">
+    <div
+      className="rounded-lg border-gray-800 border-2 border-solid w-full h-full align-middle"
+    >
       {children}
     </div>
   );

@@ -1,6 +1,4 @@
-import Buttons from "./Buttons";
-import Body from "./Skeleton/Body";
-import Card from "./Skeleton/Card";
+import { Body, Buttons } from "./Skeleton";
 
 const Introduction = () => {
   return (
@@ -37,11 +35,6 @@ const Introduction = () => {
                 </div>
               </div>
             </div>
-          </>
-        }
-        childrenRight={
-          <>
-            <Card children={<></>} />
           </>
         }
       />

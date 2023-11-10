@@ -1,11 +1,5 @@
-import React from "react";
 import Paragraph from "../../Skeleton/Paragraph";
-import Body from "../../Skeleton/Body";
-import Buttons from "../../Buttons";
-
-//<video autoPlay loop muted>
-//<source src="/assets/rain.mp4" type="video/mp4" />
-//</video>
+import { Body, Card } from "../../Skeleton/";
 
 //<video autoPlay loop muted>
 //<source src="/assets/sun.mp4" type="video/mp4" />
@@ -33,17 +27,36 @@ const CustomBackground = () => {
                   button.
                 </p>
                 <p>Also clean code is always an goal.</p>
+                <br />
                 <p>
-                    <Buttons text={"Next"} to={"state"} />
-                  </p>
-                  <p>
-                    <Buttons text={"back"} to={-1} />
-                  </p>
+                  Logic:
+                  <ul>
+                    <li>- Create store for state management with Zustand.</li>
+                    <li>
+                      - Implement component for Custom background and place in
+                      router.tsx.
+                    </li>
+                    <li>
+                      - Create function to switch between background, state is
+                      updated to the store.
+                    </li>
+                  </ul>
+                </p>
               </>
             }
           />
         }
-        childrenRight={undefined}
+        childrenRight={
+          <>
+            <Card
+              children={
+                <div className="">
+                  <button>Click to try</button>
+                </div>
+              }
+            />
+          </>
+        }
       />
     </>
   );

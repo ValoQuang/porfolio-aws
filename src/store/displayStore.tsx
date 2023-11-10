@@ -13,9 +13,11 @@ export type StoreType<State> = State & {
 };
 type displayState = {
   lightMode: boolean;
+  customBackground: string;
 };
 export const initialState: displayState = {
   lightMode: true,
+  customBackground: '',
 };
 
 const store = (set: (arg0: (state: any) => { lightMode: boolean }) => any) => ({

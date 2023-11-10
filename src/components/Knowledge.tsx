@@ -1,6 +1,4 @@
-import Buttons from "./Buttons";
-import Body from "./Skeleton/Body";
-import Paragraph from "./Skeleton/Paragraph";
+import { Body, Paragraph } from "./Skeleton";
 
 const Knowledge = (): JSX.Element => {
   return (
