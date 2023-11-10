@@ -1,14 +1,16 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { getBackgroundClass } from "../../utils/getBackgroundClass";
 import { useDisplayStore } from "../../store/displayStore";
+
+interface BodyProp {
+  childrenLeft: ReactNode;
+  childrenRight?: ReactNode;
+}
 
 const Body = ({
   childrenLeft,
   childrenRight,
-}: {
-  childrenLeft: ReactNode;
-  childrenRight?: ReactNode;
-}) => {
+}: BodyProp) => {
   const isDarkMode = useDisplayStore((state) => state.lightMode);
 
   return (
