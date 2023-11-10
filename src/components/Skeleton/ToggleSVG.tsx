@@ -1,8 +1,8 @@
-type ToggleSVGProps = {
+interface ToggleSVGProp {
   isDarkMode: boolean;
 };
 
-const ToggleSVG = ({ isDarkMode }: ToggleSVGProps) => {
+const ToggleSVG = ({ isDarkMode }: ToggleSVGProp) => {
   const commonAttributes = {
     className: "w-8 h-8 md:w-10 md:h-10",
     xmlns: "http://www.w3.org/2000/svg",

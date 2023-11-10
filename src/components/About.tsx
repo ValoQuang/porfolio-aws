@@ -1,7 +1,6 @@
 import Body from "./Skeleton/Body";
 //import { getCoordinate } from "../utils/getCoordinate";
 import { getCountDays } from "../utils/getCountDays";
-import Buttons from "./Buttons";
 import Paragraph from "./Skeleton/Paragraph";
 
 const About = (): JSX.Element => {
@@ -57,19 +56,6 @@ const About = (): JSX.Element => {
                 </>
               }
             />
-            <p className="flex">
-              Now let's move to &nbsp;
-              <Buttons to="/knowledge" text="Knowledge" />
-              &nbsp; tab, I showcase what I stuffed here.
-            </p>
-          </>
-        }
-        childrenRight={
-          <>
-            {" "}
-            <div className="w-3/12 bg-lime-600">
-              Card for personal Info here fetched from github API
-            </div>
           </>
         }
       />

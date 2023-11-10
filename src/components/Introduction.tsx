@@ -1,5 +1,6 @@
 import Buttons from "./Buttons";
 import Body from "./Skeleton/Body";
+import Card from "./Skeleton/Card";
 
 const Introduction = () => {
   return (
@@ -40,7 +41,7 @@ const Introduction = () => {
         }
         childrenRight={
           <>
-            <div className="w-3/12">Picture fetched from github api</div>
+            <Card children={<></>} />
           </>
         }
       />

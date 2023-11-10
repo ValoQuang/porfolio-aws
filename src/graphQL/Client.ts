@@ -1,9 +1,8 @@
-import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
-import { BatchHttpLink } from "@apollo/client/link/batch-http";
+import { ApolloClient, InMemoryCache, ApolloLink, createHttpLink } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 
-const httpLink = new BatchHttpLink({
-  uri: `${process.env.REACT_APP_GITHUB_API}/graphql`,
+const httpLink = createHttpLink({
+  uri: `${process.env.REACT_APP_GITHUB_API}`,
 });
 
 // Define a middleware to add the authorization token to the headers

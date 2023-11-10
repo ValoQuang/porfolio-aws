@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
-interface button {
-  text: string;
-  to: string;
+interface ButtonProp {
+  text?: string;
+  to: string | number ;
 }
 
-const Buttons = ({ text, to }: button) => {
+const Buttons = ({ text, to }: ButtonProp) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(to);
+    navigate(to as number | number);
   };
+
   return (
     <div>
       <button
