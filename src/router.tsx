@@ -1,10 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";
 import Knowledge from "./components/Knowledge";
 import Introduction from "./components/Introduction";
-import Footer from "./components/Footer";
 import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
+import WeatherInfo from "./components/Projects/WeatherInfo/WeatherInfo";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +15,6 @@ export const router = createBrowserRouter([
         element: (
           <>
             <Introduction />
-            <Footer />
           </>
         ),
       },
@@ -25,11 +24,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "knowledge",
-        element: <Knowledge />,
+        element: <Outlet />,
         children: [
           {
-            path: "1",
+            path: "",
+            index: true,
+            element: <Knowledge />,
+          },
+          {
+            path: "state",
             element: <CustomBackground />,
+          },
+          {
+            path: "graphql",
+            element: <WeatherInfo />,
           },
         ],
       },

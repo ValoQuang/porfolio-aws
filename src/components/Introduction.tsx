@@ -38,11 +38,6 @@ const Introduction = () => {
             </div>
           </>
         }
-        childrenRight={
-          <>
-            <div className="w-3/12">Picture fetched from github api</div>
-          </>
-        }
       />
     </div>
   );

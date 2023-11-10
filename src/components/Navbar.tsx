@@ -27,10 +27,9 @@ const Navbar = () => {
             {"{() => fn}"}
           </p>
         </button>
-        <div className="flex pl-10 pt-3 justify-between w-custom text-20">
+        <div className="flex pl-10 pt-3 justify-around w-custom text-20">
           <Buttons to="about" text="About" />
           <Buttons to="knowledge" text="Knowledge" />
-          <Buttons to="contact" text="Contact" />
         </div>
       </div>
       <div className="p-link">

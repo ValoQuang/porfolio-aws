@@ -13,7 +13,6 @@ const Paragraph = ({ header, children }: paragraphType) => {
       <br />
       <p>------------------------</p>
       <br />
-      <Buttons text={""} to={""} />
     </>
   );
 };

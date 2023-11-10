@@ -7,7 +7,7 @@ const Body = ({
   childrenRight,
 }: {
   childrenLeft: ReactNode;
-  childrenRight: ReactNode;
+  childrenRight?: ReactNode;
 }) => {
   const isDarkMode = useDisplayStore((state) => state.lightMode);
 
@@ -18,8 +18,8 @@ const Body = ({
           isDarkMode
         )} flex p-main w-full font-ibm-plex-mono`}
       >
-        <div className="w-7/12">{childrenLeft}</div>
-        <div className="w-3/12">{childrenRight}</div>
+        <div className="w-6/12">{childrenLeft}</div>
+        <div className="w-6/12">{childrenRight}</div>
       </div>
     </>
   );

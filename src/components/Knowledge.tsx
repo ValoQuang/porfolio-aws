@@ -1,7 +1,6 @@
 import Buttons from "./Buttons";
 import Body from "./Skeleton/Body";
 import Paragraph from "./Skeleton/Paragraph";
-import WeatherBackground from "./Weather/WeatherBackground";
 
 const Knowledge = (): JSX.Element => {
   return (
@@ -30,16 +29,14 @@ const Knowledge = (): JSX.Element => {
                   component, one {"router.tsx"} is created and it define the
                   path and its child component. This way it is easier to check
                   setup the route.
+                  <br />
+                  <br />
                 </>
               }
             />
           </>
         }
-        childrenRight={
-          <div className="bg-lime-600 h-full w-full">
-            <img className="object-fill h-full w-full" src="/assets/pictures/router.png" alt="router code"/>
-          </div>
-        }
+        childrenRight={<></>}
       />
     </>
   );

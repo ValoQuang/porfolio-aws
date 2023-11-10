@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 interface button {
   text?: string;
-  to: string;
+  to: string | number ;
 }
 
 const Buttons = ({ text, to }: button) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(to);
+    navigate(to as number | number);
   };
 
   return (
