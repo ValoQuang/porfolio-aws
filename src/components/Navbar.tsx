@@ -30,7 +30,6 @@ const Navbar = () => {
         <div className="flex pl-10 pt-3 justify-between w-custom text-20">
           <Buttons to="about" text="About" />
           <Buttons to="knowledge" text="Knowledge" />
-          <Buttons to="blog" text="Blogspot" />
           <Buttons to="contact" text="Contact" />
         </div>
       </div>

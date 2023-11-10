@@ -6,7 +6,6 @@ import WeatherBackground from "./Weather/WeatherBackground";
 const Knowledge = (): JSX.Element => {
   return (
     <>
-      
       <Body
         childrenLeft={
           <>
@@ -26,32 +25,21 @@ const Knowledge = (): JSX.Element => {
                     versions of React. It also introduces a few breaking changes
                     from version 5
                   </p>
-                </>
-              }
-            />
-            <Paragraph
-              header={"State management"}
-              children={
-                <>
-                  <p>
-                    In this project, Zustand was used, primarily for its minimal
-                    setup and simplicity. Furthermore, Zustand is recommended
-                    for small application compared to Redux which is suitable
-                    for larger scale project.
-                  </p>
                   <br />
-                  <p>
-                    The demonstration is found on the rigt side, the background
-                    can be switched with customed video background by pressing
-                    the button.
-                  </p>
-                  <p>Also clean code is always an goal.</p>
+                  In general, instead of creating multiple {"<Route />"}{" "}
+                  component, one {"router.tsx"} is created and it define the
+                  path and its child component. This way it is easier to check
+                  setup the route.
                 </>
               }
             />
           </>
         }
-        childrenRight={<>Card</>}
+        childrenRight={
+          <div className="bg-lime-600 h-full w-full">
+            <img className="object-fill h-full w-full" src="/assets/pictures/router.png" alt="router code"/>
+          </div>
+        }
       />
     </>
   );

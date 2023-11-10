@@ -1,3 +1,5 @@
+import Buttons from "../Buttons";
+
 type paragraphType = {
   header?: String;
   children: JSX.Element;
@@ -11,6 +13,7 @@ const Paragraph = ({ header, children }: paragraphType) => {
       <br />
       <p>------------------------</p>
       <br />
+      <Buttons text={""} to={""} />
     </>
   );
 };

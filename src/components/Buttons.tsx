@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 interface button {
-  text: string;
+  text?: string;
   to: string;
 }
 
