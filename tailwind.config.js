@@ -21,7 +21,7 @@ module.exports = {
         footer: "10px 72px 100px 72px;",
       },
       width: {
-        "custom": "600px",
+        "custom": "300px",
       },
       darkMode: "class",
     },

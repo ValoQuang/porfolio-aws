@@ -1,17 +1,18 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";
-import Knowledge from "./components/Knowledge";
+import Projects from "./components/Projects";
 import Main from "./components/Main";
 import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
 import PersonalInfo from "./components/Projects/PersonalInfo/PersonalInfo";
+import { parentPaths, routePaths } from "./utils/getFullPath";
 
 export const router = createBrowserRouter([
   {
     element: <App />,
     children: [
       {
-        path: "/",
+        path: parentPaths[0],
         element: (
           <>
             <Main />
@@ -19,24 +20,32 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "about",
+        path: parentPaths[1],
         element: <About />,
       },
       {
-        path: "knowledge",
+        path: parentPaths[2],
         element: <Outlet />,
         children: [
           {
             path: "",
             index: true,
-            element: <Knowledge />,
+            element: <Projects />,
           },
           {
-            path: "state",
+            path: routePaths[0],
+            element: <Projects />,
+          },
+          {
+            path: routePaths[1],
             element: <CustomBackground />,
           },
           {
-            path: "graphql",
+            path: routePaths[2],
+            element: <PersonalInfo />,
+          },
+          {
+            path: routePaths[3],
             element: <PersonalInfo />,
           },
         ],

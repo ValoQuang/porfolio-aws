@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Buttons from "./Skeleton/Buttons";
 import ToggleDarkMode from "./Skeleton/ToggleDarkMode";
 import { getBackgroundClass } from "../utils/getBackgroundClass";
+import { PATH_ENUM } from "../types/routeEnum";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -28,8 +29,8 @@ const Navbar = () => {
           </p>
         </button>
         <div className="flex pl-10 pt-3 justify-around w-custom text-20">
-          <Buttons to="about" text="About" />
-          <Buttons to="knowledge" text="Knowledge" />
+          <Buttons to={PATH_ENUM.ABOUT} text="About" />
+          <Buttons to={PATH_ENUM.PROJECTS} text="Project" />
         </div>
       </div>
       <div className="p-link">
