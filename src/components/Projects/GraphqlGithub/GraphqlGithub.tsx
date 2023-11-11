@@ -2,13 +2,13 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { GET_USER_INFO } from "../../../graphQL/query";
 
-const PersonalInfo = () => {
+const GraphqlGithub = () => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const { data, loading, error } = useQuery(GET_USER_INFO, {
     variables: {
       login: `${process.env.REACT_APP_GITHUB_USER}`,
     },
-    skip: isDataLoaded, // Skip the query if data is already loaded
+    skip: isDataLoaded,
     fetchPolicy: "cache-first",
   });
 
@@ -21,7 +21,7 @@ const PersonalInfo = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  return <div>PersonalInfo</div>;
+  return <div>GraphqlGithub</div>;
 };
 
-export default PersonalInfo;
+export default GraphqlGithub;

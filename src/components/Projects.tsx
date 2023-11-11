@@ -7,29 +7,22 @@ const Projects = (): JSX.Element => {
         childrenLeft={
           <>
             <Paragraph
-              header={"Routing"}
+              header={"Projects"}
               children={
                 <>
                   <p>
-                    This tab demonstrates the use of React Router.
+                    This tab contains the knowledge, structure of components and
+                    code behind.
                   </p>
                   <br />
-                  <p>
-                    React Router version 6 introduces several powerful new
-                    features, as well as improved compatibility with the latest
-                    versions of React.
-                  </p>
+                  <p>Main factors to emphasize are:</p>
+                  <ul>
+                    <li>- Readability</li>
+                    <li>- Logic</li>
+                    <li>- Maintenance</li>
+                    <li>- Performance</li>
+                  </ul>
                   <br />
-                  <p>
-                    In general, instead of creating multiple {"<Route />"}{" "}
-                    component, one {"router.tsx"}.
-                  </p>
-                  <br />
-                  <p>
-                    On the navigation bar now, the button Next and Back will
-                    lead user through all the path without any additional mouse
-                    activity.
-                  </p>
                 </>
               }
             />

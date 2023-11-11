@@ -4,8 +4,9 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Main from "./components/Main";
 import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
-import PersonalInfo from "./components/Projects/PersonalInfo/PersonalInfo";
-import { parentPaths, routePaths } from "./utils/getFullPath";
+import GraphqlGithub from "./components/Projects/GraphqlGithub/GraphqlGithub";
+import Route from "./components/Projects/Route/Route";
+import { parentPaths, projectPaths } from "./utils/getFullPath";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: parentPaths[0],
+        index: true,
         element: (
           <>
             <Main />
@@ -29,24 +31,19 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "",
-            index: true,
             element: <Projects />,
           },
           {
-            path: routePaths[0],
-            element: <Projects />,
+            path: projectPaths[0],
+            element: <Route />,
           },
           {
-            path: routePaths[1],
+            path: projectPaths[1],
             element: <CustomBackground />,
           },
           {
-            path: routePaths[2],
-            element: <PersonalInfo />,
-          },
-          {
-            path: routePaths[3],
-            element: <PersonalInfo />,
+            path: projectPaths[2],
+            element: <GraphqlGithub />,
           },
         ],
       },
