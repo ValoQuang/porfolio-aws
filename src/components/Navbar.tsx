@@ -10,7 +10,6 @@ import {
   setInLocalStorage,
 } from "../utils/localStorage";
 import { LOCAL_STORAGE } from "../types/localStorageEnum";
-import React from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,9 +20,6 @@ const Navbar = () => {
 
   const handleDisplayMode = () => {
     toggleDarkMode(!isDarkMode);
-    !isDarkMode
-      ? setInLocalStorage(LOCAL_STORAGE.IS_DARK_MODE, "dark")
-      : removeFromLocalStorage(LOCAL_STORAGE.IS_DARK_MODE);
   };
 
   const handleNextPath = (e: { preventDefault: () => void }) => {

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export type DeepPartial<T> = T extends Function
@@ -22,11 +23,17 @@ export const initialState = {
   customBackground: "",
 };
 
-const store = immer<displayState>((set, _) => ({
-  ...initialState,
-  setDarkMode: (state) => {
-    set({ darkMode: state });
-  },
-}));
+const store = persist<displayState>(
+  (set, _) => ({
+    ...initialState,
+    setDarkMode: (state) => {
+      set({ darkMode: state });
+    },
+  }),
+  {
+    storage: createJSONStorage(() => sessionStorage),
+    name: ""
+  }
+);
 
 export const useDisplayStore = create(store);
