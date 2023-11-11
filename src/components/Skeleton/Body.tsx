@@ -11,7 +11,7 @@ const Body = ({
   childrenLeft,
   childrenRight,
 }: BodyProp) => {
-  const isDarkMode = useDisplayStore((state) => state.lightMode);
+  const isDarkMode = useDisplayStore((state) => state.darkMode);
 
   return (
     <>

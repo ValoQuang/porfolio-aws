@@ -6,14 +6,14 @@ import Main from "./components/Main";
 import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
 import GraphqlGithub from "./components/Projects/GraphqlGithub/GraphqlGithub";
 import Route from "./components/Projects/Route/Route";
-import { parentPaths, projectPaths } from "./utils/getFullPath";
+import { PATH_ENUM } from "./types/routeEnum";
 
 export const router = createBrowserRouter([
   {
     element: <App />,
     children: [
       {
-        path: parentPaths[0],
+        path: "",
         index: true,
         element: (
           <>
@@ -22,11 +22,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: parentPaths[1],
+        path: PATH_ENUM.ABOUT,
         element: <About />,
       },
       {
-        path: parentPaths[2],
+        path: PATH_ENUM.PROJECTS,
         element: <Outlet />,
         children: [
           {
@@ -34,15 +34,15 @@ export const router = createBrowserRouter([
             element: <Projects />,
           },
           {
-            path: projectPaths[0],
+            path: PATH_ENUM.ROUTE,
             element: <Route />,
           },
           {
-            path: projectPaths[1],
+            path: PATH_ENUM.CUSTOM_BACKGROUND,
             element: <CustomBackground />,
           },
           {
-            path: projectPaths[2],
+            path: PATH_ENUM.GRAPHQL_GITHUB,
             element: <GraphqlGithub />,
           },
         ],

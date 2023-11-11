@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export type DeepPartial<T> = T extends Function
@@ -12,18 +13,20 @@ export type StoreType<State> = State & {
   reset?: () => void;
 };
 type displayState = {
-  lightMode: boolean;
+  darkMode: boolean;
   customBackground: string;
+  setDarkMode: (state: boolean) => void;
 };
-export const initialState: displayState = {
-  lightMode: true,
-  customBackground: '',
+export const initialState = {
+  darkMode: false,
+  customBackground: "",
 };
 
-const store = (set: (arg0: (state: any) => { lightMode: boolean }) => any) => ({
-  setDarkMode: () => {
-    set((state) => ({ lightMode: !state.lightMode }));
+const store = immer<displayState>((set, _) => ({
+  ...initialState,
+  setDarkMode: (state) => {
+    set({ darkMode: state });
   },
-});
+}));
 
 export const useDisplayStore = create(store);

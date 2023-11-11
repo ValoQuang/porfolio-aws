@@ -4,41 +4,41 @@ import ToggleDarkMode from "./Skeleton/ToggleDarkMode";
 import { getBackgroundClass } from "../utils/getBackgroundClass";
 import { useDisplayStore } from "../store/displayStore";
 import { PATH_ENUM } from "../types/routeEnum";
-import { projectPaths, parentPaths } from "../utils/getFullPath";
-import { useRouteStore } from "../store/routeStore";
+import { hierarchicalPathOrder } from "../utils/getFullPath";
+import {
+  removeFromLocalStorage,
+  setInLocalStorage,
+} from "../utils/localStorage";
+import { LOCAL_STORAGE } from "../types/localStorageEnum";
+import React from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [toggleDarkMode, isDarkMode] = useDisplayStore((state) => [
     state.setDarkMode,
-    state.lightMode,
+    state.darkMode,
   ]);
 
-  const setRoute = useRouteStore((state) => state.setRouteState);
-
   const handleDisplayMode = () => {
-    toggleDarkMode();
+    toggleDarkMode(!isDarkMode);
+    !isDarkMode
+      ? setInLocalStorage(LOCAL_STORAGE.IS_DARK_MODE, "dark")
+      : removeFromLocalStorage(LOCAL_STORAGE.IS_DARK_MODE);
   };
 
-  const handleNextPath = (e: any) => {
+  const handleNextPath = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const index = parentPaths.indexOf(window.location.pathname.substring(1));
-    if (index === 2) {
-      const childPaths = `${parentPaths[2]}/${projectPaths[0]}`;
-      const childIndex = projectPaths.indexOf(childPaths.split("/")[1]);
-      //navigate(`${parentPaths[2]}/${projectPaths[childIndex]}`);
-      navigate(childPaths);
-    } else {
-      navigate(parentPaths[index + 1]);
-    }
+    const index = hierarchicalPathOrder.indexOf(window.location.pathname);
+    setInLocalStorage(LOCAL_STORAGE.PAGE, hierarchicalPathOrder[index + 1]);
+    navigate(hierarchicalPathOrder[index + 1]);
+  };
+  const handlePreviousPath = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const index = hierarchicalPathOrder.indexOf(window.location.pathname);
+    setInLocalStorage(LOCAL_STORAGE.PAGE, hierarchicalPathOrder[index - 1]);
+    navigate(hierarchicalPathOrder[index - 1]);
   };
 
-  const handlePreviousPath = (e: any) => {
-    e.preventDefault();
-    const index = parentPaths.indexOf(window.location.pathname.substring(1));
-    navigate(parentPaths[index - 1]);
-  };
-  console.log(window.location.pathname);
   return (
     <div
       className={`${getBackgroundClass(

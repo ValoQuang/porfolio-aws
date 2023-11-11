@@ -1,6 +1,6 @@
 import { Body, Buttons } from "./Skeleton";
 
-const Introduction = () => {
+const Main = () => {
   return (
     <div>
       <Body
@@ -42,4 +42,4 @@ const Introduction = () => {
   );
 };
 
-export default Introduction;
+export default Main;

@@ -1,4 +1,11 @@
-type LOCAL_STORAGE_KEYS = "user" | "lat" | "long" | "isDarkMode";
+import { LOCAL_STORAGE } from "../types/localStorageEnum";
+
+type LOCAL_STORAGE_KEYS =
+  | LOCAL_STORAGE.USER
+  | LOCAL_STORAGE.PAGE
+  | LOCAL_STORAGE.LAT
+  | LOCAL_STORAGE.LONG
+  | LOCAL_STORAGE.IS_DARK_MODE;
 
 export const getFromLocalStorage = (key: LOCAL_STORAGE_KEYS) => {
   return localStorage.getItem(key)!;
