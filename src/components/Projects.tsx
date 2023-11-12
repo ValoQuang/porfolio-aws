@@ -18,7 +18,7 @@ const Projects = (): JSX.Element => {
                   <p>Main factors to emphasize are:</p>
                   <ul>
                     <li>- Readability</li>
-                    <li>- Logic</li>
+                    <li>- Logic, caching</li>
                     <li>- Maintenance</li>
                     <li>- Performance</li>
                   </ul>
@@ -27,6 +27,7 @@ const Projects = (): JSX.Element => {
                   <li>- ReactJS</li>
                     <li>- GraphQL</li>
                     <li>- Tailwindcss</li>
+                    <li>- S3 bucket</li>
                     <li>- ...</li>
                     <li>- **still hard code, need to fetch from github</li>
                 </>

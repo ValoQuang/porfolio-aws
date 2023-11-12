@@ -1,18 +1,13 @@
 # The Spaghetti
-
 Spaghetti codes  - a fun term to describe a messy repository, codes.  
-Yes that is correct, and no this is not an organised repository, or at least that is what I am trying to avoid.
 <br />
 By the time this repository is made on October, I am proudly, serving in Finnish Defense Force. The service marks my 9-year of living in Finland, 2014 - 2023.  
-It was a great journey, that day when I went out to the world and learnt, many failures, but so much valuable and unique experience.  
 <br />
 I have so many stories to share, but not here.  
 <br />
 Long story short, during my service, I decide to make this reposity from my free time in order to refresh my coding skill. 
 
 ## The purpose
-This project does not have any specific goal, nor serve anyone. 
-<br />
 This is to be made for fun, also can be seen as a blog / showcase where I deliver all of the knowledge I have gathered during my software development. 
 <br />
 Hence there are plenty of things I implements while I coded with my own thoughts and not rely on google, chatgpt, stackoverflow.   
@@ -31,6 +26,12 @@ Technologies implemented in this project:
 <li>GraphQL</li>
 <li>AWS S3, AWS AppSync, API Gateway, DynamoDB, Lambda Function</li>
 <li>Libraries: zustand, Tailwindcss, React router v6.18.0, pure CSS</li>
+
+## ON-GOING DEVELOPMENT, WHAT'S NEXT ?  
+November, 2023 note.  
+Simple Note taking with dynamoDB on AWS as database, also with Lambda function to notify whenever new notes are added.  
+Host project on S3 Buckets.
+Practice more on AWS.
 
 ## Sum up
 This project represents me.
