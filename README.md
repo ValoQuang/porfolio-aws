@@ -1,3 +1,6 @@
+# LINK
+http://porfolio-truong-sayduck.s3-website.eu-north-1.amazonaws.com
+
 # The Spaghetti
 Spaghetti codes  - a fun term to describe a messy repository, codes.  
 <br />
