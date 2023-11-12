@@ -16,7 +16,7 @@ module.exports = {
       },
       padding: {
         navbar: "15px 72px 15px 72px;",
-        main: "150px 72px 150px 72px;",
+        main: "100px 72px 150px 72px;",
         link: "4.59px 3.204px 5.58px 3.6px",
         footer: "10px 72px 100px 72px;",
       },

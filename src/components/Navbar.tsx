@@ -1,14 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import Buttons from "./Skeleton/Buttons";
-import ToggleDarkMode from "./Skeleton/ToggleDarkMode";
+import { Button, ToggleDarkMode } from "./Skeleton";
 import { getBackgroundClass } from "../utils/getBackgroundClass";
 import { useDisplayStore } from "../store/displayStore";
 import { PATH_ENUM } from "../types/routeEnum";
 import { hierarchicalPathOrder } from "../utils/getFullPath";
-import {
-  removeFromLocalStorage,
-  setInLocalStorage,
-} from "../utils/localStorage";
+import { setInLocalStorage } from "../utils/localStorage";
 import { LOCAL_STORAGE } from "../types/localStorageEnum";
 
 const Navbar = () => {
@@ -28,6 +24,7 @@ const Navbar = () => {
     setInLocalStorage(LOCAL_STORAGE.PAGE, hierarchicalPathOrder[index + 1]);
     navigate(hierarchicalPathOrder[index + 1]);
   };
+
   const handlePreviousPath = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const index = hierarchicalPathOrder.indexOf(window.location.pathname);
@@ -48,17 +45,19 @@ const Navbar = () => {
           </p>
         </button>
         <div className="flex pl-10 pt-3 justify-around w-custom text-20">
-          <Buttons to={PATH_ENUM.ABOUT} text="About" />
-          <Buttons to={PATH_ENUM.PROJECTS} text="Project" />
+          <Button onClick={() => navigate(PATH_ENUM.ABOUT)} text="About" />
+          <Button onClick={() => navigate(PATH_ENUM.PROJECTS)} text="Project" />
         </div>
       </div>
-      <div className="p-link">
-        <div className="flex">
-          <button onClick={handleNextPath}>Next</button>
-          <button onClick={handlePreviousPath}>Previous</button>
-          <div className="flex" onClick={handleDisplayMode}>
-            <ToggleDarkMode isDarkMode={isDarkMode} />
-          </div>
+
+      <div className="flex w-custom justify-around pt-3 align-middle">
+        <div className="flex justify-around w-custom text-20">
+          <Button onClick={handleNextPath} text="Next" />
+          <Button onClick={handlePreviousPath} text="Previous" />
+        </div>
+
+        <div onClick={handleDisplayMode}>
+          <ToggleDarkMode isDarkMode={isDarkMode} />
         </div>
       </div>
     </div>

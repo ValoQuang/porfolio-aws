@@ -50,8 +50,7 @@ const GraphqlGithub = () => {
     if (getFromLocalStorage(LOCAL_STORAGE.USER)) {
       setInfo(JSON.parse(getFromLocalStorage(LOCAL_STORAGE.USER)));
     }
-    console.log(info);
-  }, []);
+  }, [data, error, loading]);
 
   if (loading) {
     return <p>Loading...</p>;
