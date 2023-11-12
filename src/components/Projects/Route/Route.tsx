@@ -26,7 +26,7 @@ const Route = (): JSX.Element => {
                   </p>
                   <br />
                   <p>
-                    On the navigation bar now, the button Next and Back will
+                    On the navigation bar, the button Next and Back will
                     lead user through all the path without any additional mouse
                     activity.
                   </p>

@@ -29,14 +29,8 @@ Technologies implemented in this project:
 <li>Typescript</li>
 <li>ReactJS</li>
 <li>GraphQL</li>
-<li>AWS S3, AWS AppSync</li>
+<li>AWS S3, AWS AppSync, API Gateway, DynamoDB, Lambda Function</li>
 <li>Libraries: zustand, Tailwindcss, React router v6.18.0, pure CSS</li>
-
-## How to start the project  
-Clone the project from github.  
-Run terminal, run ```npm install```
-Create env file in root folder, put your github token and github graphQL API URL.
-Run ```npm start```
 
 ## Sum up
 This project represents me.

@@ -56,9 +56,9 @@ const Navbar = () => {
         <div className="flex">
           <button onClick={handleNextPath}>Next</button>
           <button onClick={handlePreviousPath}>Previous</button>
-          <button className="flex" onClick={handleDisplayMode}>
+          <div className="flex" onClick={handleDisplayMode}>
             <ToggleDarkMode isDarkMode={isDarkMode} />
-          </button>
+          </div>
         </div>
       </div>
     </div>

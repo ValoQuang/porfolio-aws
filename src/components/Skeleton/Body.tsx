@@ -21,7 +21,7 @@ const Body = ({
         )} flex p-main w-full font-ibm-plex-mono`}
       >
         <div className="w-7/12">{childrenLeft}</div>
-        <div className="w-4/12 pl-20">{childrenRight}</div>
+        <div className="w-5/12 pl-20">{childrenRight}</div>
       </div>
     </>
   );
