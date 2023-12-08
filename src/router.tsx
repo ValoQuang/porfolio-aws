@@ -3,9 +3,8 @@ import App from "./App";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Main from "./components/Main";
-import CustomBackground from "./components/Projects/CustomBackground/CustomBackground";
-import GraphqlGithub from "./components/Projects/GraphqlGithub/GraphqlGithub";
-import Route from "./components/Projects/Route/Route";
+import Lofi from "./components/Projects/Lofi/Lofi";
+import Graph from "./components/Projects/Graph/Graph";
 import { PATH_ENUM } from "./types/routeEnum";
 
 export const router = createBrowserRouter([
@@ -34,16 +33,12 @@ export const router = createBrowserRouter([
             element: <Projects />,
           },
           {
-            path: PATH_ENUM.ROUTE,
-            element: <Route />,
+            path: PATH_ENUM.LOFI,
+            element: <Lofi />,
           },
           {
-            path: PATH_ENUM.CUSTOM_BACKGROUND,
-            element: <CustomBackground />,
-          },
-          {
-            path: PATH_ENUM.GRAPHQL_GITHUB,
-            element: <GraphqlGithub />,
+            path: PATH_ENUM.GRAPH,
+            element: <Graph />,
           },
         ],
       },

@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <Body
-        childrenLeft={
+        componentLeft={
           <>
             <header className="text-headline font-semibold leading-110">
               Spaghetti Playground

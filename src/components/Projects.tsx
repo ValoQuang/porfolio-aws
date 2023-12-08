@@ -4,7 +4,7 @@ const Projects = (): JSX.Element => {
   return (
     <>
       <Body
-        childrenLeft={
+        componentLeft={
           <>
             <Paragraph
               header={"Projects"}
@@ -35,7 +35,7 @@ const Projects = (): JSX.Element => {
             />
           </>
         }
-        childrenRight={<></>}
+        componentRight={<></>}
       />
     </>
   );

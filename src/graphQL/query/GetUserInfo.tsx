@@ -10,17 +10,6 @@ export const GET_USER_INFO = gql`
       createdAt
       location
       email
-      contributionsCollection {
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              contributionCount
-              date
-            }
-          }
-        }
-      }
     }
   }
 `;

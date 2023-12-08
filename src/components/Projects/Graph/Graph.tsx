@@ -16,7 +16,7 @@ interface User {
     contributionCalendar: {
       __typename: "ContributionCalendar";
       totalContributions: number;
-      weeks: Array<any>; // You may need to define a more specific type for the 'weeks' array
+      weeks: Array<any>;
     };
     __typename: "ContributionsCollection";
   };
@@ -30,7 +30,7 @@ interface UserObjectProp {
   user: User;
 }
 
-const GraphqlGithub = () => {
+const Graph = () => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [info, setInfo] = useState<UserObjectProp>();
   const { data, loading, error } = useQuery(GET_USER_INFO, {
@@ -58,7 +58,7 @@ const GraphqlGithub = () => {
   return (
     <>
       <Body
-        childrenLeft={
+        componentLeft={
           <>
             <Paragraph
               header={"GraphQL API"}
@@ -83,7 +83,7 @@ const GraphqlGithub = () => {
             />
           </>
         }
-        childrenRight={
+        componentRight={
           <>
             <Card
               children={
@@ -91,7 +91,7 @@ const GraphqlGithub = () => {
                   <div className="flex flex-col items-center">
                     <div className="justify-around">
                       <img
-                        className="align-middle rounded-full w-48 h-48"
+                        className="align-middle rounded-full w-72 h-72"
                         src={info?.user.avatarUrl}
                         alt="alt me"
                       />
@@ -111,4 +111,4 @@ const GraphqlGithub = () => {
   );
 };
 
-export default GraphqlGithub;
+export default Graph;
