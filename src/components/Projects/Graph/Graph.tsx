@@ -31,7 +31,12 @@ const Graph = () => {
   };
 
   useEffect(() => {
-    if (data && !loading && !error) {
+    if (
+      data &&
+      !loading &&
+      !error &&
+      !getFromLocalStorage(LOCAL_STORAGE.USER)
+    ) {
       setIsDataLoaded(true);
       setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(data));
     }
@@ -57,7 +62,11 @@ const Graph = () => {
                   alt="alt me"
                 />
 
-                <button className=" bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3"><Emoji text={info?.user.status.emoji} /></button>
+                {info?.user.status.emoji && (
+                  <button className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3">
+                    <Emoji text={info.user.status.emoji} />
+                  </button>
+                )}
               </div>
               <div>{info?.user.name}</div>
               <div className="text-sm w-full">{info?.user.bio}</div>
@@ -67,14 +76,13 @@ const Graph = () => {
                 <div className="text-slate-400">{info?.user.pronouns}</div>
               </div>
 
-              <button className=" text-sm solid-button w-full hover:bg-slate-100" onClick={handleEdit}>
+              <button
+                className=" text-sm solid-button w-full hover:bg-slate-100"
+                onClick={handleEdit}
+              >
                 Edit profile
               </button>
-              {form && (
-                <div> 
-                  FORM
-                </div>
-              )}
+              {form && <div>FORM</div>}
               <p>{info?.user.email}</p>
               <div>
                 {info?.user.followers.totalCount} follower{" "}
