@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <Body
-        componentLeft={
+        children={
           <>
             <header className="text-headline font-semibold leading-110">
               Spaghetti Playground
@@ -26,18 +26,7 @@ const Main = () => {
                   experience on AWS.
                 </p>
                 <br />
-                <p>
-                  Imagine this is just the kid sandbox, I just implement
-                  randomly things I have learnt and things I need more practice
-                </p>
                 <br />
-                <div className="flex">
-                  Let's go to&nbsp;
-                  <Button
-                    onClick={() => navigate(PATH_ENUM.ABOUT)}
-                    text="About."
-                  />
-                </div>
               </div>
             </div>
           </>

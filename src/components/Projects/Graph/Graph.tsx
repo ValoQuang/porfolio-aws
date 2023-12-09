@@ -1,30 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { GET_USER_INFO } from "../../../graphQL/query";
-import { Body, Card, Paragraph } from "../../Skeleton";
+import Emoji from "react-emoji-render";
+import { GET_USER_INFO, User } from "../../../graphQL/query";
+import { Body } from "../../Skeleton";
 import {
   getFromLocalStorage,
   setInLocalStorage,
 } from "../../../utils/localStorage";
 import { LOCAL_STORAGE } from "../../../types/localStorageEnum";
-
-interface User {
-  avatarUrl: string;
-  bio: string;
-  company: string;
-  contributionsCollection: {
-    contributionCalendar: {
-      __typename: "ContributionCalendar";
-      totalContributions: number;
-      weeks: Array<any>;
-    };
-    __typename: "ContributionsCollection";
-  };
-  createdAt: string;
-  email: string;
-  location: string;
-  name: string;
-}
+import Readme from "./Readme";
 
 interface UserObjectProp {
   user: User;
@@ -40,6 +24,8 @@ const Graph = () => {
     skip: isDataLoaded,
     fetchPolicy: "cache-first",
   });
+
+  const handleEdit = () => {};
 
   useEffect(() => {
     if (data && !loading && !error) {
@@ -58,53 +44,40 @@ const Graph = () => {
   return (
     <>
       <Body
-        componentLeft={
-          <>
-            <Paragraph
-              header={"GraphQL API"}
-              children={
-                <>
-                  <p>GraphQL API practice</p>
-                  <br />
-                  <p>
-                    The token is created to authorize the connection between app
-                    and Github API.
-                  </p>
-                  <br />
-                  <p>The query are simply personal information on github.</p>
-                  <br />
-                  <p>
-                    This excercise focuses on making Client.ts and apply
-                    middleware for error logging.
-                  </p>
-                  <br />
-                </>
-              }
-            />
-          </>
-        }
-        componentRight={
-          <>
-            <Card
-              children={
-                <>
-                  <div className="flex flex-col items-center">
-                    <div className="justify-around">
-                      <img
-                        className="align-middle rounded-full w-72 h-72"
-                        src={info?.user.avatarUrl}
-                        alt="alt me"
-                      />
-                    </div>
-                    <div>{info?.user.bio}</div>
-                    <div>{info?.user.email}</div>
-                    <div>{info?.user.location}</div>
-                    <div>{info?.user.company}</div>
-                  </div>
-                </>
-              }
-            />
-          </>
+        children={
+          <div className="flex leading-10">
+            <div className="w-3/12 mr-10">
+              <div className="relative align-bottom">
+                <img
+                  className="rounded-full w-fit h-fit"
+                  src={info?.user.avatarUrl}
+                  alt="alt me"
+                />
+
+                <button className=" bg-slate-300 absolute bottom-10 right-2 rounded-full px-3 z-10"><Emoji text={info?.user.status.emoji} /></button>
+              </div>
+              <div>{info?.user.name}</div>
+              <div className="text-sm w-full">{info?.user.bio}</div>
+
+              <div className="flex justify-start gap-5">
+                <div>{info?.user.login}</div>
+                <div className="text-slate-400">{info?.user.pronouns}</div>
+              </div>
+
+              <button className=" text-sm solid-button w-full hover:bg-slate-100">
+                Edit profile
+              </button>
+              <p>{info?.user.email}</p>
+              <div>
+                {info?.user.followers.totalCount} follower{" "}
+                {info?.user.following.totalCount} following
+              </div>
+
+              <div>{info?.user.company}</div>
+              <div>{info?.user.location}</div>
+            </div>
+            <div className="w-9/12 ml-10">{<Readme />}</div>
+          </div>
         }
       />
     </>

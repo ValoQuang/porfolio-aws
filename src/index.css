@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+.solid-button {
+  @apply rounded-md border-2 border-solid border-gray-800;
+}
+
 .typewriter {
   --bgColor: rgb(255, 255, 255);
   --lines: 500;

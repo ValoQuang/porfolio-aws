@@ -5,7 +5,7 @@ const About = (): JSX.Element => {
   return (
     <div className="flex w-full">
       <Body
-        componentLeft={
+        children={
           <>
             <Paragraph
               header={"Education background"}

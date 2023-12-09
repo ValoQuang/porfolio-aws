@@ -3,14 +3,10 @@ import { getBackgroundClass } from "../../utils/getBackgroundClass";
 import { useDisplayStore } from "../../store/displayStore";
 
 interface BodyProp {
-  componentLeft: ReactNode;
-  componentRight?: ReactNode;
+  children: ReactNode;
 }
 
-const Body = ({
-  componentLeft,
-  componentRight,
-}: BodyProp) => {
+const Body = ({ children }: BodyProp) => {
   const isDarkMode = useDisplayStore((state) => state.darkMode);
 
   return (
@@ -18,10 +14,9 @@ const Body = ({
       <div
         className={`${getBackgroundClass(
           isDarkMode
-        )} flex p-main w-full font-ibm-plex-mono`}
+        )} flex-col p-main w-full font-ibm-plex-mono`}
       >
-        <div className="w-7/12">{componentLeft}</div>
-        <div className="w-5/12 pl-20">{componentRight}</div>
+        {children}
       </div>
     </>
   );

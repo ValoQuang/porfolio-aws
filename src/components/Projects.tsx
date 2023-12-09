@@ -4,7 +4,7 @@ const Projects = (): JSX.Element => {
   return (
     <>
       <Body
-        componentLeft={
+        children={
           <>
             <Paragraph
               header={"Projects"}
@@ -25,17 +25,16 @@ const Projects = (): JSX.Element => {
                   <br />
                   <p>List of tools used for this repository:</p>
                   <li>- ReactJS</li>
-                    <li>- GraphQL</li>
-                    <li>- Tailwindcss</li>
-                    <li>- S3 bucket</li>
-                    <li>- ...</li>
-                    <li>- **still hard code, need to fetch from github</li>
+                  <li>- GraphQL</li>
+                  <li>- Tailwindcss</li>
+                  <li>- S3 bucket</li>
+                  <li>- ...</li>
+                  <li>- **still hard code, need to fetch from github</li>
                 </>
               }
             />
           </>
         }
-        componentRight={<></>}
       />
     </>
   );
