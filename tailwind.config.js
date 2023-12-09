@@ -19,6 +19,9 @@ module.exports = {
         link: "4.59px 3.204px 5.58px 3.6px",
         footer: "10px 72px 100px 72px;",
       },
+      backgroundColor: {
+        'graph': 'rgba(52,53,65,var(--tw-bg-opacity))',
+      },
       width: {
         custom: "300px",
       },

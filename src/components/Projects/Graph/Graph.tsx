@@ -16,6 +16,7 @@ interface UserObjectProp {
 
 const Graph = () => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [form, setForm] = useState(false);
   const [info, setInfo] = useState<UserObjectProp>();
   const { data, loading, error } = useQuery(GET_USER_INFO, {
     variables: {
@@ -25,7 +26,9 @@ const Graph = () => {
     fetchPolicy: "cache-first",
   });
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    setForm(!form);
+  };
 
   useEffect(() => {
     if (data && !loading && !error) {
@@ -45,7 +48,7 @@ const Graph = () => {
     <>
       <Body
         children={
-          <div className="flex leading-10">
+          <div className="z-0 flex leading-10 bg-graph p-5 text-white rounded-3xl">
             <div className="w-3/12 mr-10">
               <div className="relative align-bottom">
                 <img
@@ -54,7 +57,7 @@ const Graph = () => {
                   alt="alt me"
                 />
 
-                <button className=" bg-slate-300 absolute bottom-10 right-2 rounded-full px-3 z-10"><Emoji text={info?.user.status.emoji} /></button>
+                <button className=" bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3"><Emoji text={info?.user.status.emoji} /></button>
               </div>
               <div>{info?.user.name}</div>
               <div className="text-sm w-full">{info?.user.bio}</div>
@@ -64,9 +67,14 @@ const Graph = () => {
                 <div className="text-slate-400">{info?.user.pronouns}</div>
               </div>
 
-              <button className=" text-sm solid-button w-full hover:bg-slate-100">
+              <button className=" text-sm solid-button w-full hover:bg-slate-100" onClick={handleEdit}>
                 Edit profile
               </button>
+              {form && (
+                <div> 
+                  FORM
+                </div>
+              )}
               <p>{info?.user.email}</p>
               <div>
                 {info?.user.followers.totalCount} follower{" "}

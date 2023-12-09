@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { PATH_ENUM } from "../types/routeEnum";
-import { Body, Button } from "./Skeleton";
+import { Body } from "./Skeleton";
 
 const Main = () => {
-  const navigate = useNavigate();
   return (
     <div>
       <Body

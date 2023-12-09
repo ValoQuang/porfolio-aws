@@ -1,4 +1,4 @@
-import React from 'react'
+import ContributionCalendar from "./ContributionCalendar"
 
 const Readme = () => {
   return (
@@ -53,6 +53,8 @@ const Readme = () => {
         alt="valoquang"
       />
     </p>
+
+    <ContributionCalendar />
   </div>
   )
 }

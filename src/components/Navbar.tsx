@@ -19,7 +19,7 @@ const Navbar = () => {
     <div
       className={`${getBackgroundClass(
         isDarkMode
-      )} fixed flex justify-between w-full p-navbar font-ibm-plex-mono`}
+      )} z-10 fixed flex justify-between w-full p-navbar font-ibm-plex-mono`}
     >
       <div className="flex">
         <button className="solid-button text-20 hover:pointer hover:text-white hover:bg-black">
