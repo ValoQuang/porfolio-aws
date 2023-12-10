@@ -27,9 +27,23 @@ const Navbar = () => {
             {"console.log('Hello World')"}
           </p>
         </button>
-        <div className="flex pl-10 pt-3 justify-around w-custom text-20">
-          <Button onClick={() => navigate(PATH_ENUM.ABOUT)} text="About" />
-          <Button onClick={() => navigate(PATH_ENUM.PROJECTS)} text="Project" />
+        <div className="flex pl-10 pt-3 justify-between w-custom text-20 w-80">
+          <Button
+            onClick={() => navigate(PATH_ENUM.ABOUT)}
+            text={PATH_ENUM.ABOUT}
+          />
+          <Button
+            onClick={() => navigate(PATH_ENUM.PROJECTS)}
+            text={PATH_ENUM.PROJECTS}
+          />
+          <Button
+            onClick={() => navigate(`${PATH_ENUM.PROJECTS}/${PATH_ENUM.GRAPH}`)}
+            text={PATH_ENUM.GRAPH}
+          />
+          <Button
+            onClick={() => navigate(`${PATH_ENUM.PROJECTS}/${PATH_ENUM.LOFI}`)}
+            text={PATH_ENUM.LOFI}
+          />
         </div>
       </div>
 

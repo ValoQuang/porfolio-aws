@@ -8,7 +8,7 @@
 }
 
 .solid-button {
-  @apply rounded-md border-2 border-solid border-gray-800;
+  @apply rounded-md border-2 border-solid border-gray-800 hover:text-black;
 }
 
 .typewriter {

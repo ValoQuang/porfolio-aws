@@ -31,18 +31,9 @@ const Graph = () => {
   };
 
   useEffect(() => {
-    if (
-      data &&
-      !loading &&
-      !error &&
-      !getFromLocalStorage(LOCAL_STORAGE.USER)
-    ) {
+    if (data && !loading && !error) {
       setIsDataLoaded(true);
-      setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(data));
-    }
-
-    if (getFromLocalStorage(LOCAL_STORAGE.USER)) {
-      setInfo(JSON.parse(getFromLocalStorage(LOCAL_STORAGE.USER)));
+      setInfo(data);
     }
   }, [data, error, loading]);
 
@@ -53,7 +44,7 @@ const Graph = () => {
     <>
       <Body
         children={
-          <div className="z-0 flex leading-10 bg-graph p-5 text-white rounded-3xl">
+          <div className="rounded-3xl z-0 flex leading-10 bg-graph p-5 text-white">
             <div className="w-3/12 mr-10">
               <div className="relative align-bottom">
                 <img
@@ -63,7 +54,7 @@ const Graph = () => {
                 />
 
                 {info?.user.status.emoji && (
-                  <button className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3">
+                  <button className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3 hover:bg-slate-100">
                     <Emoji text={info.user.status.emoji} />
                   </button>
                 )}

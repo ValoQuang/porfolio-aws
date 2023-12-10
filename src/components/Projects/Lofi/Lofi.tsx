@@ -1,7 +1,11 @@
+import { Body } from "../../Skeleton";
+
 const Lofi = () => {
   return (
     <>
-      <div>UNDER CONSTRUCTION</div>
+      <div>
+        <Body children={<>UNDER BUILDING</>} />
+      </div>
     </>
   );
 };
