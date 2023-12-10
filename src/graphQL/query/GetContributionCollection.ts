@@ -10,6 +10,7 @@ export const GET_CONTRIBUTION_COLLECTION = gql`
             contributionDays {
               contributionCount
               date
+              contributionLevel
             }
           }
         }
@@ -18,20 +19,21 @@ export const GET_CONTRIBUTION_COLLECTION = gql`
   }
 `;
 
-interface ContributionDay {
-    contributionCount: number;
-    date: string;
-  }
-  
-  interface ContributionWeek {
-    contributionDays: ContributionDay[];
-  }
-  
-  interface ContributionCalendar {
-    totalContributions: number;
-    weeks: ContributionWeek[];
-  }
-  
+export interface ContributionDay {
+  contributionCount: number;
+  date: string;
+  contributionLevel: string;
+}
+
+export interface ContributionWeek {
+  contributionDays: ContributionDay[];
+}
+
+export interface ContributionCalendar {
+  totalContributions: number;
+  weeks: ContributionWeek[];
+}
+
 export interface ContributionsCollection {
-    contributionCalendar: ContributionCalendar;
-  }
+  contributionCalendar: ContributionCalendar;
+}

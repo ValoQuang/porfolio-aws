@@ -52,7 +52,9 @@ const Readme = () => {
         />
       </p>
       <br />
-      <ContributionCalendar />
+      <div className="overflow-hidden pr-10">
+        <ContributionCalendar />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,7 @@
+export enum CONTRIBUTION_LEVEL {
+    NONE = 0,
+    FIRST_QUARTILE = 1,
+    SECOND_QUARTILE = 2,
+    THIRD_QUARTILE = 3,
+    FOURTH_QUARTILE = 4,
+}
