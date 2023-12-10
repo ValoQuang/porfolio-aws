@@ -27,7 +27,7 @@ const Navbar = () => {
             {"console.log('Hello World')"}
           </p>
         </button>
-        <div className="flex pl-10 pt-3 justify-between w-custom text-20 w-80">
+        <div className="flex pl-10 pt-3 justify-between text-20 w-80">
           <Button
             onClick={() => navigate(PATH_ENUM.ABOUT)}
             text={PATH_ENUM.ABOUT}

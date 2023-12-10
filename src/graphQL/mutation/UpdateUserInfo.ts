@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const SET_USER_INFO = gql`
-  mutation SetUserInfo($login: String!) {
+export const UPDATE_USER_INFO = gql`
+  mutation UpdateUserInfo($login: String!) {
     user(login: $login) {
       bio
       avatarUrl

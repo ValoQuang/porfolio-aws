@@ -1,1 +1,2 @@
-export * from "./SetUserInfo";
+export * from "./UpdateUserInfo";
+export * from "./UpdateUserStatus";

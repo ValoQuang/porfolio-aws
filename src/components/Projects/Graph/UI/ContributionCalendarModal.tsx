@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import ActivityCalendar from "react-activity-calendar";
-import { GET_CONTRIBUTION_COLLECTION } from "../../../graphQL/query";
-import { transformData } from "../../../utils/transformData";
+import { GET_CONTRIBUTION_COLLECTION } from "../../../../graphQL/query";
+import { transformData } from "../../../../utils/transformData";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import React from "react";
 

@@ -2,48 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
-  margin: 0;
-  padding: 0;
-}
-
 .solid-button {
   @apply rounded-md border-2 border-solid border-gray-800 hover:text-black;
 }
 
-.typewriter {
-  --bgColor: rgb(255, 255, 255);
-  --lines: 500;
-  --lineHeight: 24px;
-  --timePerLine: 1s;
-  --widthCh: 80;
-  --width: calc(var(--widthCh) * 1ch);
-  /* do not touch the time property!!! */
-  --time: calc(var(--lines) * var(--timePerLine));
-  animation: grow var(--time) steps(var(--lines));
-  animation-fill-mode: forwards;
-  background: var(--bgColor);
-  line-height: var(--lineHeight);
-  max-height: var(--lineHeight);
-  overflow: hidden;
-  position: relative;
-  width: var(--width);
-  /* word-break: break-all; */
-}
-
-.typewriter::before {
-  content: "";
-  animation: type var(--timePerLine) linear infinite,
-    carriageReturn var(--time) steps(var(--lines)) var(--lines),
-    caret 0.5s steps(2) infinite;
-  background: var(--bgColor);
-  border-left: 2px solid;
-  bottom: 0;
-  height: 32px;
-  position: absolute;
-  right: 0;
-  width: 100%;
-}
 
 @keyframes grow {
   0% {
@@ -54,30 +16,6 @@
   }
 }
 
-@keyframes carriageReturn {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: calc(var(--lineHeight) * var(--lines));
-  }
+.modal {
+  @apply bg-opacity-25;
 }
-
-@keyframes type {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0%;
-  }
-}
-
-@keyframes caret {
-  0% {
-    color: var(--bgColor);
-  }
-  100% {
-    color: black;
-  }
-}
-

@@ -20,12 +20,15 @@ module.exports = {
         footer: "10px 72px 100px 72px;",
       },
       backgroundColor: {
-        'graph': 'rgba(52,53,65,var(--tw-bg-opacity))',
-      },
-      width: {
-        custom: "300px",
+        graph: "rgba(52,53,65,var(--tw-bg-opacity))",
       },
       darkMode: "class",
+      width: {
+        status: "480px",
+      },
+      height: {
+        status: "329px",
+      }
     },
   },
   plugins: [],

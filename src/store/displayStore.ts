@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 /* eslint-disable @typescript-eslint/ban-types */
@@ -15,12 +14,10 @@ export type StoreType<State> = State & {
 };
 type displayState = {
   darkMode: boolean;
-  customBackground: string;
   setDarkMode: (state: boolean) => void;
 };
 export const initialState = {
   darkMode: false,
-  customBackground: "",
 };
 
 const store = persist<displayState>(
@@ -32,7 +29,7 @@ const store = persist<displayState>(
   }),
   {
     storage: createJSONStorage(() => sessionStorage),
-    name: ""
+    name: "",
   }
 );
 

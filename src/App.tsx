@@ -10,10 +10,11 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      <div className="body">
+      <>
         <Navbar />
+        
         <Outlet />
-      </div>
+      </>
     </>
   );
 };

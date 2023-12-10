@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 import Emoji from "react-emoji-render";
 import { GET_USER_INFO, User } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
-import {
-  getFromLocalStorage,
-  setInLocalStorage,
-} from "../../../utils/localStorage";
-import { LOCAL_STORAGE } from "../../../types/localStorageEnum";
-import Readme from "./Readme";
+import Profile from "./Profile";
+import { useModalStore } from "../../../store/modalStore";
+import StatusModal from "./UI/StatusModal";
 
 interface UserObjectProp {
   user: User;
@@ -25,6 +22,10 @@ const Graph = () => {
     skip: isDataLoaded,
     fetchPolicy: "cache-first",
   });
+  const [setModalOpen, isModalOpen] = useModalStore((state) => [
+    state.setModalOpen,
+    state.isModalOpen,
+  ]);
 
   const handleEdit = () => {
     setForm(!form);
@@ -37,6 +38,10 @@ const Graph = () => {
     }
   }, [data, error, loading]);
 
+  const handleStatus = () => {
+    setModalOpen(!isModalOpen);
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -44,7 +49,7 @@ const Graph = () => {
     <>
       <Body
         children={
-          <div className="rounded-3xl z-0 flex leading-10 bg-graph p-5 text-white">
+          <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
             <div className="w-3/12 mr-10">
               <div className="relative align-bottom">
                 <img
@@ -54,7 +59,10 @@ const Graph = () => {
                 />
 
                 {info?.user.status.emoji && (
-                  <button className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3 hover:bg-slate-100">
+                  <button
+                    onClick={handleStatus}
+                    className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3 hover:bg-zinc-600"
+                  >
                     <Emoji text={info.user.status.emoji} />
                   </button>
                 )}
@@ -83,7 +91,7 @@ const Graph = () => {
               <div>{info?.user.company}</div>
               <div>{info?.user.location}</div>
             </div>
-            <div className="w-9/12 ml-10">{<Readme />}</div>
+            <div className="w-9/12 ml-10">{<Profile />}</div>
           </div>
         }
       />
