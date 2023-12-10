@@ -11,7 +11,7 @@ type ContributionList = {
 };
 
 const ContributionCalendar = () => {
-  const [contributes, setContributes] = useState<ContributionList[]>();
+  const [contributes, setContributes] = useState<ContributionList[]>([]) as any;
   const { data, loading, error } = useQuery(GET_CONTRIBUTION_COLLECTION, {
     variables: {
       username: `${process.env.REACT_APP_GITHUB_USER}`,
@@ -28,18 +28,11 @@ const ContributionCalendar = () => {
       );
     }
   }, [data]);
-  console.log(contributes);
 
   return (
     <div>
       <ActivityCalendar
-        data={[
-          {
-            date: "2023-02-20",
-            count: 16,
-            level: 3,
-          },
-        ]}
+        data={contributes}
         labels={{
           legend: {
             less: "Less",

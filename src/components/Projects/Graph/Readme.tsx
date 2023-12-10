@@ -52,7 +52,7 @@ const Readme = () => {
         />
       </p>
       <br />
-      <div className="overflow-hidden pr-10">
+      <div className="hidden lg:block overflow-hidden pr-10">
         <ContributionCalendar />
       </div>
     </div>
