@@ -1,9 +1,6 @@
-import { useModalStore } from "../../../store/modalStore";
 import ContributionCalendar from "./UI/ContributionCalendarModal";
-import StatusModal from "./UI/StatusModal";
 
 const Profile = () => {
-  const isModalOpen = useModalStore((state) => state.isModalOpen);
   return (
     <div>
       <h1 className="center">Hi 👋, I'm Quang</h1>

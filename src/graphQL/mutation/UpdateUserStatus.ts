@@ -8,8 +8,20 @@ export const UPDATE_USER_STATUS = gql`
         message
         emoji
         updatedAt
+        expiresAt
+        ...user
       }
     }
   }
 `;
+
+export interface UpdateUserStatus {
+  clientMutationId: string,
+  status: {
+    message: string,
+    emoji: string,
+    updatedAt: string,
+    expiresAt: string,
+  }
+}
 
