@@ -13,8 +13,6 @@ Long story short, during my service, I decide to make this reposity from my free
 ## The purpose
 This is to be made for fun, also can be seen as a blog / showcase where I deliver all of the knowledge I have gathered during my software development. 
 <br />
-Hence there are plenty of things I implements while I coded with my own thoughts and not rely on google, chatgpt, stackoverflow.   
-<br />
 On the other words, in this project, I focus solely on:  
 <li>Crucial importance of clean code, provided it is made to give clear instruction of how to start the project for new users</li>
 <li>Reusable components, helper functions</li>
@@ -31,12 +29,7 @@ Technologies implemented in this project:
 <li>Libraries: zustand, Tailwindcss, React router v6.18.0, pure CSS</li>
 
 ## ON-GOING DEVELOPMENT, WHAT'S NEXT ?  
-November, 2023 note.  
-Simple Note taking with dynamoDB on AWS as database, also with Lambda function to notify whenever new notes are added.  
-Host project on S3 Buckets.
-Practice more on AWS.
+Lofi mini project.
 
-## Sum up
-This project represents me.
 <br />
 Best regards,

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ActivityCalendar from "react-activity-calendar";
 import { GET_CONTRIBUTION_COLLECTION } from "../../../graphQL/query";
 import { transformData } from "../../../utils/transformData";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import React from "react";
 
 type ContributionList = {
   date: string;
@@ -31,8 +33,19 @@ const ContributionCalendar = () => {
 
   return (
     <div>
+      <ReactTooltip id="react-tooltip" />
       <ActivityCalendar
         data={contributes}
+        theme={{
+          light: ["#f0f0f0", "#c4edde", "#7ac7c4", "#f73859", "#384259"],
+          dark: ["#383838", "#4D455D", "#7DB9B6", "#F5E9CF", "#E96479"],
+        }}
+        renderBlock={(block, activity) =>
+          React.cloneElement(block, {
+            "data-tooltip-id": "react-tooltip",
+            "data-tooltip-html": `${activity.count} activities on ${activity.date}`,
+          })
+        }
         labels={{
           legend: {
             less: "Less",
