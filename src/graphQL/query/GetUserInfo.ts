@@ -43,7 +43,7 @@ export interface User {
     totalCount: number;
   }
   status: {
-    emoji: any;
-    emojiHTML: any;
+    emoji: string;
+    emojiHTML: string;
   }
 }

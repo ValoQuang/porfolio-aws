@@ -10,11 +10,8 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      <>
-        <Navbar />
-        
-        <Outlet />
-      </>
+      <Navbar />
+      <Outlet />
     </>
   );
 };

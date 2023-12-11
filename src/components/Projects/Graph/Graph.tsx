@@ -40,13 +40,22 @@ const Graph = () => {
 
   const handleStatus = () => {
     setModalOpen(!isModalOpen);
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   if (loading) {
     return <p>Loading...</p>;
   }
+
   return (
     <>
+      {isModalOpen && (
+        <div className="z-40 fixed flex bg-opacity-25 bg-zinc-400 w-screen h-screen">
+          <StatusModal />
+        </div>
+      )}
       <Body
         children={
           <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
@@ -58,7 +67,7 @@ const Graph = () => {
                   alt="alt me"
                 />
 
-                {info?.user.status.emoji && (
+                {info?.user?.status && (
                   <button
                     onClick={handleStatus}
                     className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3 hover:bg-zinc-600"

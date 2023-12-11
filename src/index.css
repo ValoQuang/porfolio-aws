@@ -6,6 +6,9 @@
   @apply rounded-md border-2 border-solid border-gray-800 hover:text-black;
 }
 
+.responsive {
+  @apply hidden xl:block overflow-hidden;
+}
 
 @keyframes grow {
   0% {
@@ -16,6 +19,3 @@
   }
 }
 
-.modal {
-  @apply bg-opacity-25;
-}

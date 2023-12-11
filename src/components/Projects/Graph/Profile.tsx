@@ -52,7 +52,7 @@ const Profile = () => {
         />
       </p>
       <br />
-      <div className="hidden xl:block overflow-hidden">
+      <div className="responsive">
         <ContributionCalendar />
       </div>
     </div>
