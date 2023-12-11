@@ -4,7 +4,6 @@ import Emoji from "react-emoji-render";
 import { GET_USER_INFO, User } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import Profile from "./Profile";
-import { useModalStore } from "../../../store/modalStore";
 import StatusModal from "./UI/StatusModal";
 
 interface UserObjectProp {
@@ -15,6 +14,8 @@ const Graph = () => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [form, setForm] = useState(false);
   const [info, setInfo] = useState<UserObjectProp>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { data, loading, error } = useQuery(GET_USER_INFO, {
     variables: {
       login: `${process.env.REACT_APP_GITHUB_USER}`,
@@ -22,10 +23,6 @@ const Graph = () => {
     skip: isDataLoaded,
     fetchPolicy: "cache-first",
   });
-  const [setModalOpen, isModalOpen] = useModalStore((state) => [
-    state.setModalOpen,
-    state.isModalOpen,
-  ]);
 
   const handleEdit = () => {
     setForm(!form);
@@ -36,13 +33,16 @@ const Graph = () => {
       setIsDataLoaded(true);
       setInfo(data);
     }
-  }, [data, error, loading]);
+  }, [data, error, info?.user, loading]);
 
-  const handleStatus = () => {
-    setModalOpen(!isModalOpen);
+  const openModal = () => {
+    setIsModalOpen(true);
     if (typeof window != "undefined" && window.document) {
       document.body.style.overflow = "hidden";
     }
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   if (loading) {
@@ -51,11 +51,7 @@ const Graph = () => {
 
   return (
     <>
-      {isModalOpen && (
-        <div className="z-40 fixed flex bg-opacity-25 bg-zinc-400 w-screen h-screen">
-          <StatusModal />
-        </div>
-      )}
+      {isModalOpen && <StatusModal isOpen={isModalOpen} onClose={closeModal} />}
       <Body
         children={
           <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
@@ -69,10 +65,14 @@ const Graph = () => {
 
                 {info?.user?.status && (
                   <button
-                    onClick={handleStatus}
-                    className="bg-zinc-700 absolute bottom-10 right-2 rounded-full px-3 hover:bg-zinc-600"
+                    onClick={openModal}
+                    className="bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center"
                   >
-                    <Emoji text={info.user.status.emoji} />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: info.user.status.emojiHTML,
+                      }}
+                    />
                   </button>
                 )}
               </div>

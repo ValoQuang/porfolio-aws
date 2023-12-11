@@ -7,7 +7,7 @@
 }
 
 .responsive {
-  @apply hidden xl:block overflow-hidden;
+  @apply hidden lg:block overflow-hidden;
 }
 
 @keyframes grow {
