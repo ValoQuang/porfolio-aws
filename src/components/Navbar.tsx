@@ -22,7 +22,7 @@ const Navbar = () => {
       )} z-10 fixed flex justify-between w-full p-navbar font-ibm-plex-mono`}
     >
       <div className="flex">
-        <button className="solid-button text-20 hover:pointer hover:text-white hover:bg-black">
+        <button className="solid-button text-20">
           <p onClick={() => navigate("/")} className="p-2 font-semibold">
             {"console.log('Hello World')"}
           </p>

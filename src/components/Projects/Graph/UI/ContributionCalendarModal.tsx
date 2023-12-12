@@ -29,7 +29,7 @@ const ContributionCalendar = () => {
         )
       );
     }
-  }, [data]);
+  }, [data, error, loading]);
 
   return (
     <div>
@@ -38,7 +38,7 @@ const ContributionCalendar = () => {
         <p>Loading data...</p>
       ) : (
         <ActivityCalendar
-          blockSize={11}
+          blockSize={10}
           data={contributes}
           theme={{
             light: ["#f0f0f0", "#c4edde", "#7ac7c4", "#f73859", "#384259"],
