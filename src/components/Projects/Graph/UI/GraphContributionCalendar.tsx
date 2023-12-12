@@ -18,7 +18,7 @@ const ContributionCalendar = () => {
     variables: {
       username: `${process.env.REACT_APP_GITHUB_USER}`,
       fetchPolicy: "cache-first",
-    },
+    },  
   });
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import GraphProfile from "./GraphProfile";
-import EditModal from "./UI/EditModal";
+import EditModal from "./UI/Modals/EditModal";
 import { UserObjectProp, GRAPH_BUTTON } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
 

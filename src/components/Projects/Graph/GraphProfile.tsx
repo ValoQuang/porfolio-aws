@@ -52,7 +52,7 @@ const GraphProfile = () => {
         />
       </p>
       <br />
-      <div className="responsive">
+      <div className="hidden xl:block overflow-hidden">
         <ContributionCalendar />
       </div>
     </div>

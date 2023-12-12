@@ -1,6 +1,6 @@
 import { User } from "../graphQL/query";
 
-export type SubmitProp = {
+export interface SubmitProp {
     message: string;
     emoji: any;
     emojiHTML: any;
@@ -9,17 +9,17 @@ export type SubmitProp = {
   };
   
 
-export type UserObjectProp = {
+export interface UserObjectProp {
     user: User;
   }
 
-  export type StatusModal = {
+  export interface StatusModal {
     isOpen: boolean; 
     onClose: () => void; 
     fetchedStatus: SubmitProp | null;
   }
 
-export type GraphButtonProp = {
+export interface GraphButtonProp {
   title: string;
   onClick: () => void;
 }

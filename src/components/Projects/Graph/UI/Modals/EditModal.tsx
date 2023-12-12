@@ -2,14 +2,19 @@ import { useMutation } from "@apollo/client";
 import {
   UPDATE_USER_STATUS,
   UpdateUserStatus,
-} from "../../../../graphQL/mutation";
+} from "../../../../../graphQL/mutation";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../types";
+import {
+  SubmitProp,
+  StatusModal,
+  GRAPH_BUTTON,
+  LOCAL_STORAGE,
+} from "../../../../../types";
 import Emoji from "react-emoji-render";
-import { GET_USER_INFO } from "../../../../graphQL/query";
-import GraphButton from "./Button/GraphButton";
+import GraphButton from "../Button/GraphButton";
+import { setInLocalStorage } from "../../../../../utils/localStorage";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -31,14 +36,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
     onCompleted: () => {
       onClose();
     },
-    refetchQueries: [
-      {
-        query: GET_USER_INFO,
-        variables: {
-          login: `${process.env.REACT_APP_GITHUB_USER}`,
-        },
-      },
-    ],
   });
 
   useEffect(() => {
@@ -90,7 +87,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           },
         },
       });
-      setEmojiModal(!emojiModal);
     } catch (error) {
       console.log(error);
     }
@@ -170,7 +166,10 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
 
       <div className="flex justify-between mt-24">
         <GraphButton title={GRAPH_BUTTON.SAVE} onClick={() => onSubmit()} />
-        <GraphButton title={GRAPH_BUTTON.CLEAR_STATUS} onClick={() => onClear()} />
+        <GraphButton
+          title={GRAPH_BUTTON.CLEAR_STATUS}
+          onClick={() => onClear()}
+        />
       </div>
     </div>
   );
