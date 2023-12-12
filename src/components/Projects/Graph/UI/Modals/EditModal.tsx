@@ -6,15 +6,10 @@ import {
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import {
-  SubmitProp,
-  StatusModal,
-  GRAPH_BUTTON,
-  LOCAL_STORAGE,
-} from "../../../../../types";
+import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../../types";
 import Emoji from "react-emoji-render";
 import GraphButton from "../Button/GraphButton";
-import { setInLocalStorage } from "../../../../../utils/localStorage";
+import GraphInput from "../Input/GraphInput";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -131,7 +126,8 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
             />
           )}
         </div>
-        <input
+        
+        <GraphInput
           placeholder="What's your status ?"
           defaultValue={status.message}
           onChange={(e) =>
@@ -140,7 +136,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
               message: e.target.value,
             })
           }
-          className="rounded-none focus:ring-0 focus:outline-none rounded-e-lg focus:bg-zinc-600 border-zinc-600 border text-gray-900 w-full text-sm p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
         />
       </div>
       <div className="mt-5">

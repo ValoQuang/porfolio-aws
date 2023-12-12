@@ -23,3 +23,9 @@ export interface GraphButtonProp {
   title: string;
   onClick: () => void;
 }
+
+export interface GraphInputProp {
+  defaultValue: string;
+  placeholder: string;
+  onChange: (e: any) => void;
+}
