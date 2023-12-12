@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .solid-button {
-  @apply hover:bg-slate-100 rounded-md border-2 border-solid border-gray-800 hover:text-black text-white;
+  @apply hover:bg-slate-100 border-zinc-400 border rounded-md p-2 border-solid  hover:text-black text-white;
 }
 
 .responsive {

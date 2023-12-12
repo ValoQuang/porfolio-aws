@@ -6,8 +6,10 @@ import {
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import { SubmitProp, StatusModal } from "../../../../types/graphType";
+import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../types";
 import Emoji from "react-emoji-render";
+import { GET_USER_INFO } from "../../../../graphQL/query";
+import GraphButton from "./Button/GraphButton";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -26,6 +28,17 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
         clientMutationId: `${process.env.REACT_APP_GITHUB_USER}`,
       },
     },
+    onCompleted: () => {
+      onClose();
+    },
+    refetchQueries: [
+      {
+        query: GET_USER_INFO,
+        variables: {
+          login: `${process.env.REACT_APP_GITHUB_USER}`,
+        },
+      },
+    ],
   });
 
   useEffect(() => {
@@ -40,7 +53,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   );
   if (!isOpen) return null;
 
-  const onClosePicker = (emojiCode: any) => {
+  const onClosePicker = (emojiCode: { native: any }) => {
     setStatus({ ...status, emoji: emojiCode.native });
     setEmojiModal(!emojiModal);
   };
@@ -49,32 +62,38 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   };
 
   const onSubmit = () => {
-    //the query and mutation has different input name
-    updateUserStatus({
-      variables: {
-        input: {
-          message: status.message,
-          emoji: status.emoji,
-          limitedAvailability: status.indicatesLimitedAvailability,
-          expiresAt: status.expiresAt,
+    try {
+      updateUserStatus({
+        variables: {
+          input: {
+            message: status.message,
+            emoji: status.emoji,
+            limitedAvailability: status.indicatesLimitedAvailability,
+            expiresAt: status.expiresAt,
+          },
         },
-      },
-    });
-    setEmojiModal(!emojiModal);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onClear = () => {
-    updateUserStatus({
-      variables: {
-        input: {
-          message: initialState.message,
-          emoji: initialState.emoji,
-          limitedAvailability: initialState.indicatesLimitedAvailability,
-          expiresAt: initialState.expiresAt,
+    try {
+      updateUserStatus({
+        variables: {
+          input: {
+            message: initialState.message,
+            emoji: initialState.emoji,
+            limitedAvailability: initialState.indicatesLimitedAvailability,
+            expiresAt: initialState.expiresAt,
+          },
         },
-      },
-    });
-    setEmojiModal(!emojiModal);
+      });
+      setEmojiModal(!emojiModal);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -82,13 +101,27 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
       <div className="flex justify-between text-white text-20">
         <div>Edit status</div>
         <button className="hover:text-zinc-600" onClick={onClose}>
-          Close Modal
+          <svg
+            className="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
         </button>
       </div>
-      <div className="flex leading-10">
+      <div className="flex mt-5">
         <span
           onClick={onOpenPicker}
-          className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+          className="hover:bg-slate-100 focus:ring-zinc-600 border-zinc-400 inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
         >
           <Emoji text={status.emoji || "-"} />
         </span>
@@ -103,7 +136,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           )}
         </div>
         <input
-          type="text"
           placeholder="What's your status ?"
           defaultValue={status.message}
           onChange={(e) =>
@@ -112,36 +144,33 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
               message: e.target.value,
             })
           }
-          className="rounded-none rounded-e-lg bg-gray-50 border text-gray-900  flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+          className="rounded-none focus:ring-0 focus:outline-none rounded-e-lg focus:bg-zinc-600 border-zinc-600 border text-gray-900 w-full text-sm p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
         />
       </div>
-      <div className="flex-col">
+      <div className="mt-5">
         <input
           checked={status.indicatesLimitedAvailability}
-          id="checked-checkbox"
           type="checkbox"
-          onClick={(e) =>
+          onChange={(e) =>
             handleInputChange({
               ...status,
               indicatesLimitedAvailability:
                 !status.indicatesLimitedAvailability,
             })
           }
-          className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          className="w-4 h-4 accent-gray-300 border-gray-300 rounded"
         />
-        <label className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+        <label className="text-white text-20 ml-[10px]">Busy</label>
+
+        <div className=" text-xs font-medium text-gray-900 dark:text-gray-300">
           When others mention you, assign you, or request your review, GitHub
           will let them know that you have limited availability.
-        </label>
+        </div>
       </div>
 
-      <div className="flex justify-between">
-        <button className="solid-button" onClick={() => onSubmit()}>
-          Save
-        </button>
-        <button className="solid-button" onClick={() => onClear()}>
-          Clear status
-        </button>
+      <div className="flex justify-between mt-24">
+        <GraphButton title={GRAPH_BUTTON.SAVE} onClick={() => onSubmit()} />
+        <GraphButton title={GRAPH_BUTTON.CLEAR_STATUS} onClick={() => onClear()} />
       </div>
     </div>
   );

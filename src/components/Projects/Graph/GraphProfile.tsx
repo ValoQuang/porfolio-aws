@@ -1,6 +1,6 @@
-import ContributionCalendar from "./UI/ContributionCalendarModal";
+import ContributionCalendar from "./UI/GraphContributionCalendar";
 
-const Profile = () => {
+const GraphProfile = () => {
   return (
     <div>
       <h1 className="center">Hi 👋, I'm Quang</h1>
@@ -59,4 +59,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default GraphProfile;

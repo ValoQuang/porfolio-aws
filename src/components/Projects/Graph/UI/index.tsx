@@ -1,2 +1,2 @@
-export * from "./ContributionCalendarModal";
+export * from "./GraphContributionCalendar";
 export * from "./EditModal";

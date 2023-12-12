@@ -18,3 +18,8 @@ export type UserObjectProp = {
     onClose: () => void; 
     fetchedStatus: SubmitProp | null;
   }
+
+export type GraphButtonProp = {
+  title: string;
+  onClick: () => void;
+}
