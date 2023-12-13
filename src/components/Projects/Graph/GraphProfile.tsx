@@ -1,4 +1,4 @@
-import ContributionCalendar from "./UI/GraphContributionCalendar";
+import ContributionCalendar from "./UI/ContributionCalendar/GraphContributionCalendar";
 
 const GraphProfile = () => {
   return (

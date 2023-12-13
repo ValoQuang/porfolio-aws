@@ -8,8 +8,8 @@ import Picker from "@emoji-mart/react";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../../types";
 import Emoji from "react-emoji-render";
-import GraphButton from "../Button/GraphButton";
 import GraphInput from "../Input/GraphInput";
+import GraphButton from "../Button/GraphButton";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -126,7 +126,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
             />
           )}
         </div>
-        
+
         <GraphInput
           placeholder="What's your status ?"
           defaultValue={status.message}
