@@ -10,6 +10,7 @@ import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../../types";
 import Emoji from "react-emoji-render";
 import GraphInput from "../Input/GraphInput";
 import GraphButton from "../Button/GraphButton";
+import { Client } from "../../../../../graphQL/Client";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -53,9 +54,9 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
     setEmojiModal(!emojiModal);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     try {
-      updateUserStatus({
+      const { data: updatedData } = await updateUserStatus({
         variables: {
           input: {
             message: status.message,
@@ -65,14 +66,25 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           },
         },
       });
+      if (updatedData?.status) {
+        Client.cache.modify({
+          id: Client.cache.identify({
+            __typename: "User",
+            login: `${process.env.REACT_APP_GITHUB_USER}`,
+          }),
+          fields: {
+            status: () => updatedData?.status,
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onClear = () => {
+  const onClear = async () => {
     try {
-      updateUserStatus({
+      const { data: updatedData } = await updateUserStatus({
         variables: {
           input: {
             message: initialState.message,
@@ -82,6 +94,17 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           },
         },
       });
+      if (updatedData?.status) {
+        Client.cache.modify({
+          id: Client.cache.identify({
+            __typename: "User",
+            login: `${process.env.REACT_APP_GITHUB_USER}`,
+          }),
+          fields: {
+            status: () => updatedData?.status,
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
