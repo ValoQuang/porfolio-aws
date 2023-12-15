@@ -5,9 +5,11 @@ const GraphInput = ({
   placeholder,
   onChange,
   firstInputRef,
+  label,
 }: GraphInputProp) => {
   return (
     <div className="w-full">
+      <label className="text-xs">{label}</label>
       <input
         ref={firstInputRef}
         autoFocus

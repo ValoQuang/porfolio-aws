@@ -2,23 +2,27 @@ import { LegacyRef } from "react";
 import { User } from "../graphQL/query";
 
 export interface SubmitProp {
-    message: string;
-    emoji: any;
-    emojiHTML: any;
-    indicatesLimitedAvailability: boolean;
-    expiresAt: null;
-  };
-  
+  message: string;
+  emoji: any;
+  emojiHTML: any;
+  indicatesLimitedAvailability: boolean;
+  expiresAt: null;
+}
 
 export interface UserObjectProp {
-    user: User;
-  }
+  user: User;
+}
 
-  export interface StatusModal {
-    isOpen: boolean; 
-    onClose: () => void; 
-    fetchedStatus: SubmitProp | null;
-  }
+export interface StatusModalProp {
+  isOpen: boolean;
+  onClose: () => void;
+  fetchedStatus: SubmitProp | null;
+}
+
+export interface PersonalModalProp {
+  data: UserObjectProp;
+  onClose: () => void;
+};
 
 export interface GraphButtonProp {
   title: string;
@@ -26,7 +30,8 @@ export interface GraphButtonProp {
 }
 
 export interface GraphInputProp {
-  firstInputRef?: LegacyRef<HTMLInputElement> | undefined
+  firstInputRef?: LegacyRef<HTMLInputElement> | undefined;
+  label?: string;
   defaultValue: string;
   placeholder: string;
   onChange: (e: any) => void;

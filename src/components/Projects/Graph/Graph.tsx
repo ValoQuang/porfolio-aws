@@ -3,10 +3,10 @@ import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import GraphProfile from "./GraphProfile";
-import EditModal from "./UI/Modals/EditModal";
+import StatusModal from "./UI/Modals/StatusModal";
 import { UserObjectProp, GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
-import FormModal from "./UI/Modals/FormModal";
+import PersonalModal from "./UI/Modals/PersonalModal";
 import { useModalStore } from "../../../store/modalStore";
 
 const Graph = () => {
@@ -33,7 +33,6 @@ const Graph = () => {
       setIsDataLoaded(true);
       setInfo(data);
     }
-    console.log(data);
   }, [isDataLoaded, data, error, info, loading, isStatusOpen]);
 
   const openStatusModal = () => {
@@ -55,11 +54,10 @@ const Graph = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  //`${isStatusOpen ? "bg-opacity-25" : ""} rounded-3xl flex leading-10 bg-graph p-5 text-white`
 
   return (
     <>
-      <EditModal
+      <StatusModal
         isOpen={isStatusOpen}
         fetchedStatus={data?.user?.status}
         onClose={closeStatusModal}
@@ -71,7 +69,7 @@ const Graph = () => {
               isStatusOpen && "bg-opacity-50 pointer-events-none"
             } rounded-3xl flex leading-10 bg-graph text-white`}
           >
-            <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
+            <div className="rounded-3xl flex bg-graph p-5 text-white">
               <div className="w-3/12 mr-10">
                 <div className={`relative ${isStatusOpen && "opacity-50"}`}>
                   <img
@@ -82,8 +80,12 @@ const Graph = () => {
                   <button
                     onClick={openStatusModal}
                     className={`${
-                      isStatusOpen && "disabled pointer-events-none"
-                    } bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center`}
+                      (isStatusOpen && "disabled pointer-events-none") ||
+                      (info?.user.status! !==
+                        null && info?.user.status.indicatesLimitedAvailability
+                        ? "border-2 border-[#e46e13]"
+                        : "")
+                    } bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
                   >
                     {info?.user?.status ? (
                       <div
@@ -98,8 +100,8 @@ const Graph = () => {
                 </div>
 
                 {!isPersonalOpen ? (
-                  <>
-                    <div>{info?.user.name}</div>
+                  <div className="flex-col space-y-4">
+                    <div className="text-3xl">{info?.user.name}</div>
                     <div className="text-sm w-full">{info?.user.bio}</div>
                     <div className="text-sm flex justify-start gap-5 leading-10">
                       <div>{info?.user.login}</div>
@@ -118,14 +120,10 @@ const Graph = () => {
                     </div>
                     <div>{info?.user.company}</div>
                     <div>{info?.user.location}</div>
-                  </>
+                  </div>
                 ) : (
-                  <div
-                    className={`${
-                      isStatusOpen && "opacity-50 pointer-events-none"
-                    }`}
-                  >
-                    <FormModal data={data} onClose={closePersonalModal} />
+                  <div className={`${isStatusOpen && "opacity-50"}`}>
+                    <PersonalModal data={info!} onClose={closePersonalModal} />
                   </div>
                 )}
               </div>

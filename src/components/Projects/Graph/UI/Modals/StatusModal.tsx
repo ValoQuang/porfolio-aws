@@ -6,12 +6,16 @@ import {
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../../types";
+import {
+  SubmitProp,
+  StatusModalProp,
+  GRAPH_BUTTON,
+} from "../../../../../types";
 import Emoji from "react-emoji-render";
 import GraphInput from "../Input/GraphInput";
 import GraphButton from "../Button/GraphButton";
 
-const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
+const StatusModal = ({ isOpen, onClose, fetchedStatus }: StatusModalProp) => {
   const [emojiModal, setEmojiModal] = useState(false);
   const initialState = {
     message: "",
@@ -23,11 +27,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
 
   const [status, setStatus] = useState(initialState);
   const [updateUserStatus] = useMutation<UpdateUserStatus>(UPDATE_USER_STATUS, {
-    variables: {
-      input: {
-        clientMutationId: `${process.env.REACT_APP_GITHUB_USER}`,
-      },
-    },
     onCompleted: () => {
       onClose();
     },
@@ -66,7 +65,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
         },
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -84,7 +83,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
       });
       setStatus(initialState);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -171,4 +170,4 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   );
 };
 
-export default EditModal;
+export default StatusModal;
