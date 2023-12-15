@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
           },
           {
             path: PATH_ENUM.GRAPH,
-            element: <Graph />,
+            element:<><Graph /></> ,
           },
         ],
       },

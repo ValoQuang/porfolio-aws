@@ -55,6 +55,7 @@ const Graph = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
+  //`${isStatusOpen ? "bg-opacity-25" : ""} rounded-3xl flex leading-10 bg-graph p-5 text-white`
 
   return (
     <>
@@ -63,58 +64,73 @@ const Graph = () => {
         fetchedStatus={data?.user?.status}
         onClose={closeStatusModal}
       />
-
       <Body
         children={
-          <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
-            <div className="w-3/12 mr-10">
-              <div className="relative align-bottom">
-                <img
-                  className="rounded-full w-fit h-fit"
-                  src={info?.user.avatarUrl}
-                  alt="alt me"
-                />
-                <button
-                  onClick={openStatusModal}
-                  className="bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center"
-                >
-                  {info?.user?.status ? (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: info?.user.status.emojiHTML,
-                      }}
-                    />
-                  ) : (
-                    "-"
-                  )}
-                </button>
-              </div>
-
-              {!isPersonalOpen ? (
-                <>
-                  <div>{info?.user.name}</div>
-                  <div className="text-sm w-full">{info?.user.bio}</div>
-                  <div className="text-sm flex justify-start gap-5 leading-10">
-                    <div>{info?.user.login}</div>
-                    <div className="text-slate-400">{info?.user.pronouns}</div>
-                  </div>{" "}
-                  <GraphButton
-                    title={GRAPH_BUTTON.EDIT_PROFILE}
-                    onClick={openPersonalModal}
+          <div
+            className={`${
+              isStatusOpen && "bg-opacity-50 pointer-events-none"
+            } rounded-3xl flex leading-10 bg-graph text-white`}
+          >
+            <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
+              <div className="w-3/12 mr-10">
+                <div className={`relative ${isStatusOpen && "opacity-50"}`}>
+                  <img
+                    className="rounded-full w-fit h-fit"
+                    src={info?.user.avatarUrl}
+                    alt="alt me"
                   />
-                  <p>{info?.user.email}</p>
-                  <div>
-                    {info?.user.followers.totalCount} follower{" "}
-                    {info?.user.following.totalCount} following
+                  <button
+                    onClick={openStatusModal}
+                    className={`${
+                      isStatusOpen && "disabled pointer-events-none"
+                    } bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center`}
+                  >
+                    {info?.user?.status ? (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: info?.user.status.emojiHTML,
+                        }}
+                      />
+                    ) : (
+                      "-"
+                    )}
+                  </button>
+                </div>
+
+                {!isPersonalOpen ? (
+                  <>
+                    <div>{info?.user.name}</div>
+                    <div className="text-sm w-full">{info?.user.bio}</div>
+                    <div className="text-sm flex justify-start gap-5 leading-10">
+                      <div>{info?.user.login}</div>
+                      <div className="text-slate-400">
+                        {info?.user.pronouns}
+                      </div>
+                    </div>{" "}
+                    <GraphButton
+                      title={GRAPH_BUTTON.EDIT_PROFILE}
+                      onClick={openPersonalModal}
+                    />
+                    <p>{info?.user.email}</p>
+                    <div>
+                      {info?.user.followers.totalCount} follower{" "}
+                      {info?.user.following.totalCount} following
+                    </div>
+                    <div>{info?.user.company}</div>
+                    <div>{info?.user.location}</div>
+                  </>
+                ) : (
+                  <div
+                    className={`${
+                      isStatusOpen && "opacity-50 pointer-events-none"
+                    }`}
+                  >
+                    <FormModal data={data} onClose={closePersonalModal} />
                   </div>
-                  <div>{info?.user.company}</div>
-                  <div>{info?.user.location}</div>
-                </>
-              ) : (
-                <FormModal data={data} onClose={closePersonalModal} />
-              )}
+                )}
+              </div>
+              <div className="w-9/12 ml-10">{<GraphProfile />}</div>
             </div>
-            <div className="w-9/12 ml-10">{<GraphProfile />}</div>
           </div>
         }
       />
