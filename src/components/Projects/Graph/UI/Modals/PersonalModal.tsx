@@ -1,15 +1,18 @@
-import { useEffect, useRef, useState } from "react";
 import {
-  GRAPH_BUTTON,
-  PersonalModalProp,
-  UserObjectProp,
-} from "../../../../../types";
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { GRAPH_BUTTON, PersonalModalProp } from "../../../../../types";
 import GraphButton from "../Button/GraphButton";
 import GraphInput from "../Input/GraphInput";
+import { User } from "../../../../../graphQL/query";
 
 const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
   const firstInputRef = useRef<HTMLInputElement>(null);
-  const [info, setInfo] = useState<UserObjectProp>(data);
+  const [info, setInfo] = useState<User>(data);
 
   useEffect(() => {
     if (data) {
@@ -20,8 +23,14 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
     }
   }, [data]);
 
+  const handleChangeInfo = useCallback(
+    (input: SetStateAction<User>) => setInfo(input),
+    []
+  );
+
   const onSubmit = async () => {
     try {
+      //Graphql does not have mutation for user personal
     } catch (error) {
       console.error(error);
     }
@@ -31,35 +40,60 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
     <div className="p-4 shadow-2xl rounded-xl bg-slate-700 outline-none w-auto mt-5">
       <div className="flex-col">
         <GraphInput
-          defaultValue={info?.user.name}
+          defaultValue={info?.name}
           placeholder="Name"
-          onChange={() => console.log()}
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              name: key.target.value,
+            })
+          }
           firstInputRef={firstInputRef}
           label="Name"
         />
 
         <GraphInput
-          defaultValue={info?.user.bio}
+          defaultValue={info?.bio}
           placeholder="Bio"
-          onChange={() => console.log()}
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              bio: key.target.value,
+            })
+          }
           label="Bio"
         />
         <GraphInput
-          defaultValue={info?.user.pronouns}
+          defaultValue={info?.pronouns}
           placeholder="Custom pronouns"
-          onChange={() => console.log()}
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              pronouns: key.target.value,
+            })
+          }
           label="Custom pronouns"
         />
         <GraphInput
-          defaultValue={info?.user.company}
+          defaultValue={info?.company}
           placeholder="Company"
-          onChange={() => console.log()}
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              company: key.target.value,
+            })
+          }
           label="Company"
         />
         <GraphInput
-          defaultValue={data?.user.location}
+          defaultValue={data?.location}
           placeholder="Location"
-          onChange={() => console.log()}
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              location: key.target.value,
+            })
+          }
           label="Location"
         />
       </div>

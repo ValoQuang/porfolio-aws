@@ -20,7 +20,7 @@ export interface StatusModalProp {
 }
 
 export interface PersonalModalProp {
-  data: UserObjectProp;
+  data: User;
   onClose: () => void;
 };
 

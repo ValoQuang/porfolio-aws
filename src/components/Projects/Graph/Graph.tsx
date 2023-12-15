@@ -123,7 +123,7 @@ const Graph = () => {
                   </div>
                 ) : (
                   <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <PersonalModal data={info!} onClose={closePersonalModal} />
+                    <PersonalModal data={info?.user!} onClose={closePersonalModal} />
                   </div>
                 )}
               </div>
