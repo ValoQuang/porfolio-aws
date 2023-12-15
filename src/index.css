@@ -10,6 +10,10 @@
   @apply hidden xl:block overflow-hidden;
 }
 
+.lofi-video {
+  @apply rounded-3xl h-[620px] w-auto;
+}
+
 @keyframes grow {
   0% {
     max-height: var(--lineHeight);
