@@ -82,7 +82,7 @@ const Graph = () => {
               </div>
               <div>{info?.user.name}</div>
               <div className="text-sm w-full">{info?.user.bio}</div>
-              <div className="flex justify-start gap-5">
+              <div className="text-sm flex justify-start gap-5 leading-10">
                 <div>{info?.user.login}</div>
                 <div className="text-slate-400">{info?.user.pronouns}</div>
               </div>{" "}

@@ -6,7 +6,7 @@ const GraphInput = ({
   onChange,
 }: GraphInputProp) => {
   return (
-    <div>
+    <div className="w-full">
       <input
         placeholder={placeholder}
         defaultValue={defaultValue}

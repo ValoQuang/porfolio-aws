@@ -10,7 +10,6 @@ import { SubmitProp, StatusModal, GRAPH_BUTTON } from "../../../../../types";
 import Emoji from "react-emoji-render";
 import GraphInput from "../Input/GraphInput";
 import GraphButton from "../Button/GraphButton";
-import { Client } from "../../../../../graphQL/Client";
 
 const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
   const [emojiModal, setEmojiModal] = useState(false);
@@ -56,7 +55,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
 
   const onSubmit = async () => {
     try {
-      const { data: updatedData } = await updateUserStatus({
+      await updateUserStatus({
         variables: {
           input: {
             message: status.message,
@@ -66,17 +65,6 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           },
         },
       });
-      if (updatedData?.status) {
-        Client.cache.modify({
-          id: Client.cache.identify({
-            __typename: "User",
-            login: `${process.env.REACT_APP_GITHUB_USER}`,
-          }),
-          fields: {
-            status: () => updatedData?.status,
-          },
-        });
-      }
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +72,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
 
   const onClear = async () => {
     try {
-      const { data: updatedData } = await updateUserStatus({
+      await updateUserStatus({
         variables: {
           input: {
             message: initialState.message,
@@ -94,17 +82,7 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
           },
         },
       });
-      if (updatedData?.status) {
-        Client.cache.modify({
-          id: Client.cache.identify({
-            __typename: "User",
-            login: `${process.env.REACT_APP_GITHUB_USER}`,
-          }),
-          fields: {
-            status: () => updatedData?.status,
-          },
-        });
-      }
+      setStatus(initialState);
     } catch (error) {
       console.log(error);
     }
@@ -135,11 +113,11 @@ const EditModal = ({ isOpen, onClose, fetchedStatus }: StatusModal) => {
       <div className="flex mt-5">
         <span
           onClick={onOpenPicker}
-          className="hover:bg-slate-100 focus:ring-zinc-600 border-zinc-400 inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+          className="hover:bg-zinc-600 focus:bg-zinc-600 border-zinc-400 inline-flex items-center px-3 text-sm text-gray-900 border rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
         >
           <Emoji text={status.emoji || "-"} />
         </span>
-        <div className="translate-y-12 fixed">
+        <div className="translate-y-12 fixed ">
           {emojiModal && (
             <Picker
               perLine={12}
