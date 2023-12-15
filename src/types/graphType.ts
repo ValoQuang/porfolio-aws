@@ -1,3 +1,4 @@
+import { LegacyRef } from "react";
 import { User } from "../graphQL/query";
 
 export interface SubmitProp {
@@ -25,6 +26,7 @@ export interface GraphButtonProp {
 }
 
 export interface GraphInputProp {
+  firstInputRef?: LegacyRef<HTMLInputElement> | undefined
   defaultValue: string;
   placeholder: string;
   onChange: (e: any) => void;

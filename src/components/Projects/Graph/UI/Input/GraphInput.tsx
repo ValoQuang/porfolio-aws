@@ -4,10 +4,14 @@ const GraphInput = ({
   defaultValue,
   placeholder,
   onChange,
+  firstInputRef,
 }: GraphInputProp) => {
   return (
     <div className="w-full">
       <input
+        ref={firstInputRef}
+        autoFocus
+        type="text"
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={onChange}

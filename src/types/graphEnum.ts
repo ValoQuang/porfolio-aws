@@ -10,4 +10,10 @@ export enum GRAPH_BUTTON {
     SAVE = "save",
     EDIT_PROFILE = "edit profile",
     CLEAR_STATUS = "clear status",
+    CLOSE = "close"
+}
+
+export enum GRAPH_MODALS {
+    PERSONAL = "PERSONAL",
+    STATUS = "STATUS",
 }
