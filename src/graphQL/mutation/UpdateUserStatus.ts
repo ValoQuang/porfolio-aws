@@ -7,21 +7,19 @@ export const UPDATE_USER_STATUS = gql`
       status {
         message
         emoji
-        updatedAt
+        indicatesLimitedAvailability
         expiresAt
-        ...user
       }
     }
   }
 `;
 
 export interface UpdateUserStatus {
-  clientMutationId: string,
+  clientMutationId: string;
   status: {
-    message: string,
-    emoji: string,
-    updatedAt: string,
-    expiresAt: string,
-  }
+    message: string;
+    emoji: string;
+    indicatesLimitedAvailability: boolean;
+    expiresAt: string;
+  };
 }
-

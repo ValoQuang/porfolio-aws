@@ -1,6 +1,6 @@
-import ContributionCalendar from "./UI/ContributionCalendarModal";
+import ContributionCalendar from "./UI/ContributionCalendar/GraphContributionCalendar";
 
-const Profile = () => {
+const GraphProfile = () => {
   return (
     <div>
       <h1 className="center">Hi 👋, I'm Quang</h1>
@@ -52,11 +52,11 @@ const Profile = () => {
         />
       </p>
       <br />
-      <div className="responsive">
+      <div className="hidden xl:block overflow-hidden">
         <ContributionCalendar />
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default GraphProfile;

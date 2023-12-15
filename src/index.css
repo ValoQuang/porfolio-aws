@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .solid-button {
-  @apply rounded-md border-2 border-solid border-gray-800 hover:text-black;
+  @apply hover:bg-slate-100 border-zinc-400 border rounded-md p-2 border-solid  hover:text-black text-white;
 }
 
 .responsive {
-  @apply hidden lg:block overflow-hidden;
+  @apply hidden xl:block overflow-hidden;
 }
 
 @keyframes grow {

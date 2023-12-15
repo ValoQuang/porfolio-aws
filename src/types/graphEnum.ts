@@ -5,3 +5,9 @@ export enum CONTRIBUTION_LEVEL {
     THIRD_QUARTILE = 3,
     FOURTH_QUARTILE = 4,
 }
+
+export enum GRAPH_BUTTON {
+    SAVE = "save",
+    EDIT_PROFILE = "edit profile",
+    CLEAR_STATUS = "clear status",
+}

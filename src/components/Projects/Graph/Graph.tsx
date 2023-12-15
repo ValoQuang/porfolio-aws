@@ -1,14 +1,11 @@
-import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import Emoji from "react-emoji-render";
-import { GET_USER_INFO, User } from "../../../graphQL/query";
+import { useQuery } from "@apollo/client";
+import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
-import Profile from "./Profile";
-import StatusModal from "./UI/StatusModal";
-
-interface UserObjectProp {
-  user: User;
-}
+import GraphProfile from "./GraphProfile";
+import EditModal from "./UI/Modals/EditModal";
+import { UserObjectProp, GRAPH_BUTTON } from "../../../types";
+import GraphButton from "./UI/Button/GraphButton";
 
 const Graph = () => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -24,7 +21,7 @@ const Graph = () => {
     fetchPolicy: "cache-first",
   });
 
-  const handleEdit = () => {
+  const handleEditProfile = () => {
     setForm(!form);
   };
 
@@ -33,7 +30,7 @@ const Graph = () => {
       setIsDataLoaded(true);
       setInfo(data);
     }
-  }, [data, error, info?.user, loading]);
+  }, [isDataLoaded, data, error, info, loading]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -43,6 +40,7 @@ const Graph = () => {
   };
   const closeModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflowY = "auto";
   };
 
   if (loading) {
@@ -51,7 +49,12 @@ const Graph = () => {
 
   return (
     <>
-      {isModalOpen && <StatusModal isOpen={isModalOpen} onClose={closeModal} />}
+      <EditModal
+        isOpen={isModalOpen}
+        fetchedStatus={data?.user?.status}
+        onClose={closeModal}
+      />
+
       <Body
         children={
           <div className="rounded-3xl flex leading-10 bg-graph p-5 text-white">
@@ -62,45 +65,41 @@ const Graph = () => {
                   src={info?.user.avatarUrl}
                   alt="alt me"
                 />
-
-                {info?.user?.status && (
-                  <button
-                    onClick={openModal}
-                    className="bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center"
-                  >
+                <button
+                  onClick={openModal}
+                  className="bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center"
+                >
+                  {info?.user?.status ? (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: info.user.status.emojiHTML,
+                        __html: info?.user.status.emojiHTML,
                       }}
                     />
-                  </button>
-                )}
+                  ) : (
+                    "-"
+                  )}
+                </button>
               </div>
               <div>{info?.user.name}</div>
               <div className="text-sm w-full">{info?.user.bio}</div>
-
-              <div className="flex justify-start gap-5">
+              <div className="text-sm flex justify-start gap-5 leading-10">
                 <div>{info?.user.login}</div>
                 <div className="text-slate-400">{info?.user.pronouns}</div>
-              </div>
-
-              <button
-                className=" text-sm solid-button w-full hover:bg-slate-100"
-                onClick={handleEdit}
-              >
-                Edit profile
-              </button>
+              </div>{" "}
+              <GraphButton
+                title={GRAPH_BUTTON.EDIT_PROFILE}
+                onClick={handleEditProfile}
+              />
               {form && <div>FORM</div>}
               <p>{info?.user.email}</p>
               <div>
                 {info?.user.followers.totalCount} follower{" "}
                 {info?.user.following.totalCount} following
               </div>
-
               <div>{info?.user.company}</div>
               <div>{info?.user.location}</div>
             </div>
-            <div className="w-9/12 ml-10">{<Profile />}</div>
+            <div className="w-9/12 ml-10">{<GraphProfile />}</div>
           </div>
         }
       />

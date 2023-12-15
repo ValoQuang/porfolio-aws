@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import ActivityCalendar from "react-activity-calendar";
-import { GET_CONTRIBUTION_COLLECTION } from "../../../../graphQL/query";
-import { transformData } from "../../../../utils/transformData";
+import { GET_CONTRIBUTION_COLLECTION } from "../../../../../graphQL/query";
+import { transformData } from "../../../../../utils/transformData";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import React from "react";
 
@@ -18,6 +18,7 @@ const ContributionCalendar = () => {
     variables: {
       username: `${process.env.REACT_APP_GITHUB_USER}`,
       fetchPolicy: "cache-first",
+      nextFetchPolicy: 'cache-first'
     },
   });
 
@@ -29,7 +30,7 @@ const ContributionCalendar = () => {
         )
       );
     }
-  }, [data]);
+  }, [data, error, loading]);
 
   return (
     <div>
@@ -38,11 +39,11 @@ const ContributionCalendar = () => {
         <p>Loading data...</p>
       ) : (
         <ActivityCalendar
-          blockSize={11}
+          blockSize={10}
           data={contributes}
           theme={{
-            light: ["#f0f0f0", "#c4edde", "#7ac7c4", "#f73859", "#384259"],
-            dark: ["#383838", "#4D455D", "#7DB9B6", "#F5E9CF", "#E96479"],
+            light: ["#f0f0f0", "#c4edde", "#7ac7c4", "#f73859", "#232938"],
+            dark: ["#e46e13", "#30293e", "#7DB9B6", "#F5E9CF", "#E96479"],
           }}
           renderBlock={(block, activity) =>
             React.cloneElement(block, {

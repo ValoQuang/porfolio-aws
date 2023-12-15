@@ -1,4 +1,4 @@
 export enum LOCAL_STORAGE {
-    USER = "user",
-    PAGE = "page",
+  USER = "user",
+  PAGE = "page",
 }

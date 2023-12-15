@@ -21,6 +21,10 @@ export const GET_USER_INFO = gql`
       status {
         emoji
         emojiHTML
+        message
+        emoji
+        indicatesLimitedAvailability
+        expiresAt
       }
     }
   }
@@ -38,12 +42,15 @@ export interface User {
   name: string;
   followers: {
     totalCount: number;
-  }
+  };
   following: {
     totalCount: number;
-  }
+  };
   status: {
     emoji: string;
     emojiHTML: string;
-  }
+    message: string;
+    indicatesLimitedAvailability: boolean;
+    expiresAt: string;
+  };
 }
