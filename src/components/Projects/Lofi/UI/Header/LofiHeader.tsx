@@ -6,8 +6,19 @@ const LofiHeader = () => {
   const githubIconPath = "/assets/icons/github.svg";
   const expandIconPath = "/assets/icons/expand.svg";
 
+  const fullScreenButtonHandler = () => {
+    const element = document.getElementById("lofi-video");
+    if (element) {
+      if (element?.requestFullscreen) {
+        element.requestFullscreen();
+      } else {
+        console.error("Element with id 'full-screen' not found");
+      }
+    }
+  };
+
   return (
-    <div className="absolute z-[1] flex items-center text-sm gap-24 text-white justify-around">
+    <div className="absolute w-full z-[1] flex text-sm text-white justify-start overflow-hidden">
       <div>
         <img
           className="h-20 w-48 hover:cursor-pointer"
@@ -16,7 +27,7 @@ const LofiHeader = () => {
         />
       </div>
 
-      <div className="flex justify-between w-[500px]">
+      <div className="flex place-content-evenly w-[350px]">
         <div className="flex items-center gap-8">
           <LinkWithIcon
             icon={infoIconPath}
@@ -29,11 +40,15 @@ const LofiHeader = () => {
             url="https://github.com/ValoQuang"
           />
         </div>
-
-        <div className="flex items-center w-12 gap-6 hover:cursor-pointer">
-          <DarkLightSwitch />
-          <img className="h-4 w-4" src={expandIconPath} alt="Expand Icon" />
-        </div>
+      </div>
+      <div className=" flex justify-end gap-3 items-center w-64 hover:cursor-pointer">
+        <DarkLightSwitch />
+        <img
+          onClick={fullScreenButtonHandler}
+          className="h-4 w-4"
+          src={expandIconPath}
+          alt="Expand Icon"
+        />
       </div>
     </div>
   );

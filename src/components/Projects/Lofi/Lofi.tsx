@@ -1,5 +1,6 @@
 import { Body } from "../../Skeleton";
 import LofiButton from "./UI/Button/LofiRainButton";
+import LofiSettingButton from "./UI/Button/LofiSettingButton";
 import LofiHeader from "./UI/Header/LofiHeader";
 import LofiHome from "./UI/Home/LofiHome";
 
@@ -9,11 +10,12 @@ const Lofi = () => {
       <div>
         <Body
           children={
-            <>
+            <div className="relative" id="lofi-video">
               <LofiHeader />
               <LofiHome />
+              <LofiSettingButton />
               <LofiButton />
-            </>
+            </div>
           }
         />
       </div>

@@ -23,6 +23,7 @@
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-activity-calendar": "^2.2.0",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
     "react-emoji-render": "^2.0.1",
     "react-router-dom": "^6.18.0",
@@ -59,8 +60,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "css-loader": "^6.8.1",
     "dotenv-webpack": "^8.0.1",
     "postcss": "^8.4.31",
+    "postcss-loader": "^7.3.3",
+    "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.5"
   }
 }

@@ -1,4 +1,5 @@
 import { useLofiStore } from "../../../../../store/lofiStore";
+import ReactAudioPlayer from "react-audio-player";
 
 const LofiRainButton = () => {
   const [setWeather, setInitialLoad, isRainMode] = useLofiStore((state) => [
@@ -19,12 +20,14 @@ const LofiRainButton = () => {
     >
       {isRainMode && (
         <div>
-          <video className="absolute" autoPlay loop>
-            <source src="/assets/musics/rain_city.mp3" type="video/mp3" />
-          </video>
+          <ReactAudioPlayer
+            src="/assets/musics/rain_city.mp3"
+            autoPlay
+            volume={0.3}
+            loop
+          />
         </div>
       )}
-
       <div className="flex items-center justify-center w-14 h-10 rounded-full border-solid border-2 border-white hover:bg-slate-400 transition-all">
         <svg fill="currentColor" viewBox="0 0 16 16" height="28px" width="28px">
           <path

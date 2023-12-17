@@ -11,15 +11,15 @@
 }
 
 .lofi-video {
-  @apply absolute -top-[4px];
+  @apply -top-[4px];
 }
 
 .videoOut {
-  @apply opacity-0 transition-opacity ease-in-out duration-[2000ms] hidden;
+  @apply opacity-30 transition-opacity duration-1000 hidden rounded-3xl w-full;
 }
 
 .videoIn {
-  @apply opacity-100 transition-opacity ease-in-out duration-[2000ms] rounded-3xl w-full;
+  @apply opacity-100 transition-opacity duration-1000 rounded-3xl w-full;
 }
 
 @keyframes grow {
