@@ -10,6 +10,18 @@
   @apply hidden xl:block overflow-hidden;
 }
 
+.lofi-video {
+  @apply absolute -top-[4px];
+}
+
+.videoOut {
+  @apply opacity-0 transition-opacity ease-in-out duration-[2000ms] hidden;
+}
+
+.videoIn {
+  @apply opacity-100 transition-opacity ease-in-out duration-[2000ms] rounded-3xl w-full;
+}
+
 @keyframes grow {
   0% {
     max-height: var(--lineHeight);
@@ -18,4 +30,3 @@
     max-height: calc(var(--lineHeight) * var(--lines));
   }
 }
-
