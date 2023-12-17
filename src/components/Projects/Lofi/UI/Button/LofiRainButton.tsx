@@ -1,13 +1,15 @@
-import { useState } from "react";
 import { useLofiStore } from "../../../../../store/lofiStore";
 
 const LofiRainButton = () => {
-  const [setWeather] = useLofiStore((state) => [state.setWeather]);
+  const [setWeather, setInitialLoad, isRainMode] = useLofiStore((state) => [
+    state.setWeather,
+    state.setInitialLoad,
+    state.isRainMode,
+  ]);
 
-  const [buttonClick, setButtonClick] = useState(false);
   const rainButtonHandler = () => {
-    setButtonClick(!buttonClick);
-    setWeather(!buttonClick);
+    setInitialLoad({ isRainMode: !isRainMode });
+    setWeather(!isRainMode);
   };
 
   return (
@@ -15,7 +17,7 @@ const LofiRainButton = () => {
       onClick={rainButtonHandler}
       className="absolute hover:cursor-pointer right-1/4 top-1/4"
     >
-      {buttonClick && (
+      {isRainMode && (
         <div>
           <video className="absolute" autoPlay loop>
             <source src="/assets/musics/rain_city.mp3" type="video/mp3" />

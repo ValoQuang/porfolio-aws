@@ -1,13 +1,17 @@
 import { useLofiStore } from "../../../../../store/lofiStore";
-import { useState } from "react";
 import { ToggleDarkMode } from "../../../../Skeleton";
 
 const LofiDayButton = () => {
-  const [buttonClick, setButtonClick] = useState(false);
-  const [setBackground] = useLofiStore((state) => [state.setBackground]);
+  const [currentDayMode, isDayMode, setInitialLoad, setBackground] =
+    useLofiStore((state) => [
+      state.currentDayMode,
+      state.isDayMode,
+      state.setInitialLoad,
+      state.setBackground,
+    ]);
   const backgroundButtonHandler = () => {
-    setButtonClick(!buttonClick);
-    setBackground(!buttonClick);
+    setInitialLoad({ isDayMode: !isDayMode });
+    setBackground(!isDayMode);
   };
 
   return (
@@ -15,7 +19,7 @@ const LofiDayButton = () => {
       onClick={backgroundButtonHandler}
       className="relative inline-flex items-center cursor-pointer transition"
     >
-      <ToggleDarkMode isDarkMode={!buttonClick} />
+      <ToggleDarkMode currentMode={currentDayMode} isDarkMode={!isDayMode} />
     </div>
   );
 };

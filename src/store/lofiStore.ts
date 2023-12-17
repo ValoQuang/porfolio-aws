@@ -2,23 +2,40 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { LOFI_BACKGROUND, LOFI_WEATHER } from "../types/";
 
+type initialLoad = {
+  isDayMode: boolean;
+} | {
+  isRainMode: boolean;
+};
+
 interface lofiStore {
   setBackground: (state: boolean) => void;
   setWeather: (state: boolean) => void;
+  setInitialLoad: (state: initialLoad) => void;
   currentDayMode: string;
   currentWeatherMode: string;
+  isDayMode: boolean;
+  isRainMode: boolean;
 }
 
 export const initialLofiState = {
   currentDayMode: LOFI_BACKGROUND.DAY,
+  isDayMode: false,
+  isRainMode: false,
   currentWeatherMode: LOFI_WEATHER.SUNNY,
   setBackground: () => {},
   setWeather: () => {},
+  setInitialLoad: () => {},
 };
 
 const store = persist<lofiStore>(
   (set, _) => ({
     ...initialLofiState,
+    setInitialLoad: (input) => {
+      set({
+        ...input,
+      });
+    },
     setBackground: (name) => {
       set((state) => {
         if (name) {
@@ -40,7 +57,7 @@ const store = persist<lofiStore>(
   }),
   {
     storage: createJSONStorage(() => sessionStorage),
-    name: "modal",
+    name: "background",
   }
 );
 

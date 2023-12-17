@@ -1,8 +1,11 @@
+import { LOFI_BACKGROUND } from "../../types";
+
 interface ToggleDarkModeProp {
   isDarkMode: boolean;
+  currentMode?: string;
 }
 
-const ToggleDarkMode = ({ isDarkMode }: ToggleDarkModeProp) => {
+const ToggleDarkMode = ({ currentMode, isDarkMode }: ToggleDarkModeProp) => {
   const commonAttributes = {
     className: "w-8 h-8 md:w-10 md:h-10",
     xmlns: "http://www.w3.org/2000/svg",
@@ -12,7 +15,7 @@ const ToggleDarkMode = ({ isDarkMode }: ToggleDarkModeProp) => {
 
   return (
     <svg {...commonAttributes}>
-      {!isDarkMode ? (
+      {!isDarkMode && currentMode !== LOFI_BACKGROUND.DAY ? (
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
