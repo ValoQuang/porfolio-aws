@@ -15,11 +15,11 @@
 }
 
 .videoOut {
-  @apply opacity-0 hidden;
+  @apply opacity-0 transition-opacity ease-in-out duration-[2000ms] hidden;
 }
 
 .videoIn {
-  @apply opacity-100 rounded-3xl w-full;
+  @apply opacity-100 transition-opacity ease-in-out duration-[2000ms] rounded-3xl w-full;
 }
 
 @keyframes grow {
