@@ -10,16 +10,16 @@
   @apply hidden xl:block overflow-hidden;
 }
 
-.lofi-video {
-  @apply -top-[4px];
+.lofi-button {
+  @apply flex items-center justify-center rounded-2xl border-solid border-2 border-white hover:border-orange-400 duration-500;
 }
 
 .videoOut {
-  @apply opacity-30 transition-opacity duration-1000 hidden rounded-3xl w-full;
+  @apply absolute opacity-0 transition-opacity duration-[900ms] rounded-3xl w-[1280px];
 }
 
 .videoIn {
-  @apply opacity-100 transition-opacity duration-1000 rounded-3xl w-full;
+  @apply absolute opacity-100 transition-opacity duration-[900ms] rounded-3xl w-[1280px];
 }
 
 @keyframes grow {

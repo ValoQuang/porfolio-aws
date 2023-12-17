@@ -16,7 +16,7 @@ const LofiRainButton = () => {
   return (
     <div
       onClick={rainButtonHandler}
-      className="absolute hover:cursor-pointer right-1/4 top-1/4"
+      className="absolute hover:cursor-pointer right-[240px] top-[180px] z-[2]"
     >
       {isRainMode && (
         <div>
@@ -28,7 +28,7 @@ const LofiRainButton = () => {
           />
         </div>
       )}
-      <div className="flex items-center justify-center w-14 h-10 rounded-full border-solid border-2 border-white hover:bg-slate-400 transition-all">
+      <div className="w-14 h-10 rounded-full lofi-button">
         <svg fill="currentColor" viewBox="0 0 16 16" height="28px" width="28px">
           <path
             fill="#ffffff"
