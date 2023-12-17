@@ -1,28 +1,39 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { GRAPH_MODALS } from "../types";
+import { LOFI_BACKGROUND, LOFI_WEATHER } from "../types/";
 
-interface modalStore {
-  setModalState: (modalName: string) => void;
-  isStatusOpen: boolean;
-  isPersonalOpen: boolean;
+interface lofiStore {
+  setBackground: (state: boolean) => void;
+  setWeather: (state: boolean) => void;
+  currentDayMode: string;
+  currentWeatherMode: string;
 }
 
-export const initialState = {
-  setModalState: () => {},
-  isStatusOpen: false,
-  isPersonalOpen: false,
+export const initialLofiState = {
+  currentDayMode: LOFI_BACKGROUND.DAY,
+  currentWeatherMode: LOFI_WEATHER.SUNNY,
+  setBackground: () => {},
+  setWeather: () => {},
 };
 
-const store = persist<modalStore>(
+const store = persist<lofiStore>(
   (set, _) => ({
-    ...initialState,
-    setModalState: (name) => {
+    ...initialLofiState,
+    setBackground: (name) => {
       set((state) => {
-        if (name === GRAPH_MODALS.STATUS) {
-          return { ...state, isStatusOpen: !state.isStatusOpen };
+        if (name) {
+          return { ...state, currentDayMode: LOFI_BACKGROUND.NIGHT };
         } else {
-          return { ...state, isPersonalOpen: !state.isPersonalOpen };
+          return { ...state, currentDayMode: LOFI_BACKGROUND.DAY };
+        }
+      });
+    },
+    setWeather: (name) => {
+      set((state) => {
+        if (name) {
+          return { ...state, currentWeatherMode: LOFI_WEATHER.RAIN };
+        } else {
+          return { ...state, currentWeatherMode: LOFI_WEATHER.SUNNY };
         }
       });
     },
@@ -33,4 +44,4 @@ const store = persist<modalStore>(
   }
 );
 
-export const useModalStore = create(store);
+export const useLofiStore = create(store);
