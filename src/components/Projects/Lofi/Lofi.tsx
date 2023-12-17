@@ -8,7 +8,7 @@ const Lofi = () => {
       <div>
         <Body
           children={
-            <div className="">
+            <div>
               <LofiHome />
               <LofiButton />
             </div>
