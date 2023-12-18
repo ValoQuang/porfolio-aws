@@ -28,7 +28,20 @@ module.exports = {
       },
       height: {
         status: "329px",
-      }
+      },
+      animation: {
+        "text-slide": "text-slide 6.5s linear infinite",
+      },
+      keyframes: {
+        "text-slide": {
+          "0%": {
+            transform: "translateX(-20%)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+      },
     },
   },
   plugins: [],

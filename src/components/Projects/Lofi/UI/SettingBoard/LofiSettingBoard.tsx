@@ -81,7 +81,7 @@ const LofiSettingBoard = () => {
   };
 
   return (
-    <div className="z-10 absolute text-white left-[175px] flex flex-col justify-between p-2 top-[190px] border-1 border-[#24242f] w-80 h-2/3 overflow-y-scroll bg-[#14141d] bg-opacity-90 rounded-xl">
+    <div className="z-10 absolute left-[175px] lofi-container flex flex-col justify-between p-2 top-[190px] w-80 h-2/3 overflow-y-scroll lofi-container">
       <div>
         <div className="flex justify-between">
           <p>Mixer board</p>
