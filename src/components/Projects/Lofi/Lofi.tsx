@@ -10,14 +10,14 @@ const Lofi = () => {
       <div>
         <Body
           children={
-            <div>
-              <LofiHome />
-              <div className="relative" id="lofi-video">
+            <>
+              <div id="lofi-video">
                 <LofiHeader />
+                <LofiHome />
                 <LofiSettingButton />
                 <LofiButton />
               </div>
-            </div>
+            </>
           }
         />
       </div>

@@ -7,31 +7,32 @@ const LofiHome = () => {
     state.currentWeatherMode,
   ]);
   const combineMode = `${currentDayMode}-${currentWeatherMode}`;
+  const backgroundArray = [
+    {
+      bg: LOFI_BACKGROUND.DAY,
+      weather: LOFI_WEATHER.SUNNY,
+      videoSrc: "/assets/background/Day-sunny.mp4",
+    },
+    {
+      bg: LOFI_BACKGROUND.DAY,
+      weather: LOFI_WEATHER.RAIN,
+      videoSrc: "/assets/background/Day-rainny.mp4",
+    },
+    {
+      bg: LOFI_BACKGROUND.NIGHT,
+      weather: LOFI_WEATHER.SUNNY,
+      videoSrc: "/assets/background/Night-clear.mp4",
+    },
+    {
+      bg: LOFI_BACKGROUND.NIGHT,
+      weather: LOFI_WEATHER.RAIN,
+      videoSrc: "/assets/background/Night-rainny.mp4",
+    },
+  ];
 
   return (
     <div className="align-middle items-center justify-between">
-      {[
-        {
-          bg: LOFI_BACKGROUND.DAY,
-          weather: LOFI_WEATHER.SUNNY,
-          videoSrc: "/assets/background/Day-sunny.mp4",
-        },
-        {
-          bg: LOFI_BACKGROUND.DAY,
-          weather: LOFI_WEATHER.RAIN,
-          videoSrc: "/assets/background/Day-rainny.mp4",
-        },
-        {
-          bg: LOFI_BACKGROUND.NIGHT,
-          weather: LOFI_WEATHER.SUNNY,
-          videoSrc: "/assets/background/Night-clear.mp4",
-        },
-        {
-          bg: LOFI_BACKGROUND.NIGHT,
-          weather: LOFI_WEATHER.RAIN,
-          videoSrc: "/assets/background/Night-rainny.mp4",
-        },
-      ].map((config, index) => (
+      {backgroundArray.map((config, index) => (
         <video
           key={index}
           className={`${

@@ -11,7 +11,7 @@
 }
 
 .lofi-button {
-  @apply flex items-center justify-center rounded-2xl border-solid border-2 border-white hover:border-orange-400 duration-500;
+  @apply flex items-center justify-center rounded-2xl border-solid border-2 border-white hover:border-orange-400 duration-100;
 }
 
 .videoOut {
