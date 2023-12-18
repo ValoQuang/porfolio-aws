@@ -18,11 +18,12 @@ export enum LOFI_AMBIENT {
   SNOW = "snow",
   SUMMER_STORM = "summer storm",
   WAVE = "wave",
-  RAIN = "rain"
+  RAIN = "rain",
+  RAIN_FOREST = "rain forest"
 }
 
 export enum LOFI_MOOD {
   CHILL = "chill",
   FOCUS = "focus",
-  SLEEPY = "sleepy"
+  ROCK = "rock"
 }
