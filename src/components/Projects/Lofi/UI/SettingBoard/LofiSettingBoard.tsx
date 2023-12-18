@@ -1,7 +1,7 @@
 import { LOFI_AMBIENT, LOFI_MOOD } from "../../../../../types";
-import ReactAudioPlayer from "react-audio-player";
 import { useLofiStore } from "../../../../../store/lofiStore";
 import { useState } from "react";
+import LofiPlayer from "../Player/LofiPlayer";
 
 const LofiSettingBoard = () => {
   const logoImagePath = "/assets/icons/lofi-logo.gif";
@@ -15,47 +15,47 @@ const LofiSettingBoard = () => {
     {
       label: LOFI_AMBIENT.CITY_TRAFFIC,
       volume: currentAmbient[LOFI_AMBIENT.CITY_TRAFFIC],
-      src: "/assets/musics/city_traffic.mp3",
+      src: "/assets/ambient/city_traffic.mp3",
     },
     {
       label: LOFI_AMBIENT.PEOPLE,
       volume: currentAmbient[LOFI_AMBIENT.PEOPLE],
-      src: "/assets/musics/people.mp3",
+      src: "/assets/ambient/people.mp3",
     },
     {
       label: LOFI_AMBIENT.RAIN_FOREST,
       volume: currentAmbient[LOFI_AMBIENT.RAIN_FOREST],
-      src: "/assets/musics/rain_forest.mp3",
+      src: "/assets/ambient/rain_forest.mp3",
     },
     {
       label: LOFI_AMBIENT.RIVER,
       volume: currentAmbient[LOFI_AMBIENT.RIVER],
-      src: "/assets/musics/river.mp3",
+      src: "/assets/ambient/river.mp3",
     },
     {
       label: LOFI_AMBIENT.WIND,
       volume: currentAmbient[LOFI_AMBIENT.WIND],
-      src: "/assets/musics/wind.mp3",
+      src: "/assets/ambient/wind.mp3",
     },
     {
       label: LOFI_AMBIENT.FIRE_PLACE,
       volume: currentAmbient[LOFI_AMBIENT.FIRE_PLACE],
-      src: "/assets/musics/fire_place.mp3",
+      src: "/assets/ambient/fireplace.mp3",
     },
     {
       label: LOFI_AMBIENT.SUMMER_STORM,
       volume: currentAmbient[LOFI_AMBIENT.SUMMER_STORM],
-      src: "/assets/musics/summer_storm.mp3",
+      src: "/assets/ambient/summer_storm.mp3",
     },
     {
       label: LOFI_AMBIENT.WAVE,
       volume: currentAmbient[LOFI_AMBIENT.WAVE],
-      src: "/assets/musics/wave.mp3",
+      src: "/assets/ambient/wave.mp3",
     },
     {
       label: LOFI_AMBIENT.SNOW,
       volume: currentAmbient[LOFI_AMBIENT.SNOW],
-      src: "/assets/musics/snow.mp3",
+      src: "/assets/ambient/snow.mp3",
     },
   ];
 
@@ -81,7 +81,7 @@ const LofiSettingBoard = () => {
   };
 
   return (
-    <div className="absolute text-white left-[175px] flex flex-col justify-between p-2 top-[190px] border-1 border-[#24242f] w-80 h-2/3 overflow-y-scroll bg-[#14141d] bg-opacity-90 rounded-xl">
+    <div className="z-10 absolute text-white left-[175px] flex flex-col justify-between p-2 top-[190px] border-1 border-[#24242f] w-80 h-2/3 overflow-y-scroll bg-[#14141d] bg-opacity-90 rounded-xl">
       <div>
         <div className="flex justify-between">
           <p>Mixer board</p>
@@ -105,6 +105,7 @@ const LofiSettingBoard = () => {
                 alt="Lofi Logo"
               />
             </div>
+
             <div>
               <div onClick={muteVolumeHandler}>
                 {muted ? (
@@ -144,6 +145,7 @@ const LofiSettingBoard = () => {
                 )}
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -154,13 +156,12 @@ const LofiSettingBoard = () => {
               key={index}
               className="flex items-center justify-between text-xs"
             >
-              <ReactAudioPlayer
+              <LofiPlayer
                 src={config.src}
-                autoPlay
-                volume={config.volume / 100}
-                loop
-                muted={muted}
+                volume={config.volume}
+                isMuted={muted}
               />
+
               <label htmlFor={config.label}>{config.label.toUpperCase()}</label>
               <input
                 id={config.label}

@@ -1,6 +1,6 @@
 import { useLofiStore } from "../../../../../store/lofiStore";
-import ReactAudioPlayer from "react-audio-player";
 import { LOFI_AMBIENT } from "../../../../../types";
+import LofiPlayer from "../Player/LofiPlayer";
 
 const LofiRainButton = () => {
   const [setWeather, setInitialLoad, isRainMode, currentAmbient, setVolume] =
@@ -19,20 +19,16 @@ const LofiRainButton = () => {
 
   const rainVolumeHandler = (volume: string) => {
     const convertedVolume = parseFloat(volume);
-    setVolume(
-      LOFI_AMBIENT.RAIN, convertedVolume
-     );
+    setVolume(LOFI_AMBIENT.RAIN, convertedVolume);
   };
 
   return (
     <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[240px] top-[180px] w-20 gap-2">
       <div onClick={rainButtonHandler}>
         {isRainMode && (
-          <ReactAudioPlayer
-            src="/assets/musics/rain_city.mp3"
-            autoPlay
-            volume={currentAmbient[LOFI_AMBIENT.RAIN] / 100}
-            loop
+          <LofiPlayer
+            src="/assets/ambient/rain_city.mp3"
+            volume={currentAmbient[LOFI_AMBIENT.RAIN]}
           />
         )}
         <div className="w-14 h-10 rounded-full lofi-button">
