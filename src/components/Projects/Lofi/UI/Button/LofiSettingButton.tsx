@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SettingBoard from "../SettingBoard/LofiSettingBoard";
+import LofiSettingBoard from "../SettingBoard/LofiSettingBoard";
 
 const LofiSettingButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ const LofiSettingButton = () => {
       <div >
         {isOpen && (
           <>
-            <SettingBoard />
+            <LofiSettingBoard />
           </>
         )}
       </div>
