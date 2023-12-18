@@ -1,13 +1,13 @@
 import ReactAudioPlayer from "react-audio-player";
 
 interface lofiPlayerProp {
-    src: string;
-    volume: number;
-    isMuted?: boolean;
-    autoPlay?: boolean;
+  src: string;
+  volume: number;
+  isMuted?: boolean;
+  autoPlay?: boolean;
 }
 
-const LofiPlayer = ({src, volume, isMuted, autoPlay}: lofiPlayerProp) => {
+const LofiPlayer = ({ src, volume, isMuted }: lofiPlayerProp) => {
   return (
     <div>
       <ReactAudioPlayer

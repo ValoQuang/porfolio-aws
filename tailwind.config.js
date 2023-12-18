@@ -30,15 +30,15 @@ module.exports = {
         status: "329px",
       },
       animation: {
-        "text-slide": "text-slide 6.5s linear infinite",
+        "text-slide": "text-slide 10.5s linear infinite",
       },
       keyframes: {
         "text-slide": {
           "0%": {
-            transform: "translateX(-20%)",
+            transform: "translateX(-100%)",
           },
           "100%": {
-            transform: "translateX(100%)",
+            transform: "translateX(150%)",
           },
         },
       },

@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
 
 const LofiHeader = () => {
-  const navigate = useNavigate();
   const logoImagePath = "/assets/icons/lofi-logo.gif";
   const infoIconPath = "/assets/icons/info-solid.svg";
   const githubIconPath = "/assets/icons/github.svg";
@@ -21,7 +20,7 @@ const LofiHeader = () => {
   };
 
   return (
-    <div className="absolute z-[1] w-[80%] flex items-center text-sm text-white justify-around overflow-hidden">
+    <div className="absolute z-[1] w-[80%] flex items-center text-sm text-white justify-between overflow-hidden">
       <div>
         <img
           className="h-20 w-48 hover:cursor-pointer"
@@ -31,7 +30,7 @@ const LofiHeader = () => {
       </div>
 
       <div className="flex w-[230px]">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-10">
           <LinkWithIcon
             icon={infoIconPath}
             text="How it works"
@@ -54,7 +53,7 @@ const LofiHeader = () => {
         />
       </div>
 
-      <div>
+      <div className="lofi-container p-[5px] justify-center flex">
         <LinkWithIcon
           icon={loginIconPath}
           text="Login"
@@ -72,16 +71,15 @@ interface linkWithIcon {
 }
 
 const LinkWithIcon = ({ icon, text, url }: linkWithIcon) => {
-  function redirect(prop: string) {
-    window.location.replace(prop);
-  }
+  const navigate = useNavigate();
+
   return (
     <div
-      className="flex align-middle items-center gap-[3px]"
-      onClick={() => redirect(url)}
+      className="flex gap-[5px] w-32"
+      onClick={() => navigate(url)}
     >
-      <img className="h-4 w-4" src={icon} alt={`${text} Icon`} />
-      <span className="hover:cursor-pointer block after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-28 after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">
+      <img className="h-5 w-5" src={icon} alt={`${text} Icon`} />
+      <span className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-20 after:scale-x-0 after:hover:scale-x-75 after:transition after:duration-300 after:origin-left">
         {text}
       </span>
     </div>
