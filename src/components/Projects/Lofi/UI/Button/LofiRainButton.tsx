@@ -23,7 +23,7 @@ const LofiRainButton = () => {
   };
 
   return (
-    <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[240px] top-[180px] w-20 gap-2">
+    <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[150px] top-[180px] w-20 gap-2">
       <div onClick={rainButtonHandler}>
         {isRainMode && (
           <LofiPlayer
