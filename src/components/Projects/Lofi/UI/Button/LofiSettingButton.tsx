@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SettingBoard from "../SettingBoard/SettingBoard";
+import SettingBoard from "../SettingBoard/LofiSettingBoard";
 
 const LofiSettingButton = () => {
   const [isOpen, setIsOpen] = useState(false);

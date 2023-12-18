@@ -18,6 +18,7 @@ export enum LOFI_AMBIENT {
   SNOW = "snow",
   SUMMER_STORM = "summer storm",
   WAVE = "wave",
+  RAIN = "rain"
 }
 
 export enum LOFI_MOOD {
