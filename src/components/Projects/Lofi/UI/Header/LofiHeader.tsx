@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
 import { PATH_ENUM } from "../../../../../types";
 
-const ICON_PATHS = {
+export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
   info: "/assets/icons/info-solid.svg",
   github: "/assets/icons/github.svg",
