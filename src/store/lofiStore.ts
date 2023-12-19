@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { LOFI_AMBIENT, LOFI_BACKGROUND, LOFI_WEATHER, lofiStore } from "../types/";
+import { LOFI_AMBIENT, LOFI_BACKGROUND, LOFI_MOOD, LOFI_WEATHER, lofiStore } from "../types/";
 
 const initialAmbientSound = {
   [LOFI_AMBIENT.RAIN]: 50,
@@ -25,7 +25,7 @@ export const initialLofiState = {
   setInitialLoad: () => {},
   setVolume: () => {},
   currentAmbient: initialAmbientSound,
-  currentMood: "",
+  currentMood: LOFI_MOOD.MIX,
 };
 
 const store = persist<lofiStore>(

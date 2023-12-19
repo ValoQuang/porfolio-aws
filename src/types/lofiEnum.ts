@@ -23,7 +23,8 @@ export enum LOFI_AMBIENT {
 }
 
 export enum LOFI_MOOD {
+  MIX = "mix",
   CHILL = "chill",
   FOCUS = "focus",
-  ROCK = "rock"
+  JAZZ = "jazz"
 }

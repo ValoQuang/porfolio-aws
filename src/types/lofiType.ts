@@ -19,6 +19,9 @@ type initialLoad =
     }
   | {
       isRainMode: boolean;
+    }
+  | {
+      currentMood: string;
     };
 
 export interface lofiStore {
@@ -31,5 +34,5 @@ export interface lofiStore {
   isDayMode: boolean;
   isRainMode: boolean;
   currentAmbient: initialAmbient;
-  currentMood: string | LOFI_MOOD.CHILL | LOFI_MOOD.FOCUS | LOFI_MOOD.ROCK;
+  currentMood: string | LOFI_MOOD.CHILL | LOFI_MOOD.FOCUS | LOFI_MOOD.JAZZ;
 }

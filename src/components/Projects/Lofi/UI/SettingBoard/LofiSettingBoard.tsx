@@ -7,7 +7,9 @@ import LofiVolumeSlider from "../Button/LofiVolumeSlider";
 const LofiSettingBoard = () => {
   const logoImagePath = "/assets/icons/lofi-logo.gif";
   const [muted, setMuted] = useState(false);
-  const [currentAmbient] = useLofiStore((state) => [state.currentAmbient]);
+  const [currentAmbient, currentMood, setInitialLoad] = useLofiStore(
+    (state) => [state.currentAmbient, state.currentMood, state.setInitialLoad]
+  );
 
   const ambientArray = [
     {
@@ -65,7 +67,7 @@ const LofiSettingBoard = () => {
       label: LOFI_MOOD.FOCUS,
     },
     {
-      label: LOFI_MOOD.ROCK,
+      label: LOFI_MOOD.JAZZ,
     },
   ];
 
@@ -73,17 +75,32 @@ const LofiSettingBoard = () => {
     setMuted(!muted);
   };
 
+  const moodButtonHandler = (mood: LOFI_MOOD) => {
+    setInitialLoad({
+      currentMood: mood,
+    });
+  };
+
   return (
     <div className="z-10 absolute left-[175px] lofi-container flex flex-col justify-between p-2 top-[190px] w-80 h-2/3 overflow-y-scroll lofi-container">
       <div>
-        <div className="flex justify-between">
+        <div className="flex justify-between pb-2">
           <p>Mixer board</p>
+          <p onClick={() => console.log} className="w-6 h-6 lofi-button">
+            -
+          </p>
         </div>
         <div className="flex justify-between bg-[#24242f] rounded-xl h-24">
-          <div className="flex justify-around gap-[5px]">
+          <div className="flex justify-around gap-[4px]">
             {moodArray.map((config, index) => {
               return (
-                <div key={index} className="lofi-button w-[68px] h-24">
+                <div
+                  onClick={() => moodButtonHandler(config.label)}
+                  key={index}
+                  className={`${
+                    currentMood === config.label && " bg-orange-500"
+                  } lofi-button w-[70px] h-24`}
+                >
                   {config.label.toUpperCase()}
                 </div>
               );
@@ -109,7 +126,7 @@ const LofiSettingBoard = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-10 h-10 lofi-button border-none"
+                      className="w-14 h-12 lofi-button bg-orange-500 p-[5px] border-none"
                     >
                       <path
                         strokeLinecap="round"
@@ -126,7 +143,7 @@ const LofiSettingBoard = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-10 h-10 lofi-button border-none"
+                      className="w-14 h-12 lofi-button border-none"
                     >
                       <path
                         strokeLinecap="round"
@@ -141,6 +158,7 @@ const LofiSettingBoard = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col gap-3 p-2 bg-[#24242f] rounded-xl overflow-y-invisible">
         {ambientArray.map((config, index) => {
           return (
