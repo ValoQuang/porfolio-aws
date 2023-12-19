@@ -77,6 +77,9 @@ const LofiFooter = () => {
         moodToPlaylist[currentMood as keyof typeof moodToPlaylist]
       );
     }
+    if (index > moodPlayList.length - 1) {
+      setIndex(0);
+    }
 
     const audioElement = elemAudio.current as HTMLAudioElement | null;
     if (play && audioElement) {
