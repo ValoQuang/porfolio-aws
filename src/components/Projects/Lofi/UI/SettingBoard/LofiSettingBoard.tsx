@@ -2,14 +2,12 @@ import { LOFI_AMBIENT, LOFI_MOOD } from "../../../../../types";
 import { useLofiStore } from "../../../../../store/lofiStore";
 import { useState } from "react";
 import LofiPlayer from "../Player/LofiPlayer";
+import LofiVolumeSlider from "../Button/LofiVolumeSlider";
 
 const LofiSettingBoard = () => {
   const logoImagePath = "/assets/icons/lofi-logo.gif";
   const [muted, setMuted] = useState(false);
-  const [setVolume, currentAmbient] = useLofiStore((state) => [
-    state.setVolume,
-    state.currentAmbient,
-  ]);
+  const [currentAmbient] = useLofiStore((state) => [state.currentAmbient]);
 
   const ambientArray = [
     {
@@ -70,11 +68,6 @@ const LofiSettingBoard = () => {
       label: LOFI_MOOD.ROCK,
     },
   ];
-
-  const ambientVolumeHandler = (name: LOFI_AMBIENT, value: string) => {
-    const convertedVolume = parseFloat(value);
-    setVolume(name, convertedVolume);
-  };
 
   const muteVolumeHandler = () => {
     setMuted(!muted);
@@ -145,7 +138,6 @@ const LofiSettingBoard = () => {
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -161,19 +153,7 @@ const LofiSettingBoard = () => {
                 volume={config.volume}
                 isMuted={muted}
               />
-
-              <label htmlFor={config.label}>{config.label.toUpperCase()}</label>
-              <input
-                id={config.label}
-                type="range"
-                min={0}
-                max="100"
-                value={config.volume}
-                onChange={(value) =>
-                  ambientVolumeHandler(config.label, value.target.value)
-                }
-                className="accent-orange-500 w-32 appearance-none h-4 rounded-full bg-[#42424e]"
-              />
+              <LofiVolumeSlider config={config} />
             </div>
           );
         })}
