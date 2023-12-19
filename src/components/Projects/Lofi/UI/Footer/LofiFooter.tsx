@@ -13,10 +13,6 @@ const moodToPlaylist = {
   [LOFI_MOOD.FOCUS]: [...chill_list],
   [LOFI_MOOD.JAZZ]: [...jazzy_list],
 };
-const playPath = "/assets/icons/play.svg";
-const prevPath = "/assets/icons/prev.svg";
-const pausePath = "/assets/icons/pause.svg";
-const nextPath = "/assets/icons/next.svg";
 
 const ICON_PATHS = {
   play: "/assets/icons/play.svg",
@@ -136,7 +132,7 @@ const LofiFooter = () => {
         <div onClick={debounce(previousButtonHandler, 300)}>
           <img
             className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
-            src={prevPath}
+            src={ICON_PATHS.prev}
             alt="Lofi Logo"
           />
         </div>
@@ -146,7 +142,7 @@ const LofiFooter = () => {
             <>
               <img
                 className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer  border-2 hover:border-orange-400 rounded-full"
-                src={pausePath}
+                src={ICON_PATHS.pause}
                 alt="Lofi Logo"
               />
             </>
@@ -154,7 +150,7 @@ const LofiFooter = () => {
             <>
               <img
                 className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer border-2 hover:border-orange-400 rounded-full"
-                src={playPath}
+                src={ICON_PATHS.play}
                 alt="Lofi Logo"
               />
             </>
@@ -164,7 +160,7 @@ const LofiFooter = () => {
         <div onClick={debounce(nextButtonHandler, 300)}>
           <img
             className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
-            src={nextPath}
+            src={ICON_PATHS.next}
             alt="Lofi Logo"
           />
         </div>

@@ -2,12 +2,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
 import { PATH_ENUM } from "../../../../../types";
 
+const ICON_PATHS = {
+  logo: "/assets/icons/lofi-logo.gif",
+  info: "/assets/icons/info-solid.svg",
+  github: "/assets/icons/github.svg",
+  expand: "/assets/icons/expand.svg",
+  login: "/assets/icons/login.svg",
+};
+
 const LofiHeader = () => {
-  const logoImagePath = "/assets/icons/lofi-logo.gif";
-  const infoIconPath = "/assets/icons/info-solid.svg";
-  const githubIconPath = "/assets/icons/github.svg";
-  const expandIconPath = "/assets/icons/expand.svg";
-  const loginIconPath = "/assets/icons/login.svg";
   const location = useLocation();
 
   const fullScreenButtonHandler = () => {
@@ -33,7 +36,7 @@ const LofiHeader = () => {
       <div>
         <img
           className="h-20 w-48 hover:cursor-pointer"
-          src={logoImagePath}
+          src={ICON_PATHS.logo}
           alt="Lofi Logo"
         />
       </div>
@@ -41,12 +44,12 @@ const LofiHeader = () => {
       <div className="flex w-[230px]">
         <div className="flex items-center gap-10">
           <LinkWithIcon
-            icon={infoIconPath}
+            icon={ICON_PATHS.info}
             text="How it works"
             url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
           />
           <LinkWithIcon
-            icon={githubIconPath}
+            icon={ICON_PATHS.github}
             text="GitHub"
             url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
           />
@@ -57,14 +60,14 @@ const LofiHeader = () => {
         <img
           onClick={fullScreenButtonHandler}
           className="h-4 w-4"
-          src={expandIconPath}
+          src={ICON_PATHS.expand}
           alt="Expand Icon"
         />
       </div>
 
       <div className="lofi-container p-[5px] justify-center flex">
         <LinkWithIcon
-          icon={loginIconPath}
+          icon={ICON_PATHS.login}
           text="Login"
           url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
         />
