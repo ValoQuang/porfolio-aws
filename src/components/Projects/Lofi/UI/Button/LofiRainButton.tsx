@@ -23,7 +23,7 @@ const LofiRainButton = () => {
   };
 
   return (
-    <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[150px] top-[180px] w-20 gap-2">
+    <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[250px] top-[220px] w-20 gap-2">
       <div onClick={rainButtonHandler}>
         {isRainMode && (
           <LofiPlayer
@@ -54,7 +54,7 @@ const LofiRainButton = () => {
             max="100"
             value={currentAmbient[LOFI_AMBIENT.RAIN]}
             onChange={(value) => rainVolumeHandler(value.target.value)}
-            className="accent-orange-500 w-32 appearance-none h-4 rounded-full bg-[#24242f]"
+            className="accent-orange-500 w-40 appearance-none h-4 rounded-full bg-[#42424e]"
           />
         )}
       </div>

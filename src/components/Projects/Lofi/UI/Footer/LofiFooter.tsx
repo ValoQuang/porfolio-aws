@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { chill_list, jazzy_list, sleep_list } from "../../Data";
+
 type currentTrackProp = {
   name: string;
   src: string;
@@ -17,14 +18,14 @@ const LofiFooter = () => {
     src: "",
   });
   const [index, setIndex] = useState(0);
+  const [musicVolume, setMusicVolume] = useState(50);
 
   const playListLofi = [...chill_list, ...jazzy_list, ...sleep_list];
   const currentSong = playListLofi.map((song) => ({
     src: song.src,
     name: song.name,
+    id: song.mood,
   }));
-
-  useEffect(() => {}, [currentSong, currentTrack, index, playListLofi.length]);
 
   const playButtonHandler = () => {
     setPlay(!play);
@@ -56,15 +57,37 @@ const LofiFooter = () => {
     if (play && elemAudio.current !== null) {
       const audioElement = elemAudio.current as HTMLAudioElement;
       audioElement.play();
+      audioElement.volume = musicVolume / 100;
+
     } else if (!play && elemAudio.current !== null) {
       const audioElement = elemAudio.current as HTMLAudioElement;
       audioElement.pause();
     }
-  });
+  }, [musicVolume, play]);
 
   return (
     <div className="flex justify-between absolute items-center w-[58%] p-10 top-[560px]">
       <audio ref={elemAudio} src={currentTrack.src} loop></audio>
+
+      {play && (
+        <>
+          <input
+            id={currentTrack.name}
+            type="range"
+            min={0}
+            max="100"
+            value={musicVolume}
+            onChange={(event) => {
+              if (elemAudio.current && "volume" in elemAudio.current) {
+                (elemAudio.current as { volume: number }).volume = musicVolume / 100;
+              }
+              setMusicVolume(parseInt(event.target.value, 10));
+            }}
+            className="absolute accent-orange-500 w-96 left-[435px] border-none opacity-90 lofi-button bottom-[150px] appearance-none h-4 rounded-full bg-[#191927]"
+          />
+        </>
+      )}
+
       <div className="w-72 rounded-md lofi-container p-[1px] text-sm overflow-x-hidden">
         <div>{`At ${index + 1}/${playListLofi.length}`}</div>
         <div className="animate-text-slide flex items-center p-[2px] w-56 gap-[5px]">
@@ -85,6 +108,7 @@ const LofiFooter = () => {
           {currentTrack.name}
         </div>
       </div>
+
       <div className="flex gap-10 items-center">
         <div onClick={previousButtonHandler}>
           <img
