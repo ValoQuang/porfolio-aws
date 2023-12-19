@@ -58,12 +58,11 @@ const LofiFooter = () => {
       const audioElement = elemAudio.current as HTMLAudioElement;
       audioElement.play();
       audioElement.volume = musicVolume / 100;
-
     } else if (!play && elemAudio.current !== null) {
       const audioElement = elemAudio.current as HTMLAudioElement;
       audioElement.pause();
     }
-  }, [musicVolume, play]);
+  }, [musicVolume, play, index]);
 
   return (
     <div className="flex justify-between absolute items-center w-[58%] p-10 top-[560px]">
