@@ -91,7 +91,7 @@ const LofiFooter = () => {
   }, [musicVolume, index, play, currentMood, moodPlayList.length]);
 
   return (
-    <div className="flex justify-between absolute items-center w-[58%] p-10 top-[560px]">
+    <div className="flex justify-between absolute items-center w-[58%] p-10 top-[580px]">
       <audio ref={elemAudio} src={currentTrack.src} loop></audio>
 
       {play && (
@@ -132,7 +132,7 @@ const LofiFooter = () => {
       </div>
 
       <div className="flex gap-10 items-center">
-        <div onClick={debounce(previousButtonHandler, 300)}>
+        <div onClick={debounce(previousButtonHandler, 200)}>
           <img
             className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
             src={ICON_PATHS.prev}
@@ -160,7 +160,7 @@ const LofiFooter = () => {
           )}
         </div>
 
-        <div onClick={debounce(nextButtonHandler, 300)}>
+        <div onClick={debounce(nextButtonHandler, 200)}>
           <img
             className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
             src={ICON_PATHS.next}

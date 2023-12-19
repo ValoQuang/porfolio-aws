@@ -6,6 +6,7 @@ import Main from "./components/Main";
 import Lofi from "./components/Projects/Lofi/Lofi";
 import Graph from "./components/Projects/Graph/Graph";
 import { PATH_ENUM } from "./types/routeEnum";
+import LofiPortal from "./components/Projects/LofiPortal/LofiPortal";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +35,17 @@ export const router = createBrowserRouter([
           },
           {
             path: PATH_ENUM.LOFI,
-            element: <Lofi />,
+            element: <Outlet />,
+            children: [
+              {
+                path: "",
+                element: <Lofi />,
+              },
+              {
+                path: PATH_ENUM.LOFI_PORTAL,
+                element: <LofiPortal />,
+              },
+            ],
           },
           {
             path: PATH_ENUM.GRAPH,

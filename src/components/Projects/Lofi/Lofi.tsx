@@ -8,21 +8,19 @@ import LofiHome from "./UI/Home/LofiHome";
 const Lofi = () => {
   return (
     <>
-      <div>
-        <Body
-          children={
-            <>
-              <div id="lofi-video">
-                <LofiHeader />
-                <LofiHome />
-                <LofiSettingButton />
-                <LofiButton />
-                <LofiFooter />
-              </div>
-            </>
-          }
-        />
-      </div>
+      <Body
+        children={
+          <>
+            <div id="lofi-video">
+              <LofiHeader />
+              <LofiHome />
+              <LofiSettingButton />
+              <LofiButton />
+              <LofiFooter />
+            </div>
+          </>
+        }
+      />
     </>
   );
 };

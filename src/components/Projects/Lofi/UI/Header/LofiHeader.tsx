@@ -24,10 +24,7 @@ const LofiHeader = () => {
     }
   };
 
-  const redirectPath = (
-    currentUrl: PATH_ENUM,
-    nexturl: string
-  ) => {
+  const redirectPath = (currentUrl: PATH_ENUM, nexturl: string) => {
     return location.pathname.replace(currentUrl, nexturl);
   };
 
@@ -69,7 +66,7 @@ const LofiHeader = () => {
         <LinkWithIcon
           icon={ICON_PATHS.login}
           text="Login"
-          url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
+          url={PATH_ENUM.LOFI_PORTAL}
         />
       </div>
     </div>
