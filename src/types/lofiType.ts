@@ -29,6 +29,7 @@ export interface lofiStore {
   setWeather: (state: boolean) => void;
   setInitialLoad: (state: initialLoad) => void;
   setVolume: (key: string, value: number) => void;
+  reset: () => void;
   currentDayMode: string;
   currentWeatherMode: string;
   isDayMode: boolean;

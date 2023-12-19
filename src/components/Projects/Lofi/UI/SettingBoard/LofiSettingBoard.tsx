@@ -7,8 +7,14 @@ import LofiVolumeSlider from "../Button/LofiVolumeSlider";
 const LofiSettingBoard = () => {
   const logoImagePath = "/assets/icons/lofi-logo.gif";
   const [muted, setMuted] = useState(false);
-  const [currentAmbient, currentMood, setInitialLoad] = useLofiStore(
-    (state) => [state.currentAmbient, state.currentMood, state.setInitialLoad]
+  const [minimized, setMinimized] = useState(false);
+  const [currentAmbient, currentMood, setInitialLoad, reset] = useLofiStore(
+    (state) => [
+      state.currentAmbient,
+      state.currentMood,
+      state.setInitialLoad,
+      state.reset,
+    ]
   );
 
   const ambientArray = [
@@ -81,102 +87,119 @@ const LofiSettingBoard = () => {
     });
   };
 
+  const minimizeButtonHandler = () => {
+    setMinimized(!minimized);
+  };
+
+  const resetButtonHandler = () => {
+    reset();
+    window.location.reload();
+  };
+
   return (
-    <div className="z-10 absolute left-[175px] lofi-container flex flex-col justify-between p-2 top-[190px] w-80 h-2/3 overflow-y-scroll lofi-container">
-      <div>
-        <div className="flex justify-between pb-2">
-          <p>Mixer board</p>
-          <p onClick={() => console.log} className="w-6 h-6 lofi-button">
+    <>
+      <div className="z-10 absolute left-[175px] p-2 top-[190px] overflow-y-scroll lofi-container">
+        <div className="flex justify-between">
+          <p>{!minimized && "Mixer board"}</p>
+          <p onClick={minimizeButtonHandler} className="w-6 h-6 lofi-button">
             -
           </p>
         </div>
-        <div className="flex justify-between bg-[#24242f] rounded-xl h-24">
-          <div className="flex justify-around gap-[4px]">
-            {moodArray.map((config, index) => {
+        <div
+          className={`${
+            minimized
+              ? "h-[0px] w-[0px] transform scale-x-0 duration-1000 bg-opcacity-0 opacity-0"
+              : "duration-1000 transtion pt-2 opacity-100 h-[430px] w-[300px] flex flex-col justify-between"
+          }  `}
+        >
+          <div className="flex justify-between bg-[#24242f] rounded-xl h-24">
+            <div className="flex justify-around gap-[4px]">
+              {moodArray.map((config, index) => {
+                return (
+                  <div
+                    onClick={() => moodButtonHandler(config.label)}
+                    key={index}
+                    className={`${
+                      currentMood === config.label && " bg-orange-500"
+                    } lofi-button w-[70px] h-24`}
+                  >
+                    {config.label.toUpperCase()}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex flex-col justify-around items-center">
+              <div className="rounded-xl" onClick={resetButtonHandler}>
+                <img
+                  className="h-12 w-20 hover:cursor-pointer"
+                  src={logoImagePath}
+                  alt="Lofi Logo"
+                />
+              </div>
+
+              <div>
+                <div onClick={muteVolumeHandler}>
+                  {muted ? (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-14 h-12 lofi-button bg-orange-500 p-[5px] border-none"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z"
+                        />
+                      </svg>
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-14 h-12 lofi-button border-none"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+                        />
+                      </svg>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 p-2 bg-[#24242f] rounded-xl overflow-y-invisible">
+            {ambientArray.map((config, index) => {
               return (
                 <div
-                  onClick={() => moodButtonHandler(config.label)}
                   key={index}
-                  className={`${
-                    currentMood === config.label && " bg-orange-500"
-                  } lofi-button w-[70px] h-24`}
+                  className="flex items-center justify-between text-xs"
                 >
-                  {config.label.toUpperCase()}
+                  <LofiPlayer
+                    src={config.src}
+                    volume={config.volume}
+                    isMuted={muted}
+                  />
+                  <LofiVolumeSlider config={config} />
                 </div>
               );
             })}
           </div>
-
-          <div className="flex flex-col justify-around items-center">
-            <div className="rounded-xl">
-              <img
-                className="h-12 w-20 hover:cursor-pointer"
-                src={logoImagePath}
-                alt="Lofi Logo"
-              />
-            </div>
-
-            <div>
-              <div onClick={muteVolumeHandler}>
-                {muted ? (
-                  <>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-14 h-12 lofi-button bg-orange-500 p-[5px] border-none"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z"
-                      />
-                    </svg>
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-14 h-12 lofi-button border-none"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-                      />
-                    </svg>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-
-      <div className="flex flex-col gap-3 p-2 bg-[#24242f] rounded-xl overflow-y-invisible">
-        {ambientArray.map((config, index) => {
-          return (
-            <div
-              key={index}
-              className="flex items-center justify-between text-xs"
-            >
-              <LofiPlayer
-                src={config.src}
-                volume={config.volume}
-                isMuted={muted}
-              />
-              <LofiVolumeSlider config={config} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 

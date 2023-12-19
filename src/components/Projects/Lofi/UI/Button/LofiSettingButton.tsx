@@ -25,7 +25,7 @@ const LofiSettingButton = () => {
         </svg>
       </div>
 
-      <div >
+      <div className="">
         {isOpen && (
           <>
             <LofiSettingBoard />

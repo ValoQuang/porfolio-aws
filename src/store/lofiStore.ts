@@ -24,6 +24,7 @@ export const initialLofiState = {
   setWeather: () => {},
   setInitialLoad: () => {},
   setVolume: () => {},
+  reset: () => {},
   currentAmbient: initialAmbientSound,
   currentMood: LOFI_MOOD.MIX,
 };
@@ -64,6 +65,9 @@ const store = persist<lofiStore>(
         }
       });
     },
+    reset: () => {
+      set(initialLofiState);
+    }
   }),
   {
     storage: createJSONStorage(() => sessionStorage),
