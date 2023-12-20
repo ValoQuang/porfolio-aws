@@ -109,9 +109,9 @@ const LofiFooter = () => {
       )}
 
       <div className="w-72 rounded-md lofi-container p-[3px]  text-sm overflow-x-hidden">
-        <div>{`${index + 1}/${
-          moodPlayList.length
-        } with mood ${currentMood}`}</div>
+        <div>
+          {`${index + 1}/${moodPlayList.length} with mood ${currentMood}`}
+        </div>
         <div className="animate-text-slide flex items-center p-[2px] w-56 gap-[5px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,5 @@
 import { Body } from "../../Skeleton";
+import Dashboard from "./Dashboard/Dashboard";
 import LofiInput from "./UI/Input/LofiInput";
 
 const background = "/assets/icons/login-bg.jpg";
@@ -17,6 +18,12 @@ const LofiPortal = () => {
               <div className="absolute w-1/3 left-[470px] bottom-[100px] h-[500px] lofi-container">
                 <LofiInput />
               </div>
+
+              {
+                <div>
+                  <Dashboard />
+                </div>
+              }
             </div>
           </>
         }

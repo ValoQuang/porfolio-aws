@@ -28,3 +28,9 @@ export enum LOFI_MOOD {
   FOCUS = "focus",
   JAZZ = "jazz"
 }
+
+
+export enum LOFI_USER  {
+  EMAIL = "email",
+  PASSWORD = "password"
+}
