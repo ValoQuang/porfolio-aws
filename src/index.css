@@ -15,15 +15,15 @@
 }
 
 .lofi-container {
-  @apply border-2 text-white border-[#24242f] bg-[#14141d] bg-opacity-90 rounded-xl;
+  @apply border-2 text-white border-[#24242f] bg-[#14141d] bg-opacity-80 rounded-xl;
 }
 
 .videoOut {
-  @apply absolute opacity-0 transition-opacity duration-[900ms] rounded-3xl w-[1280px];
+  @apply absolute opacity-0 transition-opacity duration-1000 rounded-3xl w-[1280px];
 }
 
 .videoIn {
-  @apply absolute opacity-100 transition-opacity duration-[900ms] rounded-3xl w-[1280px];
+  @apply absolute opacity-100 transition-opacity duration-1000 rounded-3xl w-[1280px];
 }
 
 @keyframes grow {

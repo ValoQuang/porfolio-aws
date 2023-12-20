@@ -3,6 +3,7 @@ export enum PATH_ENUM {
   ABOUT = "about",
   PROJECTS = "projects",
   GRAPH = "graph",
-  LOFI = "lofi"
+  LOFI = "lofi",
+  LOFI_PORTAL = "lofi-portal"
 }
 
