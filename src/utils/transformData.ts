@@ -8,7 +8,7 @@ export const transformData = (data: ContributionWeek[]) => {
     },
     []
   );
-
+  //alternative use const reducedData = data.flatMap((week) => week.contributionDays);
   const convertStringToLevel = (levelString: string): number => {
     switch (levelString) {
       case 'NONE':
