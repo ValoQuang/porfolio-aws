@@ -54,7 +54,7 @@ const LofiRainButton = () => {
             max="100"
             value={currentAmbient[LOFI_AMBIENT.RAIN]}
             onChange={(value) => rainVolumeHandler(value.target.value)}
-            className="accent-orange-500 w-40 appearance-none h-4 rounded-full bg-[#42424e]"
+            className="accent-orange-500 w-40 appearance-none h-4 border-2 rounded-full bg-[#191927]"
           />
         )}
       </div>

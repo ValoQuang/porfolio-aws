@@ -141,7 +141,7 @@ const LofiFooter = () => {
             max="100"
             value={musicVolume}
             onChange={volumeButtonHandler}
-            className="absolute accent-orange-500 w-96 left-[435px] border-none opacity-90 lofi-button bottom-[150px] appearance-none h-4 rounded-full bg-[#191927]"
+            className="absolute accent-orange-500 w-96 left-[435px] border-2 opacity-90 bottom-[150px] appearance-none h-4 rounded-full bg-[#191927]"
           />
         </>
       )}
@@ -176,7 +176,7 @@ const LofiFooter = () => {
       <div className="flex gap-10 items-center">
         <div onClick={debounce(previousButtonHandler, 200)}>
           <img
-            className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
+            className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer"
             src={ICON_PATHS.prev}
             alt="Lofi Logo"
           />
@@ -186,7 +186,7 @@ const LofiFooter = () => {
           {play ? (
             <>
               <img
-                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer  border-2 hover:border-orange-400 rounded-full"
+                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer rounded-full"
                 src={ICON_PATHS.pause}
                 alt="Lofi Logo"
               />
@@ -194,7 +194,7 @@ const LofiFooter = () => {
           ) : (
             <>
               <img
-                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer border-2 hover:border-orange-400 rounded-full"
+                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer rounded-full"
                 src={ICON_PATHS.play}
                 alt="Lofi Logo"
               />
@@ -204,7 +204,7 @@ const LofiFooter = () => {
 
         <div onClick={debounce(nextButtonHandler, 200)}>
           <img
-            className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer lofi-button"
+            className="h-20 w-20 transition hover:scale-110 hover:cursor-pointer "
             src={ICON_PATHS.next}
             alt="Lofi Logo"
           />

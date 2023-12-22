@@ -10,13 +10,13 @@ const LofiSettingButton = () => {
     <div className="flex w-1/4">
       <div
         onClick={handleSettingHandler}
-        className="absolute top-48 h-20 w-24 hover:cursor-pointer lofi-button"
+        className="absolute top-48 h-18 w-16 hover:cursor-pointer lofi-button"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="w-16 h-16"
+          className="w-10 h-10"
         >
           <path
             fill="#ffffff"

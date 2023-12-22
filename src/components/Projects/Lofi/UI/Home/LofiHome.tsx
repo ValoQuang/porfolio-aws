@@ -31,7 +31,7 @@ const LofiHome = () => {
   ];
 
   return (
-    <div className="align-middle items-center justify-between">
+    <>
       {backgroundArray.map((config, index) => (
         <video
           key={index}
@@ -47,7 +47,7 @@ const LofiHome = () => {
           <source src={config.videoSrc} type="video/mp4" />
         </video>
       ))}
-    </div>
+    </>
   );
 };
 

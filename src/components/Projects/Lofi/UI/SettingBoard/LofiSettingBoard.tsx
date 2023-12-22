@@ -98,7 +98,7 @@ const LofiSettingBoard = () => {
 
   return (
     <>
-      <div className="z-10 absolute left-[175px] p-2 top-[190px] overflow-y-scroll lofi-container">
+      <div className="z-10 absolute left-[145px] p-2 top-[190px] overflow-y-scroll lofi-container">
         <div className="flex justify-between">
           <p>{!minimized && "Mixer board"}</p>
           <p onClick={minimizeButtonHandler} className="w-6 h-6 lofi-button">
