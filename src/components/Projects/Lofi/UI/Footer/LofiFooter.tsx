@@ -3,6 +3,7 @@ import { chill_list, jazzy_list, sleep_list } from "../../Data";
 import { useLofiStore } from "../../../../../store/lofiStore";
 import { LOFI_MOOD } from "../../../../../types";
 import { debounce } from "lodash";
+import { getTrackDuration } from "../../../../../utils/getDataTime";
 
 type currentTrackProp = {
   name: string;
@@ -25,13 +26,20 @@ const LofiFooter = () => {
   const [play, setPlay] = useState(false);
   const [index, setIndex] = useState(0);
   const [musicVolume, setMusicVolume] = useState(50);
-  const elemAudio = useRef(null);
   const [currentTrack, setCurrentTrack] = useState<currentTrackProp>({
     name: "Press start to play",
     src: "",
   });
-  const currentMood = useLofiStore((state) => state.currentMood);
+  const [songDuration, setSongDuration] = useState({
+    totalTime: "00:00",
+    streamingTime: "00:00",
+  });
+
+  const elemAudio = useRef(null);
+  const audioElement = elemAudio.current as HTMLAudioElement | null;
   const playListLofi = [...chill_list, ...jazzy_list, ...sleep_list];
+  const currentMood = useLofiStore((state) => state.currentMood);
+
   const [moodPlayList, setMoodPlaylist] =
     useState<currentTrackProp[]>(playListLofi);
 
@@ -71,7 +79,6 @@ const LofiFooter = () => {
     setMusicVolume(parseInt(event.target.value, 10));
   };
 
-  const audioElement = elemAudio.current as HTMLAudioElement | null;
   useEffect(() => {
     if (currentMood !== LOFI_MOOD.MIX) {
       setMoodPlaylist(
@@ -81,7 +88,6 @@ const LofiFooter = () => {
     if (index > moodPlayList.length - 1) {
       setIndex(0);
     }
-
     if (play && audioElement) {
       audioElement.play();
       audioElement.volume = musicVolume / 100;
@@ -98,8 +104,20 @@ const LofiFooter = () => {
   ]);
 
   const autoNextHandler = () => {
-    if (play && audioElement) {
-      audioElement.play();
+    setIndex((prevIndex) => {
+      const newIndex = prevIndex + 1;
+      setCurrentTrack(playingTrack[newIndex]);
+      return newIndex;
+    });
+  };
+
+  const loadMetaDataHandler = (meta: any) => {
+    if (meta) {
+      const { totalTime, totalStreamingTime } = getTrackDuration(meta.target);
+      setSongDuration({
+        streamingTime: totalStreamingTime,
+        totalTime: totalTime,
+      });
     }
   };
 
@@ -110,6 +128,8 @@ const LofiFooter = () => {
         onEnded={autoNextHandler}
         src={currentTrack.src}
         loop
+        onLoadedMetadata={loadMetaDataHandler}
+        onTimeUpdate={loadMetaDataHandler}
       ></audio>
 
       {play && (
@@ -127,8 +147,12 @@ const LofiFooter = () => {
       )}
 
       <div className="w-72 rounded-md lofi-container p-[3px]  text-sm overflow-x-hidden">
-        <div>
-          {`${index + 1}/${moodPlayList.length} with mood ${currentMood}`}
+        <div className="flex-start flex gap-4">
+          <p>{`${index + 1}/${
+            moodPlayList.length
+          } with Mood ${currentMood}`}</p>
+          <p>{`${songDuration.streamingTime}`}</p>
+          <p>{`${songDuration.totalTime}`}</p>
         </div>
         <div className="animate-text-slide flex items-center p-[2px] w-56 gap-[5px]">
           <svg
