@@ -122,7 +122,7 @@ const LofiFooter = () => {
   };
 
   return (
-    <div className="flex justify-between absolute items-center w-[58%] p-10 top-[580px]">
+    <div className="flex justify-start absolute gap-[12%] items-center m-10 w-[85%] top-[80%]">
       <audio
         ref={elemAudio}
         onEnded={autoNextHandler}
@@ -132,21 +132,7 @@ const LofiFooter = () => {
         onTimeUpdate={loadMetaDataHandler}
       ></audio>
 
-      {play && (
-        <>
-          <input
-            id={currentTrack.name}
-            type="range"
-            min={0}
-            max="100"
-            value={musicVolume}
-            onChange={volumeButtonHandler}
-            className="absolute accent-orange-500 w-96 left-[435px] border-2 opacity-90 bottom-[150px] appearance-none h-4 rounded-full bg-[#191927]"
-          />
-        </>
-      )}
-
-      <div className="w-72 rounded-md lofi-container p-[3px]  text-sm overflow-x-hidden">
+      <div className="w-[25%] rounded-md lofi-container p-[3px]  text-sm overflow-x-hidden">
         <div className="flex-start flex gap-4">
           <p>{`${index + 1}/${
             moodPlayList.length
@@ -197,6 +183,19 @@ const LofiFooter = () => {
                 className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer rounded-full"
                 src={ICON_PATHS.play}
                 alt="Lofi Logo"
+              />
+            </>
+          )}
+          {play && (
+            <>
+              <input
+                id={currentTrack.name}
+                type="range"
+                min={0}
+                max="100"
+                value={musicVolume}
+                onChange={volumeButtonHandler}
+                className="absolute accent-orange-500 w-96 left-[35%] border-2 opacity-90 bottom-[110%] appearance-none h-4 rounded-full bg-[#191927]"
               />
             </>
           )}
