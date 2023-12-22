@@ -71,6 +71,7 @@ const LofiFooter = () => {
     setMusicVolume(parseInt(event.target.value, 10));
   };
 
+  const audioElement = elemAudio.current as HTMLAudioElement | null;
   useEffect(() => {
     if (currentMood !== LOFI_MOOD.MIX) {
       setMoodPlaylist(
@@ -81,18 +82,35 @@ const LofiFooter = () => {
       setIndex(0);
     }
 
-    const audioElement = elemAudio.current as HTMLAudioElement | null;
     if (play && audioElement) {
       audioElement.play();
       audioElement.volume = musicVolume / 100;
     } else if (!play && audioElement) {
       audioElement.pause();
     }
-  }, [musicVolume, index, play, currentMood, moodPlayList.length]);
+  }, [
+    musicVolume,
+    index,
+    play,
+    currentMood,
+    moodPlayList.length,
+    audioElement,
+  ]);
+
+  const autoNextHandler = () => {
+    if (play && audioElement) {
+      audioElement.play();
+    }
+  };
 
   return (
     <div className="flex justify-between absolute items-center w-[58%] p-10 top-[580px]">
-      <audio ref={elemAudio} src={currentTrack.src} loop></audio>
+      <audio
+        ref={elemAudio}
+        onEnded={autoNextHandler}
+        src={currentTrack.src}
+        loop
+      ></audio>
 
       {play && (
         <>
