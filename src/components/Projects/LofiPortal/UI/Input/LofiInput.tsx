@@ -45,7 +45,7 @@ const LofiInput: React.FC = () => {
 
   return (
     <>
-      <div className="text-white flex h-full flex-1 flex-col lg:px-8">
+      <div className="text-white flex h-full flex-1 flex-col lg:px-8 w-full lofi-container">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-20 w-auto"

@@ -11,11 +11,11 @@ const LofiPortal = () => {
           <>
             <div>
               <img
-                className="relative rounded-3xl w-[1280px]"
+                className="relative videoIn"
                 src={background}
                 alt="login background"
               />
-              <div className="absolute w-1/3 left-[470px] bottom-[100px] h-[500px] lofi-container">
+              <div className="absolute left-[38%] bottom-[15%]">
                 <LofiInput />
               </div>
 

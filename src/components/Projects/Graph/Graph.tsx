@@ -85,7 +85,7 @@ const Graph = () => {
                         null && info?.user.status.indicatesLimitedAvailability
                         ? "border-2 border-[#e46e13]"
                         : "")
-                    } bg-zinc-700 absolute bottom-10 right-2 rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
+                    } bg-zinc-700 absolute bottom-[10%] right-[10%] rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
                   >
                     {info?.user?.status ? (
                       <div
