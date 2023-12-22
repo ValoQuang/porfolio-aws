@@ -19,11 +19,11 @@
 }
 
 .videoOut {
-  @apply absolute object-cover sm:w-[90%] lg:w-[90%] h-full opacity-0 transition-opacity duration-1000 rounded-3xl;
+  @apply absolute object-cover sm:w-[90%] lg:w-[90%] 2xl:w-[92%] h-full opacity-0 transition-opacity duration-1000 rounded-3xl;
 }
 
 .videoIn {
-  @apply absolute object-cover sm:w-[90%] lg:w-[90%] h-full opacity-100 transition-opacity duration-1000 rounded-3xl;
+  @apply absolute object-cover sm:w-[90%] lg:w-[90%] 2xl:w-[92%] h-full opacity-100 transition-opacity duration-1000 rounded-3xl;
 }
 
 @keyframes grow {
