@@ -1,7 +1,6 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";
-import Projects from "./components/Projects";
 import Main from "./components/Main";
 import Lofi from "./components/Projects/Lofi/Lofi";
 import Graph from "./components/Projects/Graph/Graph";
@@ -26,32 +25,22 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: PATH_ENUM.PROJECTS,
+        path: PATH_ENUM.LOFI,
         element: <Outlet />,
         children: [
           {
             path: "",
-            element: <Projects />,
+            element: <Lofi />,
           },
           {
-            path: PATH_ENUM.LOFI,
-            element: <Outlet />,
-            children: [
-              {
-                path: "",
-                element: <Lofi />,
-              },
-              {
-                path: PATH_ENUM.LOFI_PORTAL,
-                element: <LofiPortal />,
-              },
-            ],
-          },
-          {
-            path: PATH_ENUM.GRAPH,
-            element:<><Graph /></> ,
+            path: PATH_ENUM.LOFI_PORTAL,
+            element: <LofiPortal />,
           },
         ],
+      },
+      {
+        path: PATH_ENUM.GRAPH,
+        element: <Graph />,
       },
     ],
   },

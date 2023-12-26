@@ -28,15 +28,11 @@ const Navbar = () => {
           text={PATH_ENUM.ABOUT}
         />
         <Button
-          onClick={() => navigate(PATH_ENUM.PROJECTS)}
-          text={PATH_ENUM.PROJECTS}
-        />
-        <Button
-          onClick={() => navigate(`${PATH_ENUM.PROJECTS}/${PATH_ENUM.GRAPH}`)}
+          onClick={() => navigate(PATH_ENUM.GRAPH)}
           text={PATH_ENUM.GRAPH}
         />
         <Button
-          onClick={() => navigate(`${PATH_ENUM.PROJECTS}/${PATH_ENUM.LOFI}`)}
+          onClick={() => navigate(PATH_ENUM.LOFI)}
           text={PATH_ENUM.LOFI}
         />
       </div>
