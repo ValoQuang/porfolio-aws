@@ -35,5 +35,5 @@ export interface lofiStore {
   isDayMode: boolean;
   isRainMode: boolean;
   currentAmbient: initialAmbient;
-  currentMood: string | LOFI_MOOD.CHILL | LOFI_MOOD.FOCUS | LOFI_MOOD.JAZZ;
+  currentMood: string | LOFI_MOOD.CHILL | LOFI_MOOD.SLEEP | LOFI_MOOD.JAZZ;
 }

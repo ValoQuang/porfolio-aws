@@ -9,11 +9,6 @@ type currentTrackProp = {
   name: string;
   src: string;
 };
-const moodToPlaylist = {
-  [LOFI_MOOD.CHILL]: [...chill_list, ...jazzy_list],
-  [LOFI_MOOD.FOCUS]: [...chill_list],
-  [LOFI_MOOD.JAZZ]: [...jazzy_list],
-};
 
 const ICON_PATHS = {
   play: "/assets/icons/play.svg",
@@ -81,9 +76,10 @@ const LofiFooter = () => {
 
   useEffect(() => {
     if (currentMood !== LOFI_MOOD.MIX) {
-      setMoodPlaylist(
-        moodToPlaylist[currentMood as keyof typeof moodToPlaylist]
+      const playlistWithMood = playListLofi.filter(
+        (list) => list.mood === currentMood
       );
+      setMoodPlaylist(playlistWithMood);
     }
     if (index > moodPlayList.length - 1) {
       setIndex(0);
@@ -94,6 +90,7 @@ const LofiFooter = () => {
     } else if (!play && audioElement) {
       audioElement.pause();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     musicVolume,
     index,

@@ -29,19 +29,19 @@ export const chill_list = [
     {
       id: 0,
       name: 'The autumn leaves',
-      mood: 'jazzy',
+      mood: 'jazz',
       src: '/assets/lofi/jazz1.mp3',
     },
     {
       id: 1,
       name: 'King Joe',
-      mood: 'jazzy',
+      mood: 'jazz',
       src: '/assets/lofi/jazz2.mp3',
     },
     {
       id: 2,
       name: 'Saxophone',
-      mood: 'jazzy',
+      mood: 'jazz',
       src: '/assets/lofi/jazz3.mp3',
     },
   ];
@@ -70,5 +70,11 @@ export const chill_list = [
       name: 'Dreamee',
       mood: 'sleep',
       src: '/assets/lofi/sleepy4.mp3',
+    },
+    {
+      id: 4,
+      name: 'Count the sheep',
+      mood: 'sleep',
+      src: '/assets/lofi/sleepy3.mp3',
     },
   ];

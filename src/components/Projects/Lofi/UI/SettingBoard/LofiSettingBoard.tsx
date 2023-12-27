@@ -70,7 +70,7 @@ const LofiSettingBoard = () => {
       label: LOFI_MOOD.CHILL,
     },
     {
-      label: LOFI_MOOD.FOCUS,
+      label: LOFI_MOOD.SLEEP,
     },
     {
       label: LOFI_MOOD.JAZZ,
