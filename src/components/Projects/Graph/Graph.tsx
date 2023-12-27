@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import GraphProfile from "./GraphProfile";
 import StatusModal from "./UI/Modals/StatusModal";
-import { UserObjectProp, GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
+import { GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
 import PersonalModal from "./UI/Modals/PersonalModal";
 import { useModalStore } from "../../../store/modalStore";
 
 const Graph = () => {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [info, setInfo] = useState<UserObjectProp>();
   const [isStatusOpen, isPersonalOpen, setModalState] = useModalStore(
     (state) => [state.isStatusOpen, state.isPersonalOpen, state.setModalState]
   );
@@ -20,8 +18,6 @@ const Graph = () => {
     variables: {
       login: `${process.env.REACT_APP_GITHUB_USER}`,
     },
-    skip: isDataLoaded,
-    fetchPolicy: "cache-first",
   });
 
   const openPersonalModal = () => {
@@ -30,10 +26,8 @@ const Graph = () => {
 
   useEffect(() => {
     if (data && !loading && !error) {
-      setIsDataLoaded(true);
-      setInfo(data);
     }
-  }, [isDataLoaded, data, error, info, loading, isStatusOpen]);
+  }, [data, error, loading, isStatusOpen]);
 
   const openStatusModal = () => {
     if (typeof window != "undefined" && window.document) {
@@ -74,23 +68,23 @@ const Graph = () => {
                 <div className={`relative ${isStatusOpen && "opacity-50"}`}>
                   <img
                     className="rounded-full w-fit h-fit"
-                    src={info?.user.avatarUrl}
+                    src={data?.user.avatarUrl}
                     alt="alt me"
                   />
                   <button
                     onClick={openStatusModal}
                     className={`${
                       (isStatusOpen && "disabled pointer-events-none") ||
-                      (info?.user.status! !==
-                        null && info?.user.status.indicatesLimitedAvailability
+                      (data?.user.status! !== null &&
+                      data?.user.status.indicatesLimitedAvailability
                         ? "border-2 border-[#e46e13]"
                         : "")
                     } bg-zinc-700 absolute bottom-[10%] right-[10%] rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
                   >
-                    {info?.user?.status ? (
+                    {data?.user?.status ? (
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: info?.user.status.emojiHTML,
+                          __html: data?.user.status.emojiHTML,
                         }}
                       />
                     ) : (
@@ -101,29 +95,32 @@ const Graph = () => {
 
                 {!isPersonalOpen ? (
                   <div className="flex-col space-y-4">
-                    <div className="text-3xl">{info?.user.name}</div>
-                    <div className="text-sm w-full">{info?.user.bio}</div>
+                    <div className="text-3xl">{data?.user.name}</div>
+                    <div className="text-sm w-full">{data?.user.bio}</div>
                     <div className="text-sm flex justify-start gap-5 leading-10">
-                      <div>{info?.user.login}</div>
+                      <div>{data?.user.login}</div>
                       <div className="text-slate-400">
-                        {info?.user.pronouns}
+                        {data?.user.pronouns}
                       </div>
                     </div>{" "}
                     <GraphButton
                       title={GRAPH_BUTTON.EDIT_PROFILE}
                       onClick={openPersonalModal}
                     />
-                    <p>{info?.user.email}</p>
+                    <p>{data?.user.email}</p>
                     <div>
-                      {info?.user.followers.totalCount} follower{" "}
-                      {info?.user.following.totalCount} following
+                      {data?.user.followers.totalCount} follower{" "}
+                      {data?.user.following.totalCount} following
                     </div>
-                    <div>{info?.user.company}</div>
-                    <div>{info?.user.location}</div>
+                    <div>{data?.user.company}</div>
+                    <div>{data?.user.location}</div>
                   </div>
                 ) : (
                   <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <PersonalModal data={info?.user!} onClose={closePersonalModal} />
+                    <PersonalModal
+                      data={data?.user!}
+                      onClose={closePersonalModal}
+                    />
                   </div>
                 )}
               </div>

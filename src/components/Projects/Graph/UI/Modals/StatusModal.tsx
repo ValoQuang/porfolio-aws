@@ -15,18 +15,19 @@ import Emoji from "react-emoji-render";
 import GraphInput from "../Input/GraphInput";
 import GraphButton from "../Button/GraphButton";
 
+const initialState = {
+  message: "",
+  emoji: "",
+  emojiHTML: "",
+  indicatesLimitedAvailability: false,
+  expiresAt: null,
+};
+
 const StatusModal = ({ isOpen, onClose, fetchedStatus }: StatusModalProp) => {
   const [emojiModal, setEmojiModal] = useState(false);
-  const initialState = {
-    message: "",
-    emoji: "",
-    emojiHTML: "",
-    indicatesLimitedAvailability: false,
-    expiresAt: null,
-  };
-
   const [status, setStatus] = useState(initialState);
   const [updateUserStatus] = useMutation<UpdateUserStatus>(UPDATE_USER_STATUS, {
+    refetchQueries: ["GetUserInfo"],
     onCompleted: () => {
       onClose();
     },
@@ -36,7 +37,7 @@ const StatusModal = ({ isOpen, onClose, fetchedStatus }: StatusModalProp) => {
     if (fetchedStatus) {
       setStatus(fetchedStatus);
     }
-  }, [fetchedStatus, status]);
+  }, [fetchedStatus]);
 
   const handleInputChange = useCallback(
     (input: SetStateAction<SubmitProp>) => setStatus(input),
@@ -45,7 +46,7 @@ const StatusModal = ({ isOpen, onClose, fetchedStatus }: StatusModalProp) => {
   if (!isOpen) return null;
 
   const onClosePicker = (emojiCode: { native: any }) => {
-    setStatus({ ...status, emoji: emojiCode.native });
+    setStatus({ ...status, emoji: emojiCode.native });   
     setEmojiModal(!emojiModal);
   };
   const onOpenPicker = () => {

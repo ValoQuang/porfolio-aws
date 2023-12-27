@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
 import { PATH_ENUM } from "../../../../../types";
+import { useState } from "react";
 
 export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
@@ -12,6 +13,7 @@ export const ICON_PATHS = {
 
 const LofiHeader = () => {
   const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const fullScreenButtonHandler = () => {
     const element = document.getElementById("lofi-video");
@@ -62,13 +64,23 @@ const LofiHeader = () => {
         />
       </div>
 
-      <div className="lofi-container p-[5px] justify-center flex">
-        <LinkWithIcon
-          icon={ICON_PATHS.login}
-          text="Login"
-          url={PATH_ENUM.LOFI_PORTAL}
-        />
-      </div>
+      {isLoggedIn ? (
+        <>
+          <div className="lofi-container p-[5px] justify-center flex">
+            <p>Welcome back user</p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="lofi-container p-[5px] justify-center flex">
+            <LinkWithIcon
+              icon={ICON_PATHS.login}
+              text="Login"
+              url={PATH_ENUM.LOFI_PORTAL}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
