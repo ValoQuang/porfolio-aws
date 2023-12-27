@@ -6,13 +6,15 @@ import GraphProfile from "./GraphProfile";
 import StatusModal from "./UI/Modals/StatusModal";
 import { GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
-import PersonalModal from "./UI/Modals/PersonalModal";
+import InfoModal from "./UI/Modals/InfoModal";
 import { useModalStore } from "../../../store/modalStore";
 
 const Graph = () => {
-  const [isStatusOpen, isPersonalOpen, setModalState] = useModalStore(
-    (state) => [state.isStatusOpen, state.isPersonalOpen, state.setModalState]
-  );
+  const [isStatusOpen, isInfoOpen, setModalState] = useModalStore((state) => [
+    state.isStatusOpen,
+    state.isInfoOpen,
+    state.setModalState,
+  ]);
 
   const { data, loading, error } = useQuery(GET_USER_INFO, {
     variables: {
@@ -20,14 +22,11 @@ const Graph = () => {
     },
   });
 
-  const openPersonalModal = () => {
+  const openInfoModal = () => {
     setModalState(GRAPH_MODALS.PERSONAL);
   };
 
-  useEffect(() => {
-    if (data && !loading && !error) {
-    }
-  }, [data, error, loading, isStatusOpen]);
+  useEffect(() => {}, [data, error, loading, isStatusOpen]);
 
   const openStatusModal = () => {
     if (typeof window != "undefined" && window.document) {
@@ -40,7 +39,7 @@ const Graph = () => {
     document.body.style.overflowY = "auto";
   };
 
-  const closePersonalModal = () => {
+  const closeInfoModal = () => {
     setModalState(GRAPH_MODALS.PERSONAL);
     document.body.style.overflowY = "auto";
   };
@@ -93,8 +92,8 @@ const Graph = () => {
                   </button>
                 </div>
 
-                {!isPersonalOpen ? (
-                  <div className="flex-col space-y-4">
+                {!isInfoOpen ? (
+                  <div className="flex-col space-y-2">
                     <div className="text-3xl">{data?.user.name}</div>
                     <div className="text-sm w-full">{data?.user.bio}</div>
                     <div className="text-sm flex justify-start gap-5 leading-10">
@@ -105,9 +104,9 @@ const Graph = () => {
                     </div>{" "}
                     <GraphButton
                       title={GRAPH_BUTTON.EDIT_PROFILE}
-                      onClick={openPersonalModal}
+                      onClick={openInfoModal}
                     />
-                    <p>{data?.user.email}</p>
+                    <p>Email: {data?.user.email}</p>
                     <div>
                       {data?.user.followers.totalCount} follower{" "}
                       {data?.user.following.totalCount} following
@@ -117,10 +116,7 @@ const Graph = () => {
                   </div>
                 ) : (
                   <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <PersonalModal
-                      data={data?.user!}
-                      onClose={closePersonalModal}
-                    />
+                    <InfoModal data={data?.user!} onClose={closeInfoModal} />
                   </div>
                 )}
               </div>

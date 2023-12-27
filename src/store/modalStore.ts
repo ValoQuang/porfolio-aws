@@ -5,13 +5,13 @@ import { GRAPH_MODALS } from "../types";
 interface modalStore {
   setModalState: (modalName: string) => void;
   isStatusOpen: boolean;
-  isPersonalOpen: boolean;
+  isInfoOpen: boolean;
 }
 
 export const initialState = {
   setModalState: () => {},
   isStatusOpen: false,
-  isPersonalOpen: false,
+  isInfoOpen: false,
 };
 
 const store = persist<modalStore>(
@@ -22,7 +22,7 @@ const store = persist<modalStore>(
         if (name === GRAPH_MODALS.STATUS) {
           return { ...state, isStatusOpen: !state.isStatusOpen };
         } else {
-          return { ...state, isPersonalOpen: !state.isPersonalOpen };
+          return { ...state, isInfoOpen: !state.isInfoOpen };
         }
       });
     },

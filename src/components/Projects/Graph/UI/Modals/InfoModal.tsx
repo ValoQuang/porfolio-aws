@@ -8,9 +8,13 @@ import {
 import { GRAPH_BUTTON, PersonalModalProp } from "../../../../../types";
 import GraphButton from "../Button/GraphButton";
 import GraphInput from "../Input/GraphInput";
+import { Octokit } from "octokit";
 import { User } from "../../../../../graphQL/query";
 
 const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
+  const octokit = new Octokit({
+    auth: process.env.REACT_APP_GITHUB_TOKEN,
+  });
   const firstInputRef = useRef<HTMLInputElement>(null);
   const [info, setInfo] = useState<User>(data);
 
@@ -28,9 +32,27 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
     []
   );
 
+  const { name, bio, pronouns, location, email, company } = info;
   const onSubmit = async () => {
     try {
-      //Graphql does not have mutation for user personal
+      const requestOptions = {
+        method: "PATCH",
+        url: "/user",
+        data: {
+          name,
+          bio,
+          location,
+          company,
+          email,
+          pronouns,
+        },
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      };
+
+      await octokit.request(requestOptions);
+      onClose();
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +70,6 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
               name: key.target.value,
             })
           }
-          firstInputRef={firstInputRef}
           label="Name"
         />
 
@@ -84,6 +105,17 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
             })
           }
           label="Company"
+        />
+        <GraphInput
+          defaultValue={info?.email}
+          placeholder="Email"
+          onChange={(key) =>
+            handleChangeInfo({
+              ...info,
+              email: key.target.value,
+            })
+          }
+          label="Email"
         />
         <GraphInput
           defaultValue={data?.location}
