@@ -133,9 +133,11 @@ const LofiFooter = () => {
         <div className="flex-start flex gap-4">
           <p>{`${index + 1}/${
             moodPlayList.length
-          } with Mood ${currentMood}`}</p>
-          <p>{`${songDuration.streamingTime}`}</p>
-          <p>{`${songDuration.totalTime}`}</p>
+          } with mood "${currentMood}"`}</p>
+          <div className="flex gap-[5px]">
+            <p>{`${songDuration.streamingTime}`}</p>
+            <p>{`${songDuration.totalTime}`}</p>
+          </div>
         </div>
         <div className="animate-text-slide flex items-center p-[2px] w-56 gap-[5px]">
           <svg
