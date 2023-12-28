@@ -94,9 +94,9 @@ const LofiFooter = () => {
   }, [
     musicVolume,
     index,
-    play,
     currentMood,
     moodPlayList.length,
+    play,
     audioElement,
   ]);
 
@@ -168,23 +168,12 @@ const LofiFooter = () => {
         </div>
 
         <div onClick={debounce(playButtonHandler, 100)}>
-          {play ? (
-            <>
-              <img
-                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer rounded-full"
-                src={ICON_PATHS.pause}
-                alt="Lofi Logo"
-              />
-            </>
-          ) : (
-            <>
-              <img
-                className="h-24 w-24 transition hover:scale-110 hover:cursor-pointer rounded-full"
-                src={ICON_PATHS.play}
-                alt="Lofi Logo"
-              />
-            </>
-          )}
+          <img
+            className="h-24 w-24 hover:scale-110 hover:cursor-pointer rounded-full"
+            src={play ? ICON_PATHS.pause : ICON_PATHS.play}
+            alt="Lofi Logo"
+          />
+
           {play && (
             <>
               <input

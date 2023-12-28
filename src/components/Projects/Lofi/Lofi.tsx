@@ -1,5 +1,4 @@
 import { Body } from "../../Skeleton";
-import LofiFooter from "./UI/Footer/LofiFooter";
 import { lazy, Suspense } from "react";
 import LofiHeader from "./UI/Header/LofiHeader";
 
@@ -21,7 +20,6 @@ const Lofi = () => {
                 <LazyFooter />
                 <LazySettingButton />
                 <LazyRainButton />
-                <LofiFooter />
               </Suspense>
             </div>
           </>
