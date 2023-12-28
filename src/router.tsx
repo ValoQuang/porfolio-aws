@@ -1,15 +1,24 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import About from "./components/About";
-import Main from "./components/Main";
-import Lofi from "./components/Projects/Lofi/Lofi";
-import Graph from "./components/Projects/Graph/Graph";
 import { PATH_ENUM } from "./types/routeEnum";
-import LofiPortal from "./components/Projects/LofiPortal/LofiPortal";
+import { Suspense, lazy } from "react";
+
+const App = lazy(() => import("./App"));
+const About = lazy(() => import("./components/About"));
+const Main = lazy(() => import("./components/Main"));
+const Lofi = lazy(() => import("./components/Projects/Lofi/Lofi"));
+const Graph = lazy(() => import("./components/Projects/Graph/Graph"));
+const LofiPortal = lazy(
+  () => import("./components/Projects/LofiPortal/LofiPortal")
+);
+const LazyApp = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <App />
+  </Suspense>
+);
 
 export const router = createBrowserRouter([
   {
-    element: <App />,
+    element: <LazyApp />,
     children: [
       {
         path: "",
