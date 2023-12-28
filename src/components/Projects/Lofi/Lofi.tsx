@@ -1,6 +1,7 @@
 import { Body } from "../../Skeleton";
 import LofiFooter from "./UI/Footer/LofiFooter";
 import { lazy, Suspense } from "react";
+import LofiHeader from "./UI/Header/LofiHeader";
 
 const Lofi = () => {
   const LazyHome = lazy(() => import("./UI/Home/LofiHome"));
@@ -15,6 +16,7 @@ const Lofi = () => {
           <>
             <div id="lofi-video">
               <Suspense fallback={<div>Loading...</div>}>
+                <LofiHeader />
                 <LazyHome />
                 <LazyFooter />
                 <LazySettingButton />
