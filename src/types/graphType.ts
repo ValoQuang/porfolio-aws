@@ -22,7 +22,8 @@ export interface StatusModalProp {
 export interface PersonalModalProp {
   data: User;
   onClose: () => void;
-};
+  refetch: () => void;
+}
 
 export interface GraphButtonProp {
   title: string;

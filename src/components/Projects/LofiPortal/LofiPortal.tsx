@@ -1,9 +1,12 @@
 import { Body } from "../../Skeleton";
 import Dashboard from "./Dashboard/Dashboard";
-import LofiInput from "./UI/Input/LofiInput";
+import LofiSignIn from "./UI/Input/LofiSignIn";
 
 const background = "/assets/icons/login-bg.jpg";
+
 const LofiPortal = () => {
+  //UNDER CONSTRUCTION 
+
   return (
     <div>
       <Body
@@ -16,7 +19,7 @@ const LofiPortal = () => {
                 alt="login background"
               />
               <div className="absolute left-[36%] bottom-[10%]">
-                <LofiInput />
+                <LofiSignIn />
               </div>
 
               {

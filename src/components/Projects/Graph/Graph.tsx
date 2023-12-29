@@ -16,7 +16,7 @@ const Graph = () => {
     state.setModalState,
   ]);
 
-  const { data, loading, error } = useQuery(GET_USER_INFO, {
+  const { data, loading, error, refetch } = useQuery(GET_USER_INFO, {
     variables: {
       login: `${process.env.REACT_APP_GITHUB_USER}`,
     },
@@ -116,7 +116,7 @@ const Graph = () => {
                   </div>
                 ) : (
                   <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <InfoModal data={data?.user!} onClose={closeInfoModal} />
+                    <InfoModal refetch={refetch} data={data?.user!} onClose={closeInfoModal} />
                   </div>
                 )}
               </div>

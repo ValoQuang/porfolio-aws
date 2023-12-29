@@ -11,7 +11,7 @@ import GraphInput from "../Input/GraphInput";
 import { Octokit } from "octokit";
 import { User } from "../../../../../graphQL/query";
 
-const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
+const PersonalModal = ({ data, onClose, refetch }: PersonalModalProp) => {
   const octokit = new Octokit({
     auth: process.env.REACT_APP_GITHUB_TOKEN,
   });
@@ -33,6 +33,7 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
   );
 
   const { name, bio, pronouns, location, email, company } = info;
+
   const onSubmit = async () => {
     try {
       const requestOptions = {
@@ -53,6 +54,7 @@ const PersonalModal = ({ data, onClose }: PersonalModalProp) => {
 
       await octokit.request(requestOptions);
       onClose();
+      refetch();
     } catch (error) {
       console.error(error);
     }
