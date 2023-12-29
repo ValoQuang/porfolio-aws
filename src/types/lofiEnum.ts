@@ -32,5 +32,6 @@ export enum LOFI_MOOD {
 
 export enum LOFI_USER  {
   EMAIL = "email",
-  PASSWORD = "password"
+  PASSWORD = "password",
+  ADMIN_CODE = "adminCode"
 }

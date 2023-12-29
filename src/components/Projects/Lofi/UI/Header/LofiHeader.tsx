@@ -64,7 +64,7 @@ const LofiHeader = () => {
         />
       </div>
 
-      {isLoggedIn ? (
+      {!isLoggedIn ? (
         <>
           <div className="lofi-container p-[5px] justify-center flex">
             <p>Welcome back user</p>
