@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
 import { PATH_ENUM } from "../../../../../types";
 import { useState } from "react";
-
 export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
   info: "/assets/icons/info-solid.svg",
@@ -15,13 +14,14 @@ const LofiHeader = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const fullScreenButtonHandler = () => {
+  const fullScreenButtonHandler = async () => {
     const element = document.getElementById("lofi-video");
     if (element) {
-      if (element?.requestFullscreen) {
-        element.requestFullscreen();
-      } else {
-        console.error("Element with id 'full-screen' not found");
+      try {
+        const { fullScreenHandler} = await import("../../../../../utils/setFullScreen");
+        fullScreenHandler();
+      } catch (error) {
+        console.error("Error loading setFullScreen module:", error);
       }
     }
   };
