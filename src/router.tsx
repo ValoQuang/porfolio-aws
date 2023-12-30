@@ -3,7 +3,6 @@ import { PATH_ENUM } from "./types/routeEnum";
 import { Suspense, lazy } from "react";
 
 const App = lazy(() => import("./App"));
-const About = lazy(() => import("./components/About"));
 const Main = lazy(() => import("./components/Main"));
 const Lofi = lazy(() => import("./components/Projects/Lofi/Lofi"));
 const Graph = lazy(() => import("./components/Projects/Graph/Graph"));
@@ -28,10 +27,6 @@ export const router = createBrowserRouter([
             <Main />
           </>
         ),
-      },
-      {
-        path: PATH_ENUM.ABOUT,
-        element: <About />,
       },
       {
         path: PATH_ENUM.LOFI,
