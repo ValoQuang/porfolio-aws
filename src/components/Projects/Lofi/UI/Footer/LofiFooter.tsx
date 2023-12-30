@@ -30,8 +30,8 @@ const LofiFooter = () => {
     streamingTime: "00:00",
   });
 
-  const elemAudio = useRef(null);
-  const audioElement = elemAudio.current as HTMLAudioElement | null;
+  const elemAudio = useRef<HTMLAudioElement>(null);
+  const audioElement = elemAudio.current;
   const playListLofi = [...chill_list, ...jazzy_list, ...sleep_list];
   const currentMood = useLofiStore((state) => state.currentMood);
 

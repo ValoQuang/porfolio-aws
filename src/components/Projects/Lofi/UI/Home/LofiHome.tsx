@@ -42,6 +42,7 @@ const LofiHome = () => {
       {backgroundArray.map((config, index) => (
         <video
           key={index}
+          preload="metadata"
           className={`${
             combineMode === `${config.bg}-${config.weather}`
               ? "videoIn"
