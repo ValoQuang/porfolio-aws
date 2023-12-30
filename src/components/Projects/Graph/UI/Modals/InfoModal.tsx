@@ -8,7 +8,7 @@ import {
 import { GRAPH_BUTTON, PersonalModalProp } from "../../../../../types";
 import GraphButton from "../Button/GraphButton";
 import GraphInput from "../Input/GraphInput";
-import { Octokit } from "octokit";
+import { Octokit } from "octokit"; //Client for github rest api
 import { User } from "../../../../../graphQL/query";
 
 const PersonalModal = ({ data, onClose, refetch }: PersonalModalProp) => {
@@ -33,25 +33,24 @@ const PersonalModal = ({ data, onClose, refetch }: PersonalModalProp) => {
   );
 
   const { name, bio, pronouns, location, email, company } = info;
+  const requestOptions = {
+    method: "PATCH",
+    url: "/user",
+    data: {
+      name,
+      bio,
+      location,
+      company,
+      email,
+      pronouns,
+    },
+    headers: {
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  };
 
   const onSubmit = async () => {
     try {
-      const requestOptions = {
-        method: "PATCH",
-        url: "/user",
-        data: {
-          name,
-          bio,
-          location,
-          company,
-          email,
-          pronouns,
-        },
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-      };
-
       await octokit.request(requestOptions);
       onClose();
       refetch();
