@@ -1,4 +1,3 @@
-import React from "react";
 import { LOFI_AMBIENT } from "../../../../../types";
 import { useLofiStore } from "../../../../../store/lofiStore";
 
