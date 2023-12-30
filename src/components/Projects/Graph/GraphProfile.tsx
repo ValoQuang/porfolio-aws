@@ -18,6 +18,7 @@ const GraphProfile = () => {
           target="blank"
         >
           <img
+            loading="lazy"
             src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
             alt="https://www.linkedin.com/in/quang-truong-07b150215/"
             height="30"
@@ -26,6 +27,7 @@ const GraphProfile = () => {
         </a>
         <a href="https://www.facebook.com/ngoc.quang.995/" target="blank">
           <img
+            loading="lazy"
             src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg"
             alt="https://www.facebook.com/ngoc.quang.754/"
             height="30"
@@ -37,6 +39,7 @@ const GraphProfile = () => {
           target="blank"
         >
           <img
+            loading="lazy"
             src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg"
             alt="https://www.instagram.com/q.ilot/"
             height="30"
@@ -47,6 +50,7 @@ const GraphProfile = () => {
       <br />
       <p>
         <img
+          loading="lazy"
           src="https://github-readme-stats.vercel.app/api/top-langs?username=valoquang&show_icons=true&locale=en&layout=compact"
           alt="valoquang"
         />

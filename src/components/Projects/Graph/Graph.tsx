@@ -66,6 +66,7 @@ const Graph = () => {
               <div className="w-3/12 mr-10">
                 <div className={`relative ${isStatusOpen && "opacity-50"}`}>
                   <img
+                    loading="lazy"
                     className="rounded-full w-fit h-fit"
                     src={data?.user.avatarUrl}
                     alt="alt me"
@@ -116,7 +117,11 @@ const Graph = () => {
                   </div>
                 ) : (
                   <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <InfoModal refetch={refetch} data={data?.user!} onClose={closeInfoModal} />
+                    <InfoModal
+                      refetch={refetch}
+                      data={data?.user!}
+                      onClose={closeInfoModal}
+                    />
                   </div>
                 )}
               </div>
