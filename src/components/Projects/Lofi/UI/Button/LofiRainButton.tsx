@@ -1,6 +1,8 @@
 import { useLofiStore } from "../../../../../store/lofiStore";
 import { LOFI_AMBIENT } from "../../../../../types";
-import LofiPlayer from "../Player/LofiPlayer";
+import { lazy, Suspense } from "react";
+
+const LazyPlayer = lazy(() => import("../Player/LofiPlayer"));
 
 const LofiRainButton = () => {
   const [setWeather, setInitialLoad, isRainMode, currentAmbient, setVolume] =
@@ -26,10 +28,12 @@ const LofiRainButton = () => {
     <div className="z-[3] absolute flex flex-col justify-center items-center hover:cursor-pointer right-[250px] top-[220px] w-20 gap-2">
       <div onClick={rainButtonHandler}>
         {isRainMode && (
-          <LofiPlayer
-            src="/assets/ambient/rain_city.mp3"
-            volume={currentAmbient[LOFI_AMBIENT.RAIN]}
-          />
+          <Suspense>
+            <LazyPlayer
+              src="/assets/ambient/rain_city.mp3"
+              volume={currentAmbient[LOFI_AMBIENT.RAIN]}
+            />
+          </Suspense>
         )}
         <div className="w-14 h-10 rounded-full lofi-button">
           <svg
