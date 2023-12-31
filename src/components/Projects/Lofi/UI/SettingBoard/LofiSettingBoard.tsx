@@ -1,11 +1,12 @@
 import { LOFI_AMBIENT, LOFI_MOOD } from "../../../../../types";
 import { useLofiStore } from "../../../../../store/lofiStore";
-import { useState, lazy, Suspense } from "react";
+import { useState, Suspense } from "react";
 import LofiPlayer from "../Player/LofiPlayer";
+import LofiVolumeSlider from "../Button/LofiVolumeSlider";
 
-const LazySlider = lazy(() => import("../Button/LofiVolumeSlider"));
+const logoImagePath = "/assets/icons/lofi-logo.gif";
 const LofiSettingBoard = () => {
-  const logoImagePath = "/assets/icons/lofi-logo.gif";
+  
   const [muted, setMuted] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [currentAmbient, currentMood, setInitialLoad, reset] = useLofiStore(
@@ -183,6 +184,7 @@ const LofiSettingBoard = () => {
 
             <div className="flex flex-col gap-3 p-2 bg-[#24242f] rounded-xl overflow-y-invisible">
               {ambientArray.map((config, index) => {
+                console.log(config);
                 return (
                   <div
                     key={index}
@@ -194,7 +196,7 @@ const LofiSettingBoard = () => {
                       isMuted={muted}
                     />
 
-                    <LazySlider config={config} />
+                    <LofiVolumeSlider config={config} />
                   </div>
                 );
               })}

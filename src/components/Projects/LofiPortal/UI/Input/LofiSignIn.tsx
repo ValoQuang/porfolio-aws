@@ -1,19 +1,18 @@
 import { useCallback, useState } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import { LOFI_USER } from "../../../../../types";
+import { UseFetch } from "../../../../../utils/useFetch";
 
-interface Logic {
+interface Login {
   email: string;
   password: string;
-  adminCode: string;
 }
 
 const LofiSinIn: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [login, setLogin] = useState<Logic>({
+  const [login, setLogin] = useState<Login>({
     email: "",
     password: "",
-    adminCode: "",
   });
 
   const inputLoginHandler = useCallback((name: string, prop: string) => {
@@ -23,29 +22,20 @@ const LofiSinIn: React.FC = () => {
     }));
   }, []);
 
-  const submitHandler = useCallback(async () => {
+  const submitHandler = async () => {
     try {
-      const response = await fetch("to aws", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const data = await UseFetch(
+        "POST",
+        JSON.stringify({
           email: login.email,
           password: login.password,
-          adminCode: login.adminCode
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to log in");
-      }
-      const data = await response.json();
-      console.log("Login Response:", data);
+        })
+      );
+      console.log("Data:", data);
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error("Error:", error);
     }
-  }, [login]);
+  };
 
   const signUpHandler = () => {
     setIsSignUp(!isSignUp);
@@ -114,58 +104,6 @@ const LofiSinIn: React.FC = () => {
               />
             </div>
           </div>
-
-          {isSignUp && (
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor={LOFI_USER.ADMIN_CODE}
-                  className="block text-sm font-medium"
-                >
-                  Confirm password
-                </label>
-                <div className="text-sm"></div>
-              </div>
-              <div className="mt-2">
-                <input
-                  onChange={(e) =>
-                    inputLoginHandler(LOFI_USER.ADMIN_CODE, e.target.value)
-                  }
-                  id={LOFI_USER.ADMIN_CODE}
-                  value={login.adminCode}
-                  type={LOFI_USER.ADMIN_CODE}
-                  name={LOFI_USER.ADMIN_CODE}
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor={LOFI_USER.ADMIN_CODE}
-                  className="block text-sm font-medium"
-                >
-                  Admin Code? (Optional)
-                </label>
-                <div className="text-sm"></div>
-              </div>
-              <div className="mt-2">
-                <input
-                  onChange={(e) =>
-                    inputLoginHandler(LOFI_USER.ADMIN_CODE, e.target.value)
-                  }
-                  id={LOFI_USER.ADMIN_CODE}
-                  value={login.adminCode}
-                  type={LOFI_USER.ADMIN_CODE}
-                  name={LOFI_USER.ADMIN_CODE}
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-          )}
 
           <div>
             <button
