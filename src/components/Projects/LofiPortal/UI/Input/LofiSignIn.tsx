@@ -25,6 +25,7 @@ const LofiSinIn: React.FC = () => {
   const submitHandler = async () => {
     try {
       const data = await UseFetch(
+        "login",
         "POST",
         JSON.stringify({
           email: login.email,
