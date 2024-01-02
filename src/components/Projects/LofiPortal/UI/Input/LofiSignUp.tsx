@@ -21,6 +21,28 @@ const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
   return (
     <div>
       <form className="space-y-6" id="login-form">
+      <div>
+          <label
+            htmlFor={LOFI_USER.USERNAME}
+            className="block text-sm font-medium leading-6 text-white"
+          >
+            Username
+          </label>
+          <div className="mt-2">
+            <input
+              onChange={(e) =>
+                inputLoginHandler(LOFI_USER.USERNAME, e.target.value)
+              }
+              id={LOFI_USER.USERNAME}
+              name={LOFI_USER.USERNAME}
+              type={LOFI_USER.USERNAME}
+              autoComplete={LOFI_USER.USERNAME}
+              value={inputObject.email}
+              required
+              className="w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
         <div>
           <label
             htmlFor={LOFI_USER.EMAIL}
@@ -50,6 +72,29 @@ const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
             className="block text-sm font-medium leading-6"
           >
             Password
+          </label>
+
+          <div className="mt-2">
+            <input
+              onChange={(e) =>
+                inputLoginHandler(LOFI_USER.PASSWORD, e.target.value)
+              }
+              id={LOFI_USER.PASSWORD}
+              value={inputObject.password}
+              type={LOFI_USER.PASSWORD}
+              name={LOFI_USER.PASSWORD}
+              autoComplete="current-password"
+              required
+              className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            htmlFor={LOFI_USER.PASSWORD}
+            className="block text-sm font-medium leading-6"
+          >
+            Confirm password
           </label>
 
           <div className="mt-2">
