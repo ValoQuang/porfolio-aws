@@ -1,19 +1,21 @@
 import { useCallback, useState } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
-import { LOFI_USER } from "../../../../../types";
+import { LOCAL_STORAGE, LOFI_USER } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
+import { setInLocalStorage } from "../../../../../utils/localStorage";
 
 interface Login {
   email: string;
   password: string;
 }
 
-const LofiSinIn: React.FC = () => {
+const LofiSignIn: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [login, setLogin] = useState<Login>({
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
 
   const inputLoginHandler = useCallback((name: string, prop: string) => {
     setLogin((prevLogin) => ({
@@ -22,9 +24,10 @@ const LofiSinIn: React.FC = () => {
     }));
   }, []);
 
-  const submitHandler = async () => {
+  const submitHandler = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     try {
-      const data = await UseFetch(
+      const response = await UseFetch(
         "login",
         "POST",
         JSON.stringify({
@@ -32,9 +35,14 @@ const LofiSinIn: React.FC = () => {
           password: login.password,
         })
       );
-      console.log("Data:", data);
+      if (response.error) {
+        setError(response.error);
+      }
+      setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
+     
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Unexpected error:", error);
+     
     }
   };
 
@@ -43,7 +51,7 @@ const LofiSinIn: React.FC = () => {
   };
 
   return (
-    <div className=" text-white flex h-[650px] bottom-[-70px] absolute pb-6 flex-col lg:px-8 lofi-container">
+    <div className="text-white flex h-[650px] bottom-[-70px] absolute pb-6 flex-col lg:px-8 lofi-container">
       <div className="sm:mx-auto w-80">
         <img
           className="mx-auto h-20 w-auto"
@@ -56,7 +64,7 @@ const LofiSinIn: React.FC = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" id="login-form">
           <div>
             <label
               htmlFor={LOFI_USER.EMAIL}
@@ -115,6 +123,8 @@ const LofiSinIn: React.FC = () => {
               {isSignUp ? "Sign up" : "Sign in"}
             </button>
           </div>
+
+          {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
         </form>
 
         <div className="flex gap-5 items-center mt-10 text-center text-sm text-gray-500">
@@ -131,4 +141,4 @@ const LofiSinIn: React.FC = () => {
   );
 };
 
-export default LofiSinIn;
+export default LofiSignIn;
