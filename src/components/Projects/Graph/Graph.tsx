@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import GraphProfile from "./GraphProfile";
-import StatusModal from "./UI/Modals/StatusModal";
 import { GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
-import InfoModal from "./UI/Modals/InfoModal";
 import { useModalStore } from "../../../store/modalStore";
+
+const StatusModal = lazy(() => import("./UI/Modals/StatusModal"));
+const InfoModal = lazy(() => import("./UI/Modals/InfoModal"));
 
 const Graph = () => {
   const [isStatusOpen, isInfoOpen, setModalState] = useModalStore((state) => [
@@ -50,6 +51,7 @@ const Graph = () => {
 
   return (
     <>
+    <Suspense fallback={<div>Loading...</div>}>
       <StatusModal
         isOpen={isStatusOpen}
         fetchedStatus={data?.user?.status}
@@ -130,6 +132,7 @@ const Graph = () => {
           </div>
         }
       />
+      </Suspense>
     </>
   );
 };
