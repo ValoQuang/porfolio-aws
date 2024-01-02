@@ -92,7 +92,7 @@ const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
         <div>
           <label
             htmlFor={LOFI_USER.PASSWORD}
-            className="block text-sm font-medium leading-6"
+            className="block text-sm font-medium"
           >
             Confirm password
           </label>

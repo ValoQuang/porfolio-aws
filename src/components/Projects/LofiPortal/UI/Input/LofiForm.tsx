@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import { LOCAL_STORAGE } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
-import LofiSignIn from "./LofiSignIn";
-import LofiSignUp from "./LofiSignUp";
 
 export interface InputObjectProp {
   email: string;
@@ -17,6 +15,8 @@ const inputState = {
   email: "",
   password: "",
 }
+const LofiSignIn = lazy(() => import("./LofiSignIn"));
+const LofiSignUp = lazy(() => import("./LofiSignUp"));
 
 const LofiForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
