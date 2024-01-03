@@ -10,18 +10,10 @@ export const SignupSchema = Yup.object().shape({
   password: Yup.string()
     .min(2, "Password must be minimum 5 characters")
     .max(50, "Password cannot be too Long")
-    .matches(passwordRules, "please enter stronger password")
+    .matches(passwordRules, "Please enter stronger password")
     .required("Required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Password must match")
-    .required(),
+    .required("Required"),
   email: Yup.string().email("Please enter valid email").required("Required"),
 });
-
-export const validateEmail = (email: string) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-};

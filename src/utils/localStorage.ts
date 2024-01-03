@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE } from "../types/localStorageEnum";
 
-type LOCAL_STORAGE_KEYS = LOCAL_STORAGE.USER | LOCAL_STORAGE.PAGE | LOCAL_STORAGE.LOG;
+type LOCAL_STORAGE_KEYS = LOCAL_STORAGE.USER | LOCAL_STORAGE.PAGE | LOCAL_STORAGE.SIGNUP;
 
 export const getFromLocalStorage = (key: LOCAL_STORAGE_KEYS) => {
   return localStorage.getItem(key)!;

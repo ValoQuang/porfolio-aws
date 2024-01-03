@@ -1,28 +1,5 @@
-import { FormikErrors, FormikTouched } from "formik";
-import { ChangeEventHandler, ReactNode } from "react";
-
-type FormikFieldFeedback =
-  | string
-  | FormikErrors<any>
-  | string[]
-  | FormikErrors<any>[]
-
-interface LofiInputProp {
-  title: string;
-  type: string;
-  value: string | number;
-  handleChange: ChangeEventHandler<HTMLInputElement>;
-  handleBlur: ChangeEventHandler<HTMLInputElement>;
-
-  id: string;
-  error: FormikFieldFeedback;
-  touched: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
-}
-
-type ErrorType = {
-  error: FormikFieldFeedback;
-  touched: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
-};
+import { ReactNode } from "react";
+import { ErrorType, LofiInputProp } from "../../../../../types";
 
 const errorDisplayHandler = ({ error, touched }: ErrorType) => {
   return (

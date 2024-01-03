@@ -1,34 +1,19 @@
 import {
-  ChangeEventHandler,
-  FormEvent,
+
   lazy,
   useEffect,
   useState,
 } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
-import { LOCAL_STORAGE } from "../../../../../types";
+import { FormikInputProp, LOCAL_STORAGE, ValueInputType } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
 import { SignupSchema } from "../../../../../utils/validateInput";
-import { FormikErrors, useFormik } from "formik";
+import { useFormik } from "formik";
 
-type FormikFieldFeedback =
-  | string
-  | FormikErrors<any>
-  | string[]
-  | FormikErrors<any>[]
-  | undefined
-  | any;
-export interface FormikInputProp {
-  values: any;
-  handleChange: ChangeEventHandler<HTMLInputElement>;
-  handleBlur: ChangeEventHandler<HTMLInputElement>;
-  handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
-  errors: FormikFieldFeedback;
-  touched: any;
-}
 
-const inputState = {
+
+const inputState:ValueInputType = {
   username: "",
   email: "",
   password: "",
@@ -57,7 +42,7 @@ const LofiForm: React.FC = () => {
   });
 
   useEffect(() => {
-    setInLocalStorage(LOCAL_STORAGE.LOG, JSON.stringify(isSignUp));
+    setInLocalStorage(LOCAL_STORAGE.SIGNUP, JSON.stringify(isSignUp));
   }, [isSignUp]);
 
   const submitFormHandler = async (event: { preventDefault: () => void }) => {

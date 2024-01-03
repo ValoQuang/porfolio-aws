@@ -1,5 +1,5 @@
-import { LOFI_USER } from "../../../../../types";
-import { FormikInputProp } from "./LofiForm";
+import { FormikInputProp, LOFI_USER } from "../../../../../types";
+
 import LofiInput from "./LofiInput";
 
 const LofiSignUp = ({
@@ -32,7 +32,6 @@ const LofiSignUp = ({
           title={LOFI_USER.PASSWORD}
           value={values.password}
           type={LOFI_USER.PASSWORD}
-          error={errors.password}
           handleBlur={handleBlur}
           handleChange={handleChange}
         />

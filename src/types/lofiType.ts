@@ -1,4 +1,6 @@
+import { FormikErrors, FormikTouched } from "formik";
 import { LOFI_AMBIENT, LOFI_MOOD } from "./lofiEnum";
+import { ChangeEventHandler, FormEvent } from "react";
 
 export interface initialAmbient {
   [LOFI_AMBIENT.RAIN]: number;
@@ -37,3 +39,43 @@ export interface lofiStore {
   currentAmbient: initialAmbient;
   currentMood: string | LOFI_MOOD.CHILL | LOFI_MOOD.SLEEP | LOFI_MOOD.JAZZ;
 }
+
+export type FormikFieldFeedback =
+  | string
+  | FormikErrors<any>
+  | string[]
+  | FormikErrors<any>[]
+  | undefined
+  | any;
+export interface FormikInputProp {
+  values: ValueInputType;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleBlur: ChangeEventHandler<HTMLInputElement>;
+  handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
+  errors?: FormikFieldFeedback;
+  touched: any;
+}
+
+export interface ValueInputType {
+  username: string,
+  email: string,
+  password: string,
+  confirmPassword: string,
+}
+
+export interface LofiInputProp {
+  title: string;
+  type: string;
+  value: string | number;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleBlur: ChangeEventHandler<HTMLInputElement>;
+
+  id: string;
+  error?: FormikFieldFeedback;
+  touched: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
+}
+
+export type ErrorType = {
+  error: FormikFieldFeedback | undefined;
+  touched: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
+};
