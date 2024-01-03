@@ -16,14 +16,13 @@ const LofiPortal = () => {
                 src={background}
                 alt="login background"
               />
-              <div className="absolute left-[36%] sm:bottom-[5%] 2xl:bottom-[15%] 2xl:left-[42%]">
+              <div className="absolute left-[36%] top-[10%] h-[90%] 2xl:left-[42%]">
                 <LofiForm />
               </div>
-
               {
-                <div>
+                <>
                   <Dashboard />
-                </div>
+                </>
               }
             </div>
           </>

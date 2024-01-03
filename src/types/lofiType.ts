@@ -54,6 +54,7 @@ export interface FormikInputProp {
   handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
   errors?: FormikFieldFeedback;
   touched: any;
+  resetForm?: () => void;
 }
 
 export interface ValueInputType {

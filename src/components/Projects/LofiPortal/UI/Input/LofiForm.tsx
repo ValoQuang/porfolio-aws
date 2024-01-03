@@ -1,19 +1,16 @@
-import {
-
-  lazy,
-  useEffect,
-  useState,
-} from "react";
+import { lazy, useEffect, useState } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
-import { FormikInputProp, LOCAL_STORAGE, ValueInputType } from "../../../../../types";
+import {
+  FormikInputProp,
+  LOCAL_STORAGE,
+  ValueInputType,
+} from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
 import { SignupSchema } from "../../../../../utils/validateInput";
 import { useFormik } from "formik";
 
-
-
-const inputState:ValueInputType = {
+const inputState: ValueInputType = {
   username: "",
   email: "",
   password: "",
@@ -33,6 +30,7 @@ const LofiForm: React.FC = () => {
     handleChange,
     handleSubmit,
     touched,
+    resetForm,
   }: FormikInputProp = useFormik({
     initialValues: inputState,
     validationSchema: SignupSchema,
@@ -43,12 +41,20 @@ const LofiForm: React.FC = () => {
 
   useEffect(() => {
     setInLocalStorage(LOCAL_STORAGE.SIGNUP, JSON.stringify(isSignUp));
-  }, [isSignUp]);
+    resetForm();
+  }, [isSignUp, resetForm]);
 
   const submitFormHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
-      const response = await UseFetch("login", "POST", JSON.stringify(values));
+      const response = await UseFetch(
+        "login",
+        "POST",
+        JSON.stringify({
+          email: values.email,
+          password: values.password,
+        })
+      );
       if (response.error) {
         setError(response.error);
       }
@@ -63,7 +69,7 @@ const LofiForm: React.FC = () => {
   };
 
   return (
-    <div className="text-white flex h-[750px] bottom-[-70px] absolute pb-6 flex-col lg:px-8 lofi-container">
+    <div className="text-white flex h-full absolute pb-6 flex-col lg:px-8 lofi-container">
       <div className="sm:mx-auto w-80">
         <img
           className="mx-auto h-20 w-auto"
