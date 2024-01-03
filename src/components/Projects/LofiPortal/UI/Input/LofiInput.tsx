@@ -6,7 +6,6 @@ type FormikFieldFeedback =
   | FormikErrors<any>
   | string[]
   | FormikErrors<any>[]
-  | undefined;
 
 interface LofiInputProp {
   title: string;

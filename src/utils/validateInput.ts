@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const passwordRules = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+const passwordRules = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()

@@ -1,42 +1,71 @@
-import { lazy, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEvent,
+  lazy,
+  useEffect,
+  useState,
+} from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import { LOCAL_STORAGE } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
+import { SignupSchema } from "../../../../../utils/validateInput";
+import { FormikErrors, useFormik } from "formik";
 
-export interface InputObjectProp {
-  email: string;
-  password: string;
-  username?: string;
+type FormikFieldFeedback =
+  | string
+  | FormikErrors<any>
+  | string[]
+  | FormikErrors<any>[]
+  | undefined
+  | any;
+export interface FormikInputProp {
+  values: any;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleBlur: ChangeEventHandler<HTMLInputElement>;
+  handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
+  errors: FormikFieldFeedback;
+  touched: any;
 }
 
 const inputState = {
   username: "",
   email: "",
   password: "",
-}
+  confirmPassword: "",
+};
 const LofiSignIn = lazy(() => import("./LofiSignIn"));
 const LofiSignUp = lazy(() => import("./LofiSignUp"));
 
 const LofiForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [inputObject, setInputObject] = useState<InputObjectProp>(inputState);
   const [error, setError] = useState<string | null>(null);
+
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    touched,
+  }: FormikInputProp = useFormik({
+    initialValues: inputState,
+    validationSchema: SignupSchema,
+    onSubmit: (values: any) => {
+      values.reset();
+    },
+  });
+
+  useEffect(() => {
+    setInLocalStorage(LOCAL_STORAGE.LOG, JSON.stringify(isSignUp));
+  }, [isSignUp]);
 
   const submitFormHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
-      const response = await UseFetch(
-        "login",
-        "POST",
-        JSON.stringify({
-          email: inputObject.email,
-          password: inputObject.password,
-        })
-      );
+      const response = await UseFetch("login", "POST", JSON.stringify(values));
       if (response.error) {
         setError(response.error);
-        setInputObject(inputState);
       }
       setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
     } catch (error) {
@@ -64,11 +93,25 @@ const LofiForm: React.FC = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {isSignUp ? (
           <>
-            <LofiSignUp inputObject={inputObject} setInputObject={setInputObject}/>
+            <LofiSignUp
+              values={values}
+              errors={errors}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              touched={touched}
+              handleSubmit={handleSubmit}
+            />
           </>
         ) : (
           <>
-            <LofiSignIn inputObject={inputObject} setInputObject={setInputObject} />
+            <LofiSignIn
+              values={values}
+              errors={errors}
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              touched={touched}
+              handleSubmit={handleSubmit}
+            />
           </>
         )}
 
@@ -91,7 +134,9 @@ const LofiForm: React.FC = () => {
             </div>
           </div>
         </div>
-        {error && !isSignUp && <div className="text-red-500 text-sm mt-2">{error}</div>}
+        {error && !isSignUp && (
+          <div className="text-red-500 text-sm mt-2">{error}</div>
+        )}
       </div>
     </div>
   );

@@ -1,30 +1,8 @@
-import React, { ReactNode } from "react";
 import { LOFI_USER } from "../../../../../types";
-import { InputObjectProp } from "./LofiForm";
-import { Formik, Form, Field, useFormik } from "formik";
-import { SignupSchema } from "../../../../../utils/validateInput";
+import { FormikInputProp } from "./LofiForm";
 import LofiInput from "./LofiInput";
 
-type LofiSignUpProp = {
-  inputObject: InputObjectProp;
-  setInputObject: React.Dispatch<React.SetStateAction<InputObjectProp>>;
-};
-
-const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
-  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
-    useFormik({
-      initialValues: {
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      },
-      validationSchema: SignupSchema,
-      onSubmit: (values: any) => {
-        values.reset();
-      },
-    });
-  console.log(values);
+const LofiSignUp = ({values, handleChange, handleSubmit, handleBlur, touched, errors}:FormikInputProp) => {
 
   return (
     <div>
