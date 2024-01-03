@@ -1,4 +1,4 @@
-import { FormikErrors, FormikTouched } from "formik";
+import { FormikErrors, FormikTouched, FormikValues } from "formik";
 import { LOFI_AMBIENT, LOFI_MOOD } from "./lofiEnum";
 import { ChangeEventHandler } from "react";
 
@@ -47,7 +47,7 @@ export type FormikFieldFeedback =
   | FormikErrors<any>[]
   | undefined
   | any;
-export interface FormikInputProp {
+export interface FormikInputProp extends FormikValues {
   values: ValueInputType;
   handleChange: ChangeEventHandler<HTMLInputElement>;
   handleBlur: ChangeEventHandler<HTMLInputElement>;
