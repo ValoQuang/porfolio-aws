@@ -25,22 +25,18 @@ const LofiForm: React.FC = () => {
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   const submitFormHandler = async () => {
-    try {
-      const response = await UseFetch(
-        isSignUp ? LOFI_METHOD.SIGNUP : LOFI_METHOD.LOGIN,
-        "POST",
-        JSON.stringify({
-          email: values.email,
-          password: values.password,
-        })
-      );
-      if (response.error) {
-        setFetchError(response.error);
-      }
-      setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
-    } catch (error) {
-      console.error("Unexpected error:", error);
+    const response = await UseFetch(
+      isSignUp ? LOFI_METHOD.SIGNUP : LOFI_METHOD.LOGIN,
+      "POST",
+      JSON.stringify({
+        email: values.email,
+        password: values.password,
+      })
+    );
+    if (response.error) {
+      setFetchError(response.error);
     }
+    setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
   };
 
   const {
