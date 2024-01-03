@@ -12,7 +12,7 @@ const LofiSignUp = ({
     <div>
       <form
         id="login-form"
-        className="space-y-6 block text-sm font-medium leading-6 text-white"
+        className="space-y-2 block text-sm font-medium leading-6 text-white"
       >
         {/* USERNAME */}
         <LofiInput

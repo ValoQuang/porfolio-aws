@@ -11,7 +11,10 @@ const LofiSignUp = ({
 }: FormikInputProp) => {
   return (
     <div>
-      <form className="space-y-6" id="login-form">
+      <form
+        id="login-form"
+        className="space-y-2 block text-sm font-medium leading-6 text-white"
+      >
         {/* EMAIl */}
         <LofiInput
           id={LOFI_USER.EMAIL}

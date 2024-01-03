@@ -52,7 +52,7 @@ export interface FormikInputProp {
   handleChange: ChangeEventHandler<HTMLInputElement>;
   handleBlur: ChangeEventHandler<HTMLInputElement>;
   errors?: FormikFieldFeedback;
-  touched: any;
+  touched: FormikFieldFeedback;
   resetForm?: () => void;
 }
 

@@ -5,7 +5,7 @@ const errorDisplayHandler = ({ error, touched }: ErrorType) => {
   return (
     <>
       {error && touched && (
-        <div className="text-red-500 text-sm mt-2">{error as ReactNode}</div>
+        <div className="text-red-500 text-sm">{error as ReactNode}</div>
       )}
     </>
   );
@@ -25,8 +25,10 @@ const LofiInput = ({
   return (
     <>
       <div>
-        <label htmlFor={type}>{renderedTitle}</label>
-        <div className="mt-2">
+        <label htmlFor={type} className="flex items-center gap-3">
+          {renderedTitle} {errorDisplayHandler({ error, touched })}
+        </label>
+        <div>
           <input
             onChange={handleChange}
             onBlur={handleBlur}
@@ -34,10 +36,9 @@ const LofiInput = ({
             type={type}
             value={value}
             required
-            className="w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
+            className="w-full hover:bg-zinc-700 border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
           />
         </div>
-        {errorDisplayHandler({ error, touched })}
       </div>
     </>
   );
