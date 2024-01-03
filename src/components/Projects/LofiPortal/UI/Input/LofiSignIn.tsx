@@ -5,7 +5,6 @@ import LofiInput from "./LofiInput";
 const LofiSignUp = ({
   values,
   handleChange,
-  handleSubmit,
   handleBlur,
   touched,
   errors,
@@ -13,7 +12,7 @@ const LofiSignUp = ({
   return (
     <div>
       <form className="space-y-6" id="login-form">
-         {/* EMAIl */}
+        {/* EMAIl */}
         <LofiInput
           id={LOFI_USER.EMAIL}
           touched={touched.email}

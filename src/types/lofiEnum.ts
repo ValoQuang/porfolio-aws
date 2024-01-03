@@ -35,3 +35,8 @@ export enum LOFI_USER  {
   PASSWORD = "password",
   USERNAME = "username"
 }
+
+export enum LOFI_METHOD {
+  LOGIN = "login",
+  SIGNUP = "signup"
+}

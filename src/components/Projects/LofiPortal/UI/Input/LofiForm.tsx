@@ -3,6 +3,7 @@ import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import {
   FormikInputProp,
   LOCAL_STORAGE,
+  LOFI_METHOD,
   ValueInputType,
 } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
@@ -23,32 +24,10 @@ const LofiForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const {
-    values,
-    errors,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    touched,
-    resetForm,
-  }: FormikInputProp = useFormik({
-    initialValues: inputState,
-    validationSchema: SignupSchema,
-    onSubmit: (values: any) => {
-      values.reset();
-    },
-  });
-
-  useEffect(() => {
-    setInLocalStorage(LOCAL_STORAGE.SIGNUP, JSON.stringify(isSignUp));
-    resetForm();
-  }, [isSignUp, resetForm]);
-
-  const submitFormHandler = async (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+  const submitFormHandler = async () => {
     try {
       const response = await UseFetch(
-        "login",
+        isSignUp ? LOFI_METHOD.SIGNUP : LOFI_METHOD.LOGIN,
         "POST",
         JSON.stringify({
           email: values.email,
@@ -63,6 +42,26 @@ const LofiForm: React.FC = () => {
       console.error("Unexpected error:", error);
     }
   };
+
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    touched,
+    resetForm,
+  }: FormikInputProp = useFormik({
+    initialValues: inputState,
+    validationSchema: SignupSchema,
+    onSubmit: (value: any) => {
+      value.reset();
+    },
+  });
+
+  useEffect(() => {
+    setInLocalStorage(LOCAL_STORAGE.SIGNUP, JSON.stringify(isSignUp));
+    resetForm();
+  }, [isSignUp, resetForm]);
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -90,7 +89,6 @@ const LofiForm: React.FC = () => {
               handleBlur={handleBlur}
               handleChange={handleChange}
               touched={touched}
-              handleSubmit={handleSubmit}
             />
           </>
         ) : (
@@ -101,7 +99,6 @@ const LofiForm: React.FC = () => {
               handleBlur={handleBlur}
               handleChange={handleChange}
               touched={touched}
-              handleSubmit={handleSubmit}
             />
           </>
         )}

@@ -1,12 +1,16 @@
 import { FormikInputProp, LOFI_USER } from "../../../../../types";
 import LofiInput from "./LofiInput";
 
-const LofiSignUp = ({values, handleChange, handleSubmit, handleBlur, touched, errors}:FormikInputProp) => {
-
+const LofiSignUp = ({
+  values,
+  handleChange,
+  handleBlur,
+  touched,
+  errors,
+}: FormikInputProp) => {
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
         id="login-form"
         className="space-y-6 block text-sm font-medium leading-6 text-white"
       >

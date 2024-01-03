@@ -51,17 +51,16 @@ export interface FormikInputProp {
   values: ValueInputType;
   handleChange: ChangeEventHandler<HTMLInputElement>;
   handleBlur: ChangeEventHandler<HTMLInputElement>;
-  handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
   errors?: FormikFieldFeedback;
   touched: any;
   resetForm?: () => void;
 }
 
 export interface ValueInputType {
-  username: string,
-  email: string,
-  password: string,
-  confirmPassword: string,
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
 export interface LofiInputProp {
