@@ -2,13 +2,13 @@ import { lazy, Suspense, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
-import GraphProfile from "./GraphProfile";
 import { GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
 import { useModalStore } from "../../../store/modalStore";
 
 const StatusModal = lazy(() => import("./UI/Modals/StatusModal"));
 const InfoModal = lazy(() => import("./UI/Modals/InfoModal"));
+const GraphProfile = lazy(() => import("./GraphProfile"));
 
 const Graph = () => {
   const [isStatusOpen, isInfoOpen, setModalState] = useModalStore((state) => [
@@ -51,7 +51,7 @@ const Graph = () => {
 
   return (
     <>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <StatusModal
         isOpen={isStatusOpen}
         fetchedStatus={data?.user?.status}
