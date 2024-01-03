@@ -1,6 +1,6 @@
 import { FormikErrors, FormikTouched } from "formik";
 import { LOFI_AMBIENT, LOFI_MOOD } from "./lofiEnum";
-import { ChangeEventHandler, FormEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 export interface initialAmbient {
   [LOFI_AMBIENT.RAIN]: number;
