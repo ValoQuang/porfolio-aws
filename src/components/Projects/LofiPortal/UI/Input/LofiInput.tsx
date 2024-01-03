@@ -21,10 +21,11 @@ const LofiInput = ({
   touched,
   id,
 }: LofiInputProp) => {
+  const renderedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
   return (
     <>
       <div>
-        <label htmlFor={type}>{title}</label>
+        <label htmlFor={type}>{renderedTitle}</label>
         <div className="mt-2">
           <input
             onChange={handleChange}
