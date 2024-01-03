@@ -10,7 +10,7 @@ type LofiSignUpProp = {
 const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
   const inputLoginHandler = useCallback(
     (name: string, prop: string) => {
-      setInputObject((prevLogin: any) => ({
+      setInputObject((prevLogin) => ({
         ...prevLogin,
         [name]: prop,
       }));

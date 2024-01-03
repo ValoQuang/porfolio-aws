@@ -1,117 +1,85 @@
-import React, { useCallback } from "react";
+import React, { ReactNode } from "react";
 import { LOFI_USER } from "../../../../../types";
 import { InputObjectProp } from "./LofiForm";
+import { Formik, Form, Field, useFormik } from "formik";
+import { SignupSchema } from "../../../../../utils/validateInput";
+import LofiInput from "./LofiInput";
 
 type LofiSignUpProp = {
-    inputObject: InputObjectProp, 
-    setInputObject: React.Dispatch<React.SetStateAction<InputObjectProp>>
-}
+  inputObject: InputObjectProp;
+  setInputObject: React.Dispatch<React.SetStateAction<InputObjectProp>>;
+};
 
 const LofiSignUp = ({ inputObject, setInputObject }: LofiSignUpProp) => {
-  const inputLoginHandler = useCallback(
-    (name: string, prop: string) => {
-      setInputObject((prevLogin: any) => ({
-        ...prevLogin,
-        [name]: prop,
-      }));
-    },
-    [setInputObject]
-  );
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
+    useFormik({
+      initialValues: {
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: SignupSchema,
+      onSubmit: (values: any) => {
+        values.reset();
+      },
+    });
+  console.log(values);
 
   return (
     <div>
-      <form className="space-y-6" id="login-form">
-      <div>
-          <label
-            htmlFor={LOFI_USER.USERNAME}
-            className="block text-sm font-medium leading-6 text-white"
-          >
-            Username
-          </label>
-          <div className="mt-2">
-            <input
-              onChange={(e) =>
-                inputLoginHandler(LOFI_USER.USERNAME, e.target.value)
-              }
-              id={LOFI_USER.USERNAME}
-              name={LOFI_USER.USERNAME}
-              type={LOFI_USER.USERNAME}
-              autoComplete={LOFI_USER.USERNAME}
-              value={inputObject.email}
-              required
-              className="w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-        <div>
-          <label
-            htmlFor={LOFI_USER.EMAIL}
-            className="block text-sm font-medium leading-6 text-white"
-          >
-            Email address
-          </label>
-          <div className="mt-2">
-            <input
-              onChange={(e) =>
-                inputLoginHandler(LOFI_USER.EMAIL, e.target.value)
-              }
-              id={LOFI_USER.EMAIL}
-              name={LOFI_USER.EMAIL}
-              type={LOFI_USER.EMAIL}
-              autoComplete={LOFI_USER.EMAIL}
-              value={inputObject.email}
-              required
-              className="w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
+      <form
+        onSubmit={handleSubmit}
+        id="login-form"
+        className="space-y-6 block text-sm font-medium leading-6 text-white"
+      >
+        {/* USERNAME */}
+        <LofiInput
+          id={LOFI_USER.USERNAME}
+          touched={touched.username}
+          title={LOFI_USER.USERNAME}
+          value={values.username}
+          type={LOFI_USER.USERNAME}
+          error={errors.username}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+        />
 
-        <div>
-          <label
-            htmlFor={LOFI_USER.PASSWORD}
-            className="block text-sm font-medium leading-6"
-          >
-            Password
-          </label>
+        {/* EMAIl */}
+        <LofiInput
+          id={LOFI_USER.EMAIL}
+          touched={touched.email}
+          title={LOFI_USER.EMAIL}
+          value={values.email}
+          type={LOFI_USER.EMAIL}
+          error={errors.email}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+        />
 
-          <div className="mt-2">
-            <input
-              onChange={(e) =>
-                inputLoginHandler(LOFI_USER.PASSWORD, e.target.value)
-              }
-              id={LOFI_USER.PASSWORD}
-              value={inputObject.password}
-              type={LOFI_USER.PASSWORD}
-              name={LOFI_USER.PASSWORD}
-              autoComplete="current-password"
-              required
-              className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-        <div>
-          <label
-            htmlFor={LOFI_USER.PASSWORD}
-            className="block text-sm font-medium"
-          >
-            Confirm password
-          </label>
+        {/* PASSWORD */}
+        <LofiInput
+          id={LOFI_USER.PASSWORD}
+          touched={touched.password}
+          title={LOFI_USER.PASSWORD}
+          value={values.password}
+          type={LOFI_USER.PASSWORD}
+          error={errors.password}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+        />
 
-          <div className="mt-2">
-            <input
-              onChange={(e) =>
-                inputLoginHandler(LOFI_USER.PASSWORD, e.target.value)
-              }
-              id={LOFI_USER.PASSWORD}
-              value={inputObject.password}
-              type={LOFI_USER.PASSWORD}
-              name={LOFI_USER.PASSWORD}
-              autoComplete="current-password"
-              required
-              className="block w-full rounded-md border-0 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 lofi-container focus:ring-2 focus:ring-inset focus:ring-orange-400 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
+        {/* CONFIRM PASSWORD */}
+        <LofiInput
+          id="confirmPassword"
+          touched={touched.confirmPassword}
+          title="Confirm password"
+          value={values.confirmPassword}
+          type={LOFI_USER.PASSWORD}
+          error={errors.confirmPassword}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+        />
       </form>
     </div>
   );

@@ -18,6 +18,7 @@
     "@types/three": "^0.158.2",
     "dotenv": "^16.3.1",
     "emoji-mart": "^5.5.2",
+    "formik": "^2.4.5",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "lodash": "^4.17.21",
