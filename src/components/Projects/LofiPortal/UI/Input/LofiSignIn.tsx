@@ -1,4 +1,5 @@
-import { FormikInputProp, LOFI_USER } from "../../../../../types";
+import { FormikValues } from "formik";
+import { LOFI_USER } from "../../../../../types";
 
 import LofiInput from "./LofiInput";
 
@@ -8,7 +9,7 @@ const LofiSignUp = ({
   handleBlur,
   touched,
   errors,
-}: FormikInputProp) => {
+}: FormikValues) => {
   return (
     <div>
       <form

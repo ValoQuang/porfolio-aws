@@ -1,7 +1,6 @@
 import { lazy, useEffect, useState, Suspense } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import {
-  FormikInputProp,
   LOCAL_STORAGE,
   LOFI_METHOD,
   ValueInputType,
@@ -9,7 +8,7 @@ import {
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
 import { SignupSchema } from "../../../../../utils/validateInput";
-import { useFormik } from "formik";
+import { FormikValues, useFormik } from "formik";
 
 const inputState: ValueInputType = {
   username: "",
@@ -22,7 +21,7 @@ const LofiSignUp = lazy(() => import("./LofiSignUp"));
 
 const LofiForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [fetchMessage, setFetchMessage] = useState<any>({});
 
   const submitFormHandler = async () => {
     const response = await UseFetch(
@@ -33,10 +32,13 @@ const LofiForm: React.FC = () => {
         password: values.password,
       })
     );
-    if (response.error) {
-      setFetchError(response.error);
+    if (response) {
+      setFetchMessage(response);
+      setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
     }
-    setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
+    if (response && response.code === 201) {
+      setIsSignUp(!isSignUp);
+    }
   };
 
   const {
@@ -46,7 +48,8 @@ const LofiForm: React.FC = () => {
     handleChange,
     touched,
     resetForm,
-  }: FormikInputProp = useFormik({
+    isValid,
+  }: FormikValues = useFormik({
     initialValues: inputState,
     validationSchema: SignupSchema,
     onSubmit: (value: any) => {
@@ -55,9 +58,9 @@ const LofiForm: React.FC = () => {
   });
 
   useEffect(() => {
-    setInLocalStorage(LOCAL_STORAGE.SIGNUP, JSON.stringify(isSignUp));
     resetForm();
-  }, [isSignUp, resetForm]);
+    setFetchMessage(fetchMessage);
+  }, [fetchMessage, isSignUp, resetForm]);
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -104,7 +107,10 @@ const LofiForm: React.FC = () => {
             <button
               onClick={submitFormHandler}
               type="submit"
-              className="bg-orange-500 hover:bg-orange-400 flex w-full justify-center rounded-md  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className={`bg-orange-500 hover:bg-orange-400 flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                !isValid && "opacity-90 bg-gray-500 cursor-not-allowed"
+              }`}
+              disabled={!isValid}
             >
               {isSignUp ? "Sign up" : "Sign in"}
             </button>
@@ -119,8 +125,14 @@ const LofiForm: React.FC = () => {
               </div>
             </div>
           </div>
-          {fetchError && !isSignUp && (
-            <div className="text-red-500 text-sm mt-2">{fetchError}</div>
+          {fetchMessage && (
+            <div
+              className={`${
+                fetchMessage.message ? "text-green-500" : "text-red-500"
+              } text-sm mt-2`}
+            >
+              {fetchMessage.error || fetchMessage.message}
+            </div>
           )}
         </div>
       </div>
