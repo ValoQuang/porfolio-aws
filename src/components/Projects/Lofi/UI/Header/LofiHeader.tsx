@@ -3,7 +3,10 @@ import DarkLightSwitch from "../Button/LofiDayButton";
 import { LOCAL_STORAGE, LOFI_ENDPOINT, PATH_ENUM } from "../../../../../types";
 import { useEffect, useState } from "react";
 import { UseFetch } from "../../../../../utils/useFetch";
-import { getFromLocalStorage, removeFromLocalStorage } from "../../../../../utils/localStorage";
+import {
+  getFromLocalStorage,
+  removeFromLocalStorage,
+} from "../../../../../utils/localStorage";
 
 export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
@@ -40,8 +43,13 @@ const LofiHeader = () => {
     }
   };
 
-  const redirectPath = (currentUrl: PATH_ENUM, nexturl: string) => {
-    return location.pathname.replace(currentUrl, nexturl);
+  const logOutHandler = () => {
+    setIsLoggedIn(!isLoggedIn);
+    removeFromLocalStorage(LOCAL_STORAGE.USER);
+  };
+
+  const redirectHandler = (currentPath: PATH_ENUM, url: string) => {
+    navigate(location.pathname.replace(currentPath, url));
   };
 
   useEffect(() => {
@@ -97,12 +105,16 @@ const LofiHeader = () => {
           <LinkWithIcon
             icon={ICON_PATHS.info}
             text="How it works"
-            onClickHandler={() => navigate(redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH))}
+            onClickHandler={() =>
+              redirectHandler(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)
+            }
           />
           <LinkWithIcon
             icon={ICON_PATHS.github}
             text="GitHub"
-            onClickHandler={() => navigate(redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH))}
+            onClickHandler={() =>
+              redirectHandler(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)
+            }
           />
         </div>
       </div>
@@ -137,7 +149,11 @@ const LofiHeader = () => {
         {isLoggedIn && (
           <>
             <div className="lofi-container p-[5px] justify-center flex">
-              <LinkWithIcon icon={ICON_PATHS.login} text="Logout" />
+              <LinkWithIcon
+                icon={ICON_PATHS.login}
+                text="Logout"
+                onClickHandler={logOutHandler}
+              />
             </div>
           </>
         )}
@@ -149,7 +165,7 @@ const LofiHeader = () => {
 interface linkWithIcon {
   icon: string;
   text: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (() => void) | ((prop: any) => void) | undefined;
 }
 
 const LinkWithIcon = ({ icon, text, onClickHandler }: linkWithIcon) => {
