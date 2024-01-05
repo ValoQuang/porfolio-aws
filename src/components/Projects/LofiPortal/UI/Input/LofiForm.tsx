@@ -3,14 +3,12 @@ import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import {
   LOCAL_STORAGE,
   LOFI_METHOD,
-  PATH_ENUM,
   ValueInputType,
 } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
 import { SignupSchema } from "../../../../../utils/validateInput";
 import { FormikValues, useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 
 const inputState: ValueInputType = {
   username: "",
