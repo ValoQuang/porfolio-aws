@@ -3,12 +3,14 @@ import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import {
   LOCAL_STORAGE,
   LOFI_METHOD,
+  PATH_ENUM,
   ValueInputType,
 } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
 import { setInLocalStorage } from "../../../../../utils/localStorage";
 import { SignupSchema } from "../../../../../utils/validateInput";
 import { FormikValues, useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 const inputState: ValueInputType = {
   username: "",
@@ -28,6 +30,7 @@ const LofiForm: React.FC = () => {
       isSignUp ? LOFI_METHOD.SIGNUP : LOFI_METHOD.LOGIN,
       "POST",
       JSON.stringify({
+        username: values.sername,
         email: values.email,
         password: values.password,
       })
@@ -35,9 +38,15 @@ const LofiForm: React.FC = () => {
     if (response) {
       setFetchMessage(response);
       setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
-    }
-    if (response && response.code === 201) {
-      setIsSignUp(!isSignUp);
+      console.log(response);
+      if (response.code === 201) {
+        setIsSignUp(!isSignUp);
+      }
+      if (response.token) {
+        const currentUrl = window.location.href;
+        const parentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
+        window.location.href = parentUrl;
+      }
     }
   };
 
@@ -48,7 +57,6 @@ const LofiForm: React.FC = () => {
     handleChange,
     touched,
     resetForm,
-    isValid,
   }: FormikValues = useFormik({
     initialValues: inputState,
     validationSchema: SignupSchema,
@@ -107,10 +115,7 @@ const LofiForm: React.FC = () => {
             <button
               onClick={submitFormHandler}
               type="submit"
-              className={`bg-orange-500 hover:bg-orange-400 flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
-                !isValid && "opacity-90 bg-gray-500 cursor-not-allowed"
-              }`}
-              disabled={!isValid}
+              className="bg-orange-500 hover:bg-orange-400 flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm transition duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {isSignUp ? "Sign up" : "Sign in"}
             </button>

@@ -14,7 +14,7 @@ export const UseFetch = async (path: string, method: Method, body: any) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Login Error:", error);
+    alert(error);
     return error;
   }
 };
