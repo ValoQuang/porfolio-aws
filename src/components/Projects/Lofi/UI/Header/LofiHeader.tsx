@@ -3,7 +3,7 @@ import DarkLightSwitch from "../Button/LofiDayButton";
 import { LOCAL_STORAGE, LOFI_ENDPOINT, PATH_ENUM } from "../../../../../types";
 import { useEffect, useState } from "react";
 import { UseFetch } from "../../../../../utils/useFetch";
-import { getFromLocalStorage } from "../../../../../utils/localStorage";
+import { getFromLocalStorage, removeFromLocalStorage } from "../../../../../utils/localStorage";
 
 export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
@@ -13,10 +13,18 @@ export const ICON_PATHS = {
   login: "/assets/icons/login.svg",
 };
 
+const userState = {
+  username: "",
+  userId: "",
+  email: ",",
+};
+
 const LofiHeader = () => {
+  const navigate = useNavigate();
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(userState);
 
   const fullScreenButtonHandler = async () => {
     const element = document.getElementById("lofi-video");
@@ -37,21 +45,38 @@ const LofiHeader = () => {
   };
 
   useEffect(() => {
-    if (getFromLocalStorage(LOCAL_STORAGE.USER)) {
-      setLoading(!loading);
-      const tokenLocal = JSON.parse(getFromLocalStorage(LOCAL_STORAGE.USER));
-      const token = tokenLocal.token;
-      const response = UseFetch(LOFI_ENDPOINT.AUTHENTICATED, "GET", {
-        Authorization: `Bearer ${token}`,
-      });
-      if (response) {
-        console.log(response);
-        setLoading(false);
+    const checkLocalStorage = async () => {
+      if (getFromLocalStorage(LOCAL_STORAGE.USER)) {
+        setLoading(true);
+        setIsLoggedIn(true);
+
+        try {
+          const tokenLocal = JSON.parse(
+            getFromLocalStorage(LOCAL_STORAGE.USER)
+          );
+          const token = tokenLocal.token;
+          const response = await UseFetch(LOFI_ENDPOINT.AUTHENTICATED, "GET", {
+            Authorization: `Bearer ${token}`,
+          });
+          if (response) {
+            setUser({
+              username: response.username,
+              email: response.email,
+              userId: response.userId,
+            });
+          }
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setIsLoggedIn(false);
       }
-    }
-   
-    
-  }, [loading, ]);
+    };
+
+    checkLocalStorage();
+  }, []);
 
   if (loading) {
     return <div>Loading ...</div>;
@@ -72,12 +97,12 @@ const LofiHeader = () => {
           <LinkWithIcon
             icon={ICON_PATHS.info}
             text="How it works"
-            url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
+            onClickHandler={() => navigate(redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH))}
           />
           <LinkWithIcon
             icon={ICON_PATHS.github}
             text="GitHub"
-            url={redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH)}
+            onClickHandler={() => navigate(redirectPath(PATH_ENUM.LOFI, PATH_ENUM.GRAPH))}
           />
         </div>
       </div>
@@ -91,23 +116,32 @@ const LofiHeader = () => {
         />
       </div>
 
-      {!isLoggedIn ? (
-        <>
-          <div className="lofi-container p-[5px] justify-center flex">
-            <p>Welcome back user</p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="lofi-container p-[5px] justify-center flex">
-            <LinkWithIcon
-              icon={ICON_PATHS.login}
-              text="Login"
-              url={PATH_ENUM.LOFI_PORTAL}
-            />
-          </div>
-        </>
-      )}
+      <div className="flex gap-2">
+        {isLoggedIn ? (
+          <>
+            <div className="lofi-container p-[5px] justify-center flex">
+              <p>Welcome back {user.username}</p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="lofi-container p-[5px] justify-center flex">
+              <LinkWithIcon
+                icon={ICON_PATHS.login}
+                text="Login"
+                onClickHandler={() => navigate(PATH_ENUM.LOFI_PORTAL)}
+              />
+            </div>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <div className="lofi-container p-[5px] justify-center flex">
+              <LinkWithIcon icon={ICON_PATHS.login} text="Logout" />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -115,14 +149,12 @@ const LofiHeader = () => {
 interface linkWithIcon {
   icon: string;
   text: string;
-  url: string;
+  onClickHandler?: () => void;
 }
 
-const LinkWithIcon = ({ icon, text, url }: linkWithIcon) => {
-  const navigate = useNavigate();
-
+const LinkWithIcon = ({ icon, text, onClickHandler }: linkWithIcon) => {
   return (
-    <div className="flex gap-[5px] w-32" onClick={() => navigate(url)}>
+    <div className="flex gap-[5px] w-32" onClick={onClickHandler}>
       <img className="h-5 w-5" src={icon} alt={`${text} Icon`} />
       <span className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-20 after:scale-x-0 after:hover:scale-x-75 after:transition after:duration-300 after:origin-left">
         {text}
