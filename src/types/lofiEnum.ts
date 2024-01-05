@@ -36,7 +36,8 @@ export enum LOFI_USER  {
   USERNAME = "username"
 }
 
-export enum LOFI_METHOD {
+export enum LOFI_ENDPOINT {
   LOGIN = "login",
-  SIGNUP = "signup"
+  SIGNUP = "signup",
+  AUTHENTICATED = 'authenticated'
 }

@@ -2,7 +2,7 @@ import { lazy, useEffect, useState, Suspense } from "react";
 import { ICON_PATHS } from "../../../Lofi/UI/Header/LofiHeader";
 import {
   LOCAL_STORAGE,
-  LOFI_METHOD,
+  LOFI_ENDPOINT,
   ValueInputType,
 } from "../../../../../types";
 import { UseFetch } from "../../../../../utils/useFetch";
@@ -25,22 +25,24 @@ const LofiForm: React.FC = () => {
 
   const submitFormHandler = async () => {
     const response = await UseFetch(
-      isSignUp ? LOFI_METHOD.SIGNUP : LOFI_METHOD.LOGIN,
+      isSignUp ? LOFI_ENDPOINT.SIGNUP : LOFI_ENDPOINT.LOGIN,
       "POST",
+      {
+        "Content-Type": "application/json",
+      },
       JSON.stringify({
-        username: values.sername,
+        username: values.username,
         email: values.email,
         password: values.password,
       })
     );
     if (response) {
       setFetchMessage(response);
-      setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
-      console.log(response);
       if (response.code === 201) {
         setIsSignUp(!isSignUp);
       }
       if (response.token) {
+        setInLocalStorage(LOCAL_STORAGE.USER, JSON.stringify(response));
         const currentUrl = window.location.href;
         const parentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
         window.location.href = parentUrl;

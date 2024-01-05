@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import DarkLightSwitch from "../Button/LofiDayButton";
-import { PATH_ENUM } from "../../../../../types";
-import { useState } from "react";
+import { LOCAL_STORAGE, LOFI_ENDPOINT, PATH_ENUM } from "../../../../../types";
+import { useEffect, useState } from "react";
+import { UseFetch } from "../../../../../utils/useFetch";
+import { getFromLocalStorage } from "../../../../../utils/localStorage";
+
 export const ICON_PATHS = {
   logo: "/assets/icons/lofi-logo.gif",
   info: "/assets/icons/info-solid.svg",
@@ -13,12 +16,15 @@ export const ICON_PATHS = {
 const LofiHeader = () => {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fullScreenButtonHandler = async () => {
     const element = document.getElementById("lofi-video");
     if (element) {
       try {
-        const { fullScreenHandler} = await import("../../../../../utils/setFullScreen");
+        const { fullScreenHandler } = await import(
+          "../../../../../utils/setFullScreen"
+        );
         fullScreenHandler();
       } catch (error) {
         console.error("Error loading setFullScreen module:", error);
@@ -29,6 +35,27 @@ const LofiHeader = () => {
   const redirectPath = (currentUrl: PATH_ENUM, nexturl: string) => {
     return location.pathname.replace(currentUrl, nexturl);
   };
+
+  useEffect(() => {
+    if (getFromLocalStorage(LOCAL_STORAGE.USER)) {
+      setLoading(!loading);
+      const tokenLocal = JSON.parse(getFromLocalStorage(LOCAL_STORAGE.USER));
+      const token = tokenLocal.token;
+      const response = UseFetch(LOFI_ENDPOINT.AUTHENTICATED, "GET", {
+        Authorization: `Bearer ${token}`,
+      });
+      if (response) {
+        console.log(response);
+        setLoading(false);
+      }
+    }
+   
+    
+  }, [loading, ]);
+
+  if (loading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     <div className="absolute z-[1] w-[80%] flex items-center text-sm text-white justify-between overflow-hidden">

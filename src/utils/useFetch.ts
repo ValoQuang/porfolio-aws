@@ -2,13 +2,24 @@ const baseURL = "http://localhost:8000/";
 
 type Method = "POST" | "PUT" | "GET" | "DELETE";
 
-export const UseFetch = async (path: string, method: Method, body: any) => {
+type JsonRequestHeaders =
+  | {
+      "Content-Type": "application/json";
+    }
+  | {
+      Authorization: string;
+    };
+
+export const UseFetch = async (
+  path: string,
+  method: Method,
+  headers: JsonRequestHeaders,
+  body?: any
+) => {
   try {
     const response = await fetch(`${baseURL}${path}`, {
       method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: body,
     });
     const data = await response.json();
