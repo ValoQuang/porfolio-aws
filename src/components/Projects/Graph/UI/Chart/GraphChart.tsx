@@ -34,7 +34,7 @@ const openIcon = (
 );
 
 const GraphChart = () => {
-  const [result, setResult] = useState<LanguageNodeArray>();
+  const [result, setResult] = useState<LanguageNodeArray>([]);
   const { loading, data } = useQuery<UsedLanguages>(GET_USED_LANGUAGE, {
     variables: {
       login: process.env.REACT_APP_GITHUB_USER,
@@ -54,7 +54,7 @@ const GraphChart = () => {
 
   return (
     <div className="flex flex-wrap gap-x-8 gap-y-3">
-      {result?.slice(1).map((name, index) => (
+      {result.slice(1).map((name, index) => (
         <div key={index}>
           <div className="px-2 border-[1px] w-96 border-gray-600 rounded-md  gap-[3px]">
             <div className="flex items-center justify-between ">
@@ -67,7 +67,7 @@ const GraphChart = () => {
                   {name.name}
                 </a>
               </div>
-              <button className="hover:bg-slate-100 rounded-md hover:text-orange-400">
+              <button className="rounded-md hover:text-orange-400">
                 {openIcon}
               </button>
             </div>

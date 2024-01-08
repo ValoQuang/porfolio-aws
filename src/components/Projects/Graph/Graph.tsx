@@ -62,11 +62,11 @@ const Graph = () => {
             <div
               className={`${
                 isStatusOpen && "bg-opacity-50 pointer-events-none"
-              } rounded-3xl flex leading-10 bg-graph text-white`}
+              } rounded-3xl flex leading-10 bg-graph text-white `}
             >
               <div className="rounded-3xl flex bg-graph p-5 text-white">
                 <div className="w-3/12 mr-10">
-                  <div className={`relative ${isStatusOpen && "opacity-50"}`}>
+                  <div className={`shadow-2xl rounded-full relative ${isStatusOpen && "opacity-50"}`}>
                     <img
                       loading="lazy"
                       className="rounded-full w-fit h-fit"
