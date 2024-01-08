@@ -27,7 +27,7 @@ export interface PersonalModalProp {
 
 export interface GraphButtonProp {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface GraphInputProp {

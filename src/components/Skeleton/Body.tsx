@@ -14,7 +14,7 @@ const Body = ({ children }: BodyProp) => {
       <div
         className={`${getBackgroundClass(
           isDarkMode
-        )} flex-col p-main w-full font-ibm-plex-mono`}
+        )} flex-col p-main w-full font-semibold`}
       >
         {children}
       </div>

@@ -24,13 +24,13 @@ export const GET_USED_LANGUAGE = gql`
 export interface LanguageNode {
   name: string;
   languages: {
-    edges: {
+    edges: Array<{
       size: number;
       node: {
         color: string;
         name: string;
       };
-    };
+    }>;
   };
 }
 export interface LanguageNodeArray extends Array<LanguageNode> {}
@@ -38,7 +38,7 @@ export interface LanguageNodeArray extends Array<LanguageNode> {}
 export interface UsedLanguages {
   user: {
     repositories: {
-      nodes: LanguageNode,
+      nodes: Array<LanguageNode>;
     };
   };
 }
