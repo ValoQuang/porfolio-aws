@@ -8,7 +8,7 @@ import { useModalStore } from "../../../store/modalStore";
 
 const StatusModal = lazy(() => import("./UI/Modals/StatusModal"));
 const InfoModal = lazy(() => import("./UI/Modals/InfoModal"));
-const GraphProfile = lazy(() => import("./GraphProfile"));
+const GraphProfile = lazy(() => import("./UI/Profile/GraphProfile"));
 
 const Graph = () => {
   const [isStatusOpen, isInfoOpen, setModalState] = useModalStore((state) => [
@@ -51,87 +51,87 @@ const Graph = () => {
 
   return (
     <>
-    <Suspense>
-      <StatusModal
-        isOpen={isStatusOpen}
-        fetchedStatus={data?.user?.status}
-        onClose={closeStatusModal}
-      />
-      <Body
-        children={
-          <div
-            className={`${
-              isStatusOpen && "bg-opacity-50 pointer-events-none"
-            } rounded-3xl flex leading-10 bg-graph text-white`}
-          >
-            <div className="rounded-3xl flex bg-graph p-5 text-white">
-              <div className="w-3/12 mr-10">
-                <div className={`relative ${isStatusOpen && "opacity-50"}`}>
-                  <img
-                    loading="lazy"
-                    className="rounded-full w-fit h-fit"
-                    src={data?.user.avatarUrl}
-                    alt="alt me"
-                  />
-                  <button
-                    onClick={openStatusModal}
-                    className={`${
-                      (isStatusOpen && "disabled pointer-events-none") ||
-                      (data?.user.status! !== null &&
-                      data?.user.status.indicatesLimitedAvailability
-                        ? "border-2 border-[#e46e13]"
-                        : "")
-                    } bg-zinc-700 absolute bottom-[10%] right-[10%] rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
-                  >
-                    {data?.user?.status ? (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: data?.user.status.emojiHTML,
-                        }}
-                      />
-                    ) : (
-                      "-"
-                    )}
-                  </button>
-                </div>
+      <Suspense>
+        <StatusModal
+          isOpen={isStatusOpen}
+          fetchedStatus={data?.user?.status}
+          onClose={closeStatusModal}
+        />
+        <Body
+          children={
+            <div
+              className={`${
+                isStatusOpen && "bg-opacity-50 pointer-events-none"
+              } rounded-3xl flex leading-10 bg-graph text-white`}
+            >
+              <div className="rounded-3xl flex bg-graph p-5 text-white">
+                <div className="w-3/12 mr-10">
+                  <div className={`relative ${isStatusOpen && "opacity-50"}`}>
+                    <img
+                      loading="lazy"
+                      className="rounded-full w-fit h-fit"
+                      src={data?.user.avatarUrl}
+                      alt="alt me"
+                    />
+                    <button
+                      onClick={openStatusModal}
+                      className={`${
+                        (isStatusOpen && "disabled pointer-events-none") ||
+                        (data?.user.status! !== null &&
+                        data?.user.status.indicatesLimitedAvailability
+                          ? "border-2 border-[#e46e13]"
+                          : "")
+                      } bg-zinc-700 absolute bottom-[10%] right-[10%] rounded-full w-8 h-8 hover:bg-zinc-600 flex items-center justify-center `}
+                    >
+                      {data?.user?.status ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: data?.user.status.emojiHTML,
+                          }}
+                        />
+                      ) : (
+                        "-"
+                      )}
+                    </button>
+                  </div>
 
-                {!isInfoOpen ? (
-                  <div className="flex-col space-y-2">
-                    <div className="text-3xl">{data?.user.name}</div>
-                    <div className="text-sm w-full">{data?.user.bio}</div>
-                    <div className="text-sm flex justify-start gap-5 leading-10">
-                      <div>{data?.user.login}</div>
-                      <div className="text-slate-400">
-                        {data?.user.pronouns}
+                  {!isInfoOpen ? (
+                    <div className="flex-col space-y-2">
+                      <div className="text-3xl">{data?.user.name}</div>
+                      <div className="text-sm w-full">{data?.user.bio}</div>
+                      <div className="text-sm flex justify-start gap-5 leading-10">
+                        <div>{data?.user.login}</div>
+                        <div className="text-slate-400">
+                          {data?.user.pronouns}
+                        </div>
+                      </div>{" "}
+                      <GraphButton
+                        title={GRAPH_BUTTON.EDIT_PROFILE}
+                        onClick={openInfoModal}
+                      />
+                      <p>Email: {data?.user.email}</p>
+                      <div>
+                        {data?.user.followers.totalCount} follower{" "}
+                        {data?.user.following.totalCount} following
                       </div>
-                    </div>{" "}
-                    <GraphButton
-                      title={GRAPH_BUTTON.EDIT_PROFILE}
-                      onClick={openInfoModal}
-                    />
-                    <p>Email: {data?.user.email}</p>
-                    <div>
-                      {data?.user.followers.totalCount} follower{" "}
-                      {data?.user.following.totalCount} following
+                      <div>{data?.user.company}</div>
+                      <div>{data?.user.location}</div>
                     </div>
-                    <div>{data?.user.company}</div>
-                    <div>{data?.user.location}</div>
-                  </div>
-                ) : (
-                  <div className={`${isStatusOpen && "opacity-50"}`}>
-                    <InfoModal
-                      refetch={refetch}
-                      data={data?.user!}
-                      onClose={closeInfoModal}
-                    />
-                  </div>
-                )}
+                  ) : (
+                    <div className={`${isStatusOpen && "opacity-50"}`}>
+                      <InfoModal
+                        refetch={refetch}
+                        data={data?.user!}
+                        onClose={closeInfoModal}
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="w-9/12 ml-10">{<GraphProfile />}</div>
               </div>
-              <div className="w-9/12 ml-10">{<GraphProfile />}</div>
             </div>
-          </div>
-        }
-      />
+          }
+        />
       </Suspense>
     </>
   );

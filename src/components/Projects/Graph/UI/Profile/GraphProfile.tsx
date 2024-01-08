@@ -1,5 +1,7 @@
-import ContributionCalendar from "./UI/ContributionCalendar/GraphContributionCalendar";
+import { lazy } from "react";
+import ContributionCalendar from "../ContributionCalendar/GraphContributionCalendar";
 
+const GraphChart = lazy(() => import("../Chart/GraphChart"));
 const GraphProfile = () => {
   return (
     <div>
@@ -58,6 +60,7 @@ const GraphProfile = () => {
       <br />
       <div className="hidden xl:block overflow-hidden">
         <ContributionCalendar />
+        <GraphChart />
       </div>
     </div>
   );
