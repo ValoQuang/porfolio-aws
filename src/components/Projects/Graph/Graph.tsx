@@ -1,13 +1,13 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USER_INFO } from "../../../graphQL/query";
 import { Body } from "../../Skeleton";
 import { GRAPH_BUTTON, GRAPH_MODALS } from "../../../types";
 import GraphButton from "./UI/Button/GraphButton";
 import { useModalStore } from "../../../store/modalStore";
+import InfoModal from "./UI/Modals/InfoModal";
 
 const StatusModal = lazy(() => import("./UI/Modals/StatusModal"));
-const InfoModal = lazy(() => import("./UI/Modals/InfoModal"));
 const GraphProfile = lazy(() => import("./UI/Profile/GraphProfile"));
 
 const Graph = () => {
