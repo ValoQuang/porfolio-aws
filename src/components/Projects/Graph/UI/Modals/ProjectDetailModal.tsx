@@ -32,7 +32,7 @@ const ProjectDetailModal = ({ top, left }: DetailModalProp) => {
       <div
         id="output"
         style={{ top: `${topRounded}`, left: `${leftRounded}` }}
-        className="absolute w-96 h-96 border border-gray-200 rounded-lg bg-slate-700 shadow-2xl z-40"
+        className="absolute w-96 h-96 border border-gray-200 rounded-lg bg-slate-700 shadow-2xl z-[1]"
       >
         <a href="#">
           <img

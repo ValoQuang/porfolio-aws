@@ -183,7 +183,6 @@ const LofiSettingBoard = () => {
 
             <div className="flex flex-col gap-3 p-2 bg-[#24242f] rounded-xl overflow-y-invisible">
               {ambientArray.map((config, index) => {
-                console.log(config);
                 return (
                   <div
                     key={index}
