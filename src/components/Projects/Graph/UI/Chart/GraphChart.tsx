@@ -5,7 +5,6 @@ import {
   LanguageNodeArray,
   UsedLanguages,
 } from "../../../../../graphQL/query";
-import GraphButton from "../Button/GraphButton";
 //import PieChart from "./PieChart";
 
 const computerIcon = (
@@ -36,7 +35,7 @@ const openIcon = (
 
 const GraphChart = () => {
   const [result, setResult] = useState<LanguageNodeArray>();
-  const { loading, data, error } = useQuery<UsedLanguages>(GET_USED_LANGUAGE, {
+  const { loading, data } = useQuery<UsedLanguages>(GET_USED_LANGUAGE, {
     variables: {
       login: process.env.REACT_APP_GITHUB_USER,
     },
@@ -45,13 +44,8 @@ const GraphChart = () => {
   useEffect(() => {
     if (data && !loading) {
       setResult(data.user.repositories.nodes as unknown as LanguageNodeArray);
-      console.log(data?.user.repositories.nodes[1].languages.edges[0].node);
     }
   }, [data, loading]);
-
-  if (error) {
-    console.log(error);
-  }
 
   if (loading) {
     return <>Loading ...</>;
