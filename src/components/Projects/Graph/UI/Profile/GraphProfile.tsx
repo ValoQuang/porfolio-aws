@@ -64,7 +64,7 @@ const GraphProfile = () => {
       </div>
 
       <br />
-      <div className="shadow-2xl">
+      <div className="">
         Pinned
         <GraphChart />
       </div>

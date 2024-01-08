@@ -53,16 +53,18 @@ const GraphChart = () => {
   }
 
   return (
-    <div className="flex flex-wrap gap-x-8 gap-y-3">
+    <div className="flex flex-wrap gap-x-8 gap-y-3 ">
       {result.slice(1).map((name, index) => (
         <div key={index}>
-          <div className="px-2 border-[1px] w-96 border-gray-600 rounded-md  gap-[3px]">
+          <div className="solid-button w-96">
             <div className="flex items-center justify-between ">
               <div className="flex items-center gap-2">
                 {computerIcon}
                 <a
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href={`https://github.com/${process.env.REACT_APP_GITHUB_USER}/${name.name}`}
-                  className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-white after:w-20 after:scale-x-0 after:hover:scale-x-125 after:transition after:duration-300 after:origin-left"
+                  className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-black after:w-20 after:scale-x-0 after:hover:scale-x-125 after:transition after:duration-300 after:origin-left"
                 >
                   {name.name}
                 </a>

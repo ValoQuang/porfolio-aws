@@ -89,7 +89,7 @@ const StatusModal = ({ isOpen, onClose, fetchedStatus }: StatusModalProp) => {
   };
 
   return (
-    <div className="p-4 shadow-2xl fixed top-48 left-1/3 w-status h-status rounded-xl bg-slate-700 outline-none">
+    <div className="p-4 shadow-2xl fixed top-48 left-1/3 w-status h-status rounded-md bg-slate-700 outline-none">
       <div className="flex justify-between text-white text-20">
         <div>Edit status</div>
         <button className="hover:text-zinc-600" onClick={onClose}>

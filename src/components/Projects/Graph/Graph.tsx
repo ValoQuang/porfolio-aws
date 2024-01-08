@@ -17,7 +17,7 @@ const Graph = () => {
     state.setModalState,
   ]);
 
-  const { data, loading, error, refetch } = useQuery(GET_USER_INFO, {
+  const { data, loading, refetch } = useQuery(GET_USER_INFO, {
     variables: {
       login: `${process.env.REACT_APP_GITHUB_USER}`,
     },
@@ -26,8 +26,6 @@ const Graph = () => {
   const openInfoModal = () => {
     setModalState(GRAPH_MODALS.PERSONAL);
   };
-
-  useEffect(() => {}, [data, error, loading, isStatusOpen]);
 
   const openStatusModal = () => {
     if (typeof window != "undefined" && window.document) {
