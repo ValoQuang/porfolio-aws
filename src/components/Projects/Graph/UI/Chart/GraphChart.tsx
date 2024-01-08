@@ -5,7 +5,7 @@ import {
   LanguageNodeArray,
   UsedLanguages,
 } from "../../../../../graphQL/query";
-//import PieChart from "./PieChart";
+import ProjectDetailModal from "../Modals/ProjectDetailModal";
 
 const computerIcon = (
   <svg
@@ -35,6 +35,8 @@ const openIcon = (
 
 const GraphChart = () => {
   const [result, setResult] = useState<LanguageNodeArray>([]);
+  const [isOpenDetail, setIsOpenDetail] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
   const { loading, data } = useQuery<UsedLanguages>(GET_USED_LANGUAGE, {
     variables: {
       login: process.env.REACT_APP_GITHUB_USER,
@@ -45,47 +47,71 @@ const GraphChart = () => {
     if (data && !loading) {
       setResult(data.user.repositories.nodes as unknown as LanguageNodeArray);
     }
-    console.log(result);
   }, [data, loading, result]);
 
   if (loading) {
     return <>Loading ...</>;
   }
 
+  //t is because getBoundingClientRect() gets values with respect to the window(only the current visible portion of the page), not the document(whole page).
+  //Hence, it also takes scrolling into account when calculating its values
+  //Basically, document = window + scroll
+
+  const openDetailHandler = (e: any) => {
+    const buttonRect = e.target.getBoundingClientRect();
+    setIsOpenDetail(!isOpenDetail);
+    setPosition({
+      top: buttonRect.top + window.scrollY,
+      left: buttonRect.left + window.scrollX,
+    });
+  };
+
   return (
-    <div className="flex flex-wrap gap-x-8 gap-y-3 ">
-      {result.slice(1).map((name, index) => (
-        <div key={index}>
-          <div className="solid-button w-96">
-            <div className="flex items-center justify-between ">
-              <div className="flex items-center gap-2">
-                {computerIcon}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={`https://github.com/${process.env.REACT_APP_GITHUB_USER}/${name.name}`}
-                  className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-black after:w-20 after:scale-x-0 after:hover:scale-x-125 after:transition after:duration-300 after:origin-left"
+    <>
+      {isOpenDetail && (
+        <ProjectDetailModal top={position.top} left={position.left} />
+      )}
+
+      <div className="flex flex-wrap gap-x-8 gap-y-3 ">
+        {result.slice(1).map((name, index) => (
+          <div key={index}>
+            <div className="solid-button w-96">
+              <div className="flex items-center justify-between ">
+                <div className="flex items-center gap-2">
+                  {computerIcon}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`https://github.com/${process.env.REACT_APP_GITHUB_USER}/${name.name}`}
+                    className="hover:cursor-pointer after:block after:content-[''] after:absolute after:h-[2px] after:bg-black after:w-20 after:scale-x-0 after:hover:scale-x-125 after:transition after:duration-300 after:origin-left"
+                  >
+                    {name.name}
+                  </a>
+                </div>
+                <button
+                  onClick={openDetailHandler}
+                  className="rounded-md hover:text-orange-400"
                 >
-                  {name.name}
-                </a>
+                  {openIcon}
+                </button>
               </div>
-              <button className="rounded-md hover:text-orange-400">
-                {openIcon}
-              </button>
-            </div>
-            <div className="flex items-center gap-2">
-              <div
-                className={`bg-[${name.languages.edges[0]?.node?.color.replace(
-                  /["']/g,
-                  ""
-                )}] w-3 h-3 rounded-full `}
-              ></div>
-              <p>{name.languages.edges[0].node.name}</p>
+              <div className="flex items-center gap-2">
+                <div
+                  style={{
+                    background: `${name.languages.edges[0]?.node?.color.replace(
+                      /["']/g,
+                      ""
+                    )}`,
+                  }}
+                  className="w-3 h-3 rounded-full"
+                ></div>
+                <p>{name.languages.edges[0].node.name}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 
