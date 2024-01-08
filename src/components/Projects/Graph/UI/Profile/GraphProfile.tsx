@@ -5,7 +5,7 @@ const GraphChart = lazy(() => import("../Chart/GraphChart"));
 const GraphProfile = () => {
   return (
     <div className="flex flex-col gap-3">
-      <div className="border-[1px] border-gray-400 rounded-md p-2 shadow-2xl">
+      <div className="border-[1px] border-gray-600 rounded-md p-2 shadow-2xl">
         <br />
         <p className=" text-4xl items-center flex justify-center">
           Hi 👋, I'm Quang
@@ -72,7 +72,7 @@ const GraphProfile = () => {
       <br />
       <div>
         Contribution calendar
-        <div className="border-[1px] border-gray-400 rounded-md p-2 shadow-2xl">
+        <div className="border-[1px] border-gray-600 rounded-md p-2 shadow-2xl">
           <div className="hidden xl:block overflow-hidden">
             <ContributionCalendar />
           </div>

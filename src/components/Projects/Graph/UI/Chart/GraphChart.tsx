@@ -45,7 +45,8 @@ const GraphChart = () => {
     if (data && !loading) {
       setResult(data.user.repositories.nodes as unknown as LanguageNodeArray);
     }
-  }, [data, loading]);
+    console.log(result);
+  }, [data, loading, result]);
 
   if (loading) {
     return <>Loading ...</>;
@@ -55,7 +56,7 @@ const GraphChart = () => {
     <div className="flex flex-wrap gap-x-8 gap-y-3">
       {result?.slice(1).map((name, index) => (
         <div key={index}>
-          <div className="px-2 border-[1px] w-96 border-gray-400 rounded-md  gap-[3px]">
+          <div className="px-2 border-[1px] w-96 border-gray-600 rounded-md  gap-[3px]">
             <div className="flex items-center justify-between ">
               <div className="flex items-center gap-2">
                 {computerIcon}
@@ -66,7 +67,7 @@ const GraphChart = () => {
                   {name.name}
                 </a>
               </div>
-              <button className="hover:bg-slate-100border rounded-md hover:text-orange-400">
+              <button className="hover:bg-slate-100 rounded-md hover:text-orange-400">
                 {openIcon}
               </button>
             </div>
